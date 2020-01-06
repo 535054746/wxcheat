@@ -1,0 +1,17 @@
+.top-view{width: 100%;height: 143px;}
+.top-view image{width: 100%;height: 143px;}
+.companyName{text-align: center;margin-top: -86px;color: white;font-weight: bold;font-size: 24px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.add-title{height: 46px;font-size: 15px;color: #33B0FF;line-height: 46px;border-top: 1px solid #F7F7F7;}
+.add-title-hover{color: #247CB3;}
+.add-title image{width: 21px;height: 21px;margin: 12px 9px 0 12px;}
+.store{width: 100%;height: 47px;line-height: 47px;border-bottom: 1px solid #F7F7F7;}
+.store image{width: 21px;height: 21px;margin: 13px 9px 0 12px;}
+.store-name{font-size: 15px;color: #EEBC41;font-weight: bold;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.dept{width:100%;height: 47px;line-height: 47px;}
+.dept image{width: 21px;height: 21px;margin: 13px 9px 0 12px;}
+.dept-name{font-size:15px;color: 1A1A1A;font-weight: bold;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.dept-manage{font-size: 15px;font-weight: normal;text-align: right;padding-right: 18px;color:#999999;margin-left: 21px;}
+.link-icon image{width: 7px; height:13px; margin-top: 18px;}
+.link-icon{width: 7px;margin-right: 24px}
+.lines{background-color:#f5f5f5 ;width: 100%;height:9px}
+.lines-thin{background-color:#F7F7F7 ;width: 100%;height:1px;margin-left: 24px;}

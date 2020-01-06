@@ -1,0 +1,37 @@
+<!--components/shopDetailDialog/shopDetailDialog.wxml-->
+<view class='shopDetailDialog-mask' hidden='{{!isShow}}'></view>
+<scroll-view scroll-y class='shopDetailDialog-main' hidden='{{!isShow}}'>
+  <view class='shopDetailDialog-name'>
+    <view>{{shopItem.itemname}}</view>
+    <view>{{source!=1?"":price.length==0?"":"￥"}}{{price}}</view>
+    <image bindtap='hide' src='../../pages/common/images/icons/tcgb@2x.png'></image>
+  </view>
+  <view class='shopDetailDialog-unit'>
+    <view>单位</view>
+    <input class='{{source!=1?"disInput":""}}' disabled='{{source!=1}}' value='{{unitValue}}' bindblur='unitInput'></input>
+  </view>
+  <view class='shopDetailDialog-supplier' hidden='{{supplierList.length<2}}'>
+    <view>供应商</view>
+    <view class='shopDetailDialog-supplier-item {{item.customerCode==supplierId?"shopDetailDialog-active-item":""}}' wx:for='{{supplierList}}' bindtap='selectSupplier' data-id='{{item.customerCode}}' data-itemid='{{item.id}}' data-name='{{item.customerName}}'>
+      <view>{{item.customerName}}</view>
+    </view>
+    <view class='shopDetailDialog-clear'></view>
+  </view>
+  <view class='shopDetailDialog-sku' hidden='{{skuList.length==0}}'>
+    <view class='shopDetailDialog-sku-item' wx:for='{{skuList}}' wx:for-item='firstItem' wx:for-index='i'>
+      <view>{{firstItem.k}}</view>
+      <view>
+        <view wx:for='{{firstItem.value}}' wx:for-item='secondItem' wx:for-index='j' class='shopDetailDialog-sku-item-value {{secondItem.isCheck?"shopDetailDialog-active-item":""}}' bindtap='selectSku' data-findex='{{i}}' data-sindex='{{j}}'>
+          <view>{{secondItem.v}}</view>
+        </view>
+    <view class='shopDetailDialog-clear'></view>
+      </view>
+    </view>
+  </view>
+  <view class='shopDetailDialog-count'>
+    <view>数量</view>
+    <amountInput bind:amountInput='amountInput' amountInputValue='{{qty}}'></amountInput>
+  </view>
+  <view class='shopDetailDialog-remark'>*若没有所需要的规格，请联系管理员添加</view>
+  <view class='shopDetailDialog-btn' bindtap='sure'>确定</view>
+</scroll-view>

@@ -1,0 +1,107 @@
+<!--pages/customerManagement/customerManagement/customerManagement.wxml-->
+<view class='container padding-bottom-50'>
+  <view wx:for="{{customerData}}" wx:for-item="items" wx:for-index="index">
+    <view class='cus-name'>{{items.companyName}}</view>
+    <view class='display-flex licence'>
+      <view class=' licence_name'>营业执照号</view>
+      <view class=' licence_number'>{{items.blNum}}</view>
+    </view>
+    <view class='display-flex licence'>
+      <view class=' licence_name'>{{items.contactsName}}</view>
+      <view class=' licence_number'>{{items.mobile}}</view>
+      <view class='flex-row'></view>
+      <view class='call-icon' data-mobile="{{items.mobile}}" bindtap='callMobile'>
+        <image src='../../common/images/icons/call@2x.png'></image>
+      </view>
+    </view>
+    <view class='address'>{{items.address}}</view>
+    <view class='lines'></view>
+    <view class='display-flex bot-box'>
+      <view class='flex-row'></view>
+      <view class='display-flex share' bindtap='shareInfo' data-index="{{items}}">
+        <view>
+          <image src='../../common/images/icons/khglfx@2x.png'></image>
+        </view>
+        <view class='share-text'>分享</view>
+      </view>
+      <view class='display-flex share'>
+        <view>
+          <image src='../../common/images/icons/sqddelete@3x.png'></image>
+        </view>
+        <view class='share-text' data-id="{{items.id}}" bindtap='deleteTip'>删除</view>
+      </view>
+    </view>
+    <view class='lines-wide'></view>
+  </view>
+
+  <view class='money_total'>
+    <view class='money_total_box display-flex'>
+      <view class='sure-button flex-row' bindtap='addCustomer'>添加客户</view>
+    </view>
+  </view>
+</view>
+<view class="ck_tips" wx:if="{{tipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg"></view>
+    <view class="tips_text">{{tipText}}</view>
+  </view>
+</view>
+<view class='remarks-fixed' wx:if="{{deleteFlag}}">
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>操作提示</view>
+      <view class='tip-text'>
+        <view>删除后不可恢复，客户也无法再下单
+          <view></view>确定要删除吗？</view>
+      </view>
+      <view class='tip-btns display-flex'>
+        <view class='cancel-btn flex-row' bindtap='deleteCancel'>取消</view>
+        <view class='comfire-btn flex-row' bindtap='deleteCustomer'>确定</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='remarks-fixed' wx:if='{{shareFlag}}'>
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>客户帐号密码
+        <image bindtap='closeShare' src='../../common/images/icons/popupsclose@2x.png'></image>
+      </view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>客户</view>
+        <view class='shareValue'>{{currentShare.companyName}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>营业执照</view>
+        <view class='shareValue'>{{currentShare.blNum}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>联系人</view>
+        <view class='shareValue'>{{currentShare.contactsName}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>登陆账号</view>
+        <view class='shareValue'>{{currentShare.mobile}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>默认密码</view>
+        <view class='shareValue'>123456</view>
+      </view>
+      <view class='tip-btns display-flex'>
+        <button style='border:none;' class='display-flex' open-type="share" plain="true" data-index="{{index}}">
+        <view class='shareBtn'>分享到微信</view>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='loading-bg' wx:if="{{loading}}"></view>
+<view class='loading-icon display-flex' wx:if="{{loading}}">
+  <image src='../../common/images/icons/loading.gif'></image>
+</view>

@@ -1,0 +1,22 @@
+.flex1{ flex: 1;}
+
+.shop-item{ background-color: #fff; margin-bottom: 5px;}
+.item-choose{ width: 20px; height: 20px;}
+.shop-name{ margin-left: 5px;}
+.item-delete,.item-delete{ width: 20px;height: 20px; margin-top: 2px;}
+.weight{ width: 100px; height: 25px; line-height: 25px;}
+.weight text{ color: #33b0ff;}
+.shop-item-box{ padding: 12px 12px;}
+.shop-item-box2{ padding: 5px 12px; padding-right: 32px;}
+.weight input{border:1px solid #e9e9e9;border-radius: 6px;text-align: center; display: block; width: 50px; margin-right: 5px; height: 20px;}
+.color-9c9c9c{ color: #9c9c9c;}
+.bg-f8fdff{ background-color: #f8fdff;}
+.rule-box{ color: #9c9c9c; border-top: 1px solid #e9e9e9; padding: 5px 12px;}
+.order_tab_five{ background-color: #fff; position: fixed;left: 0px;bottom: 0px;right: 0px; padding: 12px; display: flex; height: 64px; line-height: 40px;}
+.store-icon image{ width: 20px; height: 20px; margin-top: 10px;}
+.order_all{ color: #666; margin-left: 10px; }
+.create-botton-sure{border:0px !important;border-radius: 6px; color: #fff; background-color: #33b0ff; padding: 0px 12px; flex: 1;margin-left: 10px; text-align: center; height: 40px; line-height: 40px; font-size: 15px; font-weight: bold;}
+.ck_tips{position: fixed; left: 50%;top: 40%;z-index: 100000; margin-left: -100px; margin-top: -18px;}
+.tips_box{position: relative;width:200px; height: 30px;}
+.tips_bg{ width: 100%; height: 100%; background-color: #000;opacity: 0.6;border-radius: 8px;position: absolute}
+.tips_text{ width: 100%; height: 100%;text-align: center; line-height: 30px;position: absolute;z-index: 10000000000000; color: #fff; font-size: 14px;}

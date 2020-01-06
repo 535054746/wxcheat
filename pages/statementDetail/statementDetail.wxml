@@ -1,0 +1,130 @@
+<view class="container bg">
+  <view class="order_detail_info">
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">日期</view>
+      <view class="flex-row info-value">{{createtime}}</view>
+    </view>
+    <view class="display-flex info-line">
+      <view class="info-text">编码</view>
+      <view class="flex-row info-value">{{ordercode}}</view>
+    </view>
+    <view class="display-flex info-line">
+      <view class="info-text">最新状态</view>
+      <view class="flex-row info-value statu-color">未对账</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">门店</view>
+      <view class="flex-row info-value">{{storeName}}</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">收货人</view>
+      <view class="flex-row info-value">{{receivename}}</view>
+    </view>
+    <view class="info-show" bindtap='showTop'>
+      <image src="{{showTopFlag?'../common/images/icons/folding@2x.png':'../common/images/icons/expansion@2x.png'}}" class="up_ion"></image>
+    </view>
+  </view>
+  <view class="order_title display-flex">
+    <view class="title-text flex-row  display-flex">
+      <view><image src="../common/images/icons/order.png" class="title-icon"></image></view>
+      <view>对账单明细</view>
+    </view>
+    <view class="title-number">共{{total}}种</view>
+  </view>
+  <view class='order_tab'>
+    <view class="order_tab_left {{mean==1?'current_tab':''}}" data-mean="1" bindtap='changeShowStyle'>全部明细</view>
+    <view class="order_tab_right {{mean==2?'current_tab':''}}" data-mean="2" bindtap='changeShowStyle'>按商品分类</view>
+  </view>
+  <view class="order-main">
+    <view class='order-table' wx:if="{{mean==1}}">
+      <view class='table-header'>
+        <view class="text-al">商品名称</view>
+        <view>单价</view>
+        <view>数量</view>
+        <view>单位</view>
+        <view>折扣</view>
+        <view class="text-ar">金额/元</view>
+      </view>
+      <view wx:for="{{orderData2}}" wx:for-index="index1"  wx:for-item="items">
+        <view class="{{(index1%2==0)?'':' bg-color-33b0ff'}} order-item" wx:if="{{items.itemSpecifications.length==0}}">
+            <view class="text-al">{{items.itemname}}</view>
+            <view>{{items.price}}</view>
+            <view>{{items.deliveryqty}}</view>
+            <view>{{items.assistantunit}}</view>
+            <view>100%</view>
+            <view class="text-ar">{{items.amount}}</view>
+        </view>
+        <view class="order-item2 {{(index1%2==0)?'':' bg-color-33b0ff'}}" wx:if="{{items.itemSpecifications.length!=0}}">
+          <view class='table-line'>
+            <view class="text-al">{{items.itemname}}</view>
+            <view>{{items.price}}</view>
+            <view>{{items.deliveryqty}}</view>
+            <view>{{items.assistantunit}}</view>
+            <view>100%</view>
+            <view class="text-ar">{{items.amount}}</view>
+          </view>
+          <view>
+            <view>{{items.itemSpecifications}}</view>
+          </view>
+        </view>
+      </view>
+      
+      
+    </view>
+    <view class='shop-type' wx:if="{{mean==2}}">
+      <view wx:for="{{orderData}}"  wx:for-index="index"  wx:for-item="items" class='margin-bottom-5'>
+        <view class='shop-type-item' bindtap='changeShowIcon' data-index="{{index}}">
+          <view class='shop-type-name'>{{items.itemcategoryname1}}</view>
+          <view class='shop-type-qty'>{{items.qty}}种</view>
+          <view class='shop-type-price'>金额：￥{{items.amount}}</view>
+          <view class='shop-type-icon'><image src='{{orderDataFlag[index]?"../common/images/icons/folding@2x.png":"../common/images/icons/expansion@2x.png"}}'></image></view>
+        </view>
+        <view wx:if="{{orderDataFlag[index]}}">
+          <view>
+            <view class='table-header'>
+              <view class="text-al">商品名称</view>
+              <view>单价</view>
+              <view>数量</view>
+              <view>单位</view>
+              <view>折扣</view>
+              <view class="text-ar">金额/元</view>
+            </view>
+            <view wx:for="{{items.detailList}}" wx:for-index="index1"  wx:for-item="items1">
+              <view class='shop-type-title'>
+                <view class='title-line'></view>
+                <view class='title-name'>{{items1.itemcategoryname2}}</view>
+              </view>
+              <view wx:for="{{items1.detailList}}" wx:for-index="index2"  wx:for-item="items2">
+                <view class="{{(index2%2==0)?'':' bg-color-33b0ff'}} order-item" wx:if="{{items2.itemSpecifications.length==0}}">
+                    <view class="text-al">{{items2.itemname}}</view>
+                    <view>{{items2.price}}</view>
+                    <view>{{items2.deliveryqty}}</view>
+                    <view>{{items2.assistantunit}}</view>
+                    <view>100%</view>
+                    <view class="text-ar">{{items2.amount}}</view>
+                </view>
+                <view class="order-item2 {{(index2%2==0)?'':' bg-color-33b0ff'}}" wx:if="{{items2.itemSpecifications.length!=0}}">
+                  <view class='table-line'>
+                    <view class="text-al">{{items2.itemname}}</view>
+                    <view>{{items2.price}}</view>
+                    <view>{{items2.deliveryqty}}</view>
+                    <view>{{items2.assistantunit}}</view>
+                    <view>100%</view>
+                    <view class="text-ar">{{items2.amount}}</view>
+                  </view>
+                  <view>
+                    <view>{{items2.itemSpecifications}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view> 
+    </view>
+  </view>
+  <view class='bottom-white-50'></view>
+  <view class='money_total'>
+    <view class='money_total_text'>合计：<text>￥{{amount}}</text></view>
+  </view>
+</view>

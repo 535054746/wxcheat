@@ -1,0 +1,7 @@
+/* components/yesNoBtn/yesNoBtn.wxss */
+.yesNoBtn-border{border-top: 1px solid #e6e6e6;display: flex;width: 100%;}
+.yesNoBtn-border>view{text-align: center;flex: 1;}
+
+
+.yesBtn{background: #33b0ff;border-radius: 5px;color: white;font-size: 16px;font-weight: bold;line-height: 40px;margin: 5px;}
+.noBtn{background: white;border-radius: 5px;color: red;font-size: 16px;font-weight: bold;line-height: 40px;margin: 4px;border: 1px solid red;}

@@ -1,0 +1,94 @@
+<view class='container repeat-box'>
+  <view wx:for="{{supplierList}}" wx:for-item="supplier">
+    <view class='supplier'>
+      <view class='display-flex supplier-name myRow'>{{supplier.companyName}}</view>
+      <view class='display-flex myRow'>
+        <view class='key'>营业执照号</view>
+        <view class='flex-row'>{{supplier.blNum}}</view>
+      </view>
+      <view class='display-flex myRow'>
+        <view class='key'>{{supplier.contactsName}}</view>
+        <view class='flex-row'>{{supplier.mobile}}</view>
+        <view bindtap='callPhone' data-phone='{{supplier.mobile}}'>
+          <image src='../../common/images/icons/QCcall@2x.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='lines-thin'></view>
+    <view class='display-flex more'>
+      <view class='history' bindtap='jumpLink' data-url='../../../pages/supplier/lookHistoryPrice/lookHistoryPrice?id={{supplier.id}}'>查看历史报价<image src='../../common/images/icons/more_blue@2x.png'></image></view>
+      <view class='flex-row'></view>
+      
+    <view class='display-flex share' bindtap='shareInfo' data-index="{{supplier}}">
+      <view><image src='../../common/images/icons/khglfx@2x.png'></image></view>
+      <view class='share-text'>分享</view>
+    </view>
+      
+    <view class='display-flex share' bindtap='showTips' data-type='delete' data-customerid='{{supplier.id}}'>
+      <view><image src='../../common/images/icons/sqddelete@3x.png'></image></view>
+      <view class='share-text'>删除</view>
+    </view>
+    </view>
+    <view class='lines'></view>
+  </view>
+  <view class='button-box'>
+    <view bindtap='jumpLink' data-url='../../mine/addSupplier/addSupplier' class='change-btn'>添加供应商</view>
+  </view>
+</view>
+<view class='remarks-fixed' wx:if='{{shareFlag}}'>
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>供应商帐号密码
+        <image bindtap='closeShare' src='../../common/images/icons/popupsclose@2x.png'></image>
+      </view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>客户</view>
+        <view class='shareValue'>{{currentShare.companyName}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>营业执照</view>
+        <view class='shareValue'>{{currentShare.blNum}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>联系人</view>
+        <view class='shareValue'>{{currentShare.contactsName}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>登陆账号</view>
+        <view class='shareValue'>{{currentShare.mobile}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>默认密码</view>
+        <view class='shareValue'>123456</view>
+      </view>
+      <view class='tip-btns display-flex'>
+        <button style='border:none;' class='display-flex' open-type="share" plain="true" data-index="{{index}}">
+        <view class='shareBtn'>分享到微信</view>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='remarks-fixed' wx:if="{{isShowTips}}">
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>操作提示</view>
+      <view class='tip-text'>
+      <view wx:if="{{tipsType}}">删除后不可恢复，也无法在下单，<view></view>确定要删除吗？</view>
+      <view wx:if="{{!tipsType}}">{{tipsText}}</view>
+      </view>
+      <view class='tip-btns display-flex'>
+        <view class='comfire-btn flex-row' bindtap='loginOutCancel' wx:if="{{!tipsType}}">我知道了</view>
+        <view class='cancel-btn flex-row' bindtap='loginOutCancel' wx:if="{{tipsType}}">取消</view>
+        <view class='comfire-btn flex-row' bindtap='loginOutComfire' wx:if="{{tipsType}}">确定</view>
+      </view>
+    </view>
+  </view>
+</view>

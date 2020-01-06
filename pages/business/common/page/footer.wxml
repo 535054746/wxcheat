@@ -1,0 +1,30 @@
+<template name="footer">
+  <view class='display-flex footer' style='z-index:{{zindex}};'>
+    <view class='flex-row'>
+      <view class='footer-item' bindtap='jumpLink' data-url='../../business/commodity/commodity'>
+        <view class='footer-item-image'><image src="{{status==1?'../../business/common/images/bqlsp_pr@2x.png':'../../business/common/images/bqlsp@2x.png'}}" class='item-icon1'></image></view>
+        <view class='footer-item-text {{status==1?"active-item":""}}'>商品</view>
+      </view>
+    </view>
+    <view class='flex-row'>
+      <view class='footer-item' bindtap='jumpLink' data-url='../../business/shopCart/shopCart'>
+        <view class='footer-item-image'><image src="{{status==2?'../../business/common/images/bqlgwc_pr@2x.png':'../../business/common/images/bqlgwc@2x.png'}}" class='item-icon2'></image></view>
+        <view class='footer-item-text {{status==2?"active-item":""}}'>购物车</view>
+        <view class='red-count' wx:if="{{number!=undefined&&number!=0}}">{{number}}</view>
+      </view>
+    </view>
+    <view class='flex-row'>
+      <view class='footer-item' bindtap='jumpLink' data-url='../../business/purchaseOrder/purchaseOrder'>
+        <view class='footer-item-image'><image src="{{status==3?'../../business/common/images/bqldd_pr@2x.png':'../../business/common/images/bqldd@2x.png'}}" class='item-icon3'></image></view>
+        <view class='footer-item-text {{status==3?"active-item":""}}'>订单</view>
+        <view class='red-count' wx:if="{{orderRedCount!=undefined&&orderRedCount!=0}}">{{orderRedCount}}</view>
+      </view>
+    </view>
+    <view class='flex-row'>
+      <view class='footer-item'>
+        <view class='footer-item-image' bindtap='jumpLink' data-url='../../mine/mainMine/mainMine'><image src="{{status==4?'../../business/common/images/bqlmy_pr@2x.png':'../../business/common/images/bqlmy@2x.png'}}" class='item-icon4'></image></view>
+        <view class='footer-item-text {{status==4?"active-item":""}}'>我的</view>
+      </view>
+    </view>
+  </view>
+</template>

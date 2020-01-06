@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="container bg">
+  <view class="order_tab">
+    <view class="order_menu {{orderStatu=='' ? 'current_menu':''}}" data-order-statu="" bindtap="changeStatu">全部</view>
+    <view class="order_menu {{orderStatu=='0' ? 'current_menu':''}}" data-order-statu="0" bindtap="changeStatu">待发货</view>
+    <view class="order_menu {{orderStatu=='1' ? 'current_menu':''}}" data-order-statu="1" bindtap="changeStatu">已发货</view>
+    <view class="order_menu {{orderStatu=='2' ? 'current_menu':''}}" data-order-statu="2" bindtap="changeStatu">待确认</view>
+    <view class="order_menu {{orderStatu=='3' ? 'current_menu':''}}" data-order-statu="3" bindtap="changeStatu">已完成</view>
+  </view>
+  <!--全部-->
+  <view class="order_main">
+    <view class="order_item" wx:for="{{orderData}}">
+      <view class="order_item_title display-flex">
+        <view class="flex-row order_time">{{item.createtime}}</view>
+        <view class="statu_color" wx:if="{{item.appstatus=='0'}}">待发货</view>
+        <view class="statu_color" wx:if="{{item.appstatus=='1'}}">已发货</view>
+        <view class="statu_color" wx:if="{{item.appstatus=='2'}}">待确认</view>
+        <view class="statu_color_close" wx:if="{{item.appstatus=='3'}}">已完成</view>
+      </view>
+      <view class="order_item_content display-flex" data-id="{{item.id}}" data-createtime="{{item.createtime}}" data-ordercode="{{item.number}}" data-storename="{{item.storename}}" data-createusername="{{item.createusername}}" data-appstatus="{{item.appstatus}}" bindtap="clickJumpDetail">
+        <view class="order_statu_icon">
+          <image src='../common/images/icons/ordericon@2x.png' class="order_statu_icon" wx:if="{{item.appstatus=='0'}}"></image>
+          <image src='../common/images/icons/wdddshipped@2x.png' class="order_statu_icon" wx:if="{{item.appstatus=='1'}}"></image>
+          <image src='../common/images/icons/wdddtobeconfirmed@2x.png' class="order_statu_icon" wx:if="{{item.appstatus=='2'}}"></image>
+          <image src='../common/images/icons/orderdone@2x.png' class="order_statu_icon" wx:if="{{item.appstatus=='3'}}"></image>
+        </view>
+        <view class="flex-row order_item_detail">
+          <view class="order_detail_number">
+            {{item.number}}
+            <!--<text class="share_tips" wx:if="{{item.share=='2'}}">部分分享</text>
+            <text class="share_tips" wx:if="{{item.share=='1'}}">全部分享</text>-->
+          </view>
+          <view class="order_detail_adrress">部门：{{item.storename}} {{item.createusername}}</view>
+        </view>
+        <view class="order_detail_more">
+          <image src='../common/images/icons/more@2x.png ' width="20px" height="20px" class="more-icon"></image>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <!--全部-->
+  
+</view> 

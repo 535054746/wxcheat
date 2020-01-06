@@ -1,0 +1,25 @@
+<view class='container'>
+  <view class='display-flex item'>
+    <image src='../common/images/icons/xgmmymm@2x.png'></image>
+    <input bindinput='phoneInput' placeholder='请输入手机号码' type='number' maxlength='11'></input>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex item'>
+    <image src='../common/images/icons/xgmmxmm@2x.png'></image>
+    <view class='flex-row'>
+    <input bindinput='verifyInput' placeholder='请输入验证码' value='{{verifyCode}}' type='number' maxlength='6'></input></view>
+    <text bindtap='getVerify'>{{verifyText}}</text>
+  </view>
+  <view class='lines'></view> 
+      <view>
+        <button bindtap="checkInput" class='sumbit-button' hover-class='hover-button'>下一步</button>
+      </view>
+</view>
+
+  <view class="ck_tips" wx:if="{{tipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg">
+        <text class="tips_text">{{tipText}}</text>
+      </view>
+    </view>
+  </view>

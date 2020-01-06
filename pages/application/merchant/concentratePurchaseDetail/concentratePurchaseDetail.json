@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "申请单详情",
+  "usingComponents": {
+    "errorTips": "/components/errorTips/errorTips",
+    "shopShowType": "/components/shopShowType/shopShowType",
+    "yesNoBtn": "/components/yesNoBtn/yesNoBtn",
+    "editDialog": "/components/editDialog/editDialog"
+  }
+}

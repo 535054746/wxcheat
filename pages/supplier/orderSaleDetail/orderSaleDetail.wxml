@@ -1,0 +1,62 @@
+<view>
+  <view>
+    <view class="orderHeader">
+        <view class="flex detailsHeader">
+          <view class="detailsWidth">收货人</view>
+          <view>{{currentVal.ordername}}</view>
+        </view>
+        <view class="flex detailsHeader">
+          <view class="detailsWidth">收货时间</view>
+          <view>{{currentVal.receivetime}}</view>
+        </view>
+        <view class="flex detailsHeader">
+          <view class="detailsWidth">到货日期</view>
+          <view>{{currentVal.deliveryTime}}</view>
+        </view>
+    </view>
+
+    <view class="orderConter">
+      <view class="flex_space sumPrice">
+          <view style="padding-left: 17px">品项</view>
+          <view style="color: gray;padding-right:17px;"><text>共{{detail.length}}种</text>,<text>金额：{{currentVal.moneyAmount / 100}}</text></view>
+      </view>
+      <view class="orderType" wx:for = "{{detail}}" wx:key="*this">
+          <view class="flex_space orderFlist" catchtap="orderType" data-item="{{index}}">
+            
+            <view class="flex goodCrad">
+              <view class="goodImg">
+                <!-- <image wx:if="{{item.picUrl == null || item.picUrl == ''}}" src="{{item.picUrl}}"  binderror="bindImgError"></image> -->
+                <image src="{{item.picUrl}}"  binderror="bindImgError" data-imgindex="{{index}}"></image>
+              </view>
+              <view>
+                  <view style="font-size:14px; padding:0 6px;">{{item.goodsName}}</view>
+                  <view style="font-size:14px; padding:11px 6px;color:gray" wx:if="{{item.specifications}}">规格：{{item.specifications}}</view>
+                  <view style="font-size:14px; padding:6px;color:gray" class="unitName">应收： {{item.unitQty}}{{item.unitName}}</view>
+
+              </view>
+            </view>
+            <view class="flex-centent" style="padding-right:17px;padding-top:11px">
+              <view>
+                  <!-- <view style="text-align:right">{{item.unitQty}}{{item.unitName}}</view> -->
+                  <view style="text-align:right">￥{{item.moneyAmount / 100}}</view>
+                  <view style="padding-top:37px">实收： {{item.acceptanceQty}}{{item.warehouseUnit}}</view>
+              </view>
+              <image src="{{item.isSelect?shang:xia}}" class="iconImg"></image>
+            </view>
+          </view>
+            <view wx:if="{{item.isSelect}}">
+                <view class="orderTypeer" wx:for="{{item.list}}" wx:key="*this">
+                  <view class="flex_space">
+                      <view style="padding-left: 77px">{{item.organizationName}}</view>
+                      <view class="unitQty">￥{{item.moneyAmount /100}}</view>
+                  </view>
+                  <view class="flex_space">
+                      <view style="padding-left: 77px;color: gray">应收：{{item.unitQty}}{{item.unitName}}</view>
+                       <view class="unitQty"> 实收： {{item.acceptanceQty}}{{item.warehouseUnit}}</view>
+                  </view>
+                </view>
+            </view>
+      </view>
+    </view>
+  </view>
+</view>

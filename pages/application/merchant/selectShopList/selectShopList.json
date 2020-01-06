@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "选择商品",
+  "usingComponents": {
+    "errorTips": "/components/errorTips/errorTips",
+    "shopDetailDialog": "/components/shopDetailDialog/shopDetailDialog",
+    "amountInput": "/components/amountInput/amountInput",
+    "bottomBtn": "/components/bottomBtn/bottomBtn"
+  }
+}

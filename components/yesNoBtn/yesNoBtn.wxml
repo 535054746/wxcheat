@@ -1,0 +1,5 @@
+<!--components/yesNoBtn/yesNoBtn.wxml-->
+<view class='yesNoBtn-border'>
+  <view class='noBtn' bindtap='ynTap' data-type='no'>{{noText}}</view>
+  <view class='yesBtn' bindtap='ynTap' data-type='yes'>{{yesText}}</view>
+</view>

@@ -1,0 +1,30 @@
+<view class="container bg">
+  <view class='summary-view'>
+    <view class='shop-item' wx:for="{{shopData}}" wx:for-item="items" wx:for-index="index">
+      <view class='display-flex shop-item-box'>
+        <view class='item-choose'><image src='{{items.select?"../../common/images/icons/gyshzselected@3x.png":"../../common/images/icons/gyshzunselected@2x.png"}}' class='item-choose' bindtap='clickSelect' data-index="{{index}}"></image></view>
+        <view class='flex1 shop-name font-weight'>{{items.itemname}}</view>
+        <view class='weight'><text>{{items.qty}}{{items.unit}}</text></view>
+        <image src='../common/images/sqddelete@3x.png' class='item-delete' bindtap='deleteSelect'  data-index="{{index}}"></image>
+      </view>
+      <view class='display-flex shop-item-box2' wx:for="{{items.list}}" wx:for-item="items2" wx:for-index="index2" wx:if="{{items.list[index].itemspecifications}}">
+        <view class='item-choose'></view>
+        <view class='flex1 shop-name color-9c9c9c'>{{items2.itemspecifications}}</view>
+        <view class='weight display-flex'>{{items2.qty}}{{items2.unit}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='order_tab_five'>
+    <view class='store-icon' bindtap='selectAll'><image src="{{isAllSelect?'../../common/images/icons/gyshzselected@3x.png':'../../common/images/icons/gyshzunselected@2x.png'}}" class='' ></image></view>
+    <view class='order_all' bindtap='selectAll'>全选</view>
+    <button open-type='{{shareFlag?"share":""}}' class='create-botton-sure' bindtap='shareOrder'>分享</button>
+    <view class='create-botton-sure' bindtap='printOrder'>打印</view>
+  </view>
+</view>
+
+<view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+</view>

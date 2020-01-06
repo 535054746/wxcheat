@@ -1,0 +1,163 @@
+<view class="container bg">
+  <view class='search-top display-flex'>
+    <view class='search-input-box flex-row'>
+      <input type='text' class='search-input' placeholder='搜索商品名、首字母'></input>
+      <image src='../common/images/navigationbarsearch@3x.png' class='search-icon'></image>
+    </view>
+    <view class='search-text'>搜索</view>
+  </view>
+  <view class='select-center display-flex'>
+    <view class='select-center-left'>
+      <view class='current-type'>瓜果蔬菜</view>
+      <view>禽蛋鲜肉</view>
+      <view>水产冻肉</view>
+      <view>五谷制品</view>
+    </view>
+    <view class='select-center-right flex-row'>
+      <view class='item-type display-flex'>
+        <view class='item-type-name'>茎叶类</view>
+        <view class='item-type-line flex-row'></view>
+        <view class='item-type-button'><image src="../common/images/xzspjh@2x.png"></image>新增商品</view>
+      </view>
+      <view class='item-box'>
+        <view class='shop-item'>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row shop-item-more'><image src='../common/images/expansion@3x.png'></image></view>
+          </view>
+        </view>
+        <view class='shop-item-line'></view>
+      </view>
+      <view class='item-type display-flex'>
+        <view class='item-type-name'>茎叶类</view>
+        <view class='item-type-line flex-row'></view>
+        <view class='item-type-button'><image src="../common/images/xzspjh@2x.png"></image>新增商品</view>
+      </view>
+      <view class='item-box'>
+        <view class='shop-item'>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row shop-item-more'><image src='../common/images/expansion@3x.png'></image></view>
+          </view>
+        </view>
+        <view class='shop-item-line'></view>
+      </view>
+      <view class='item-type display-flex'>
+        <view class='item-type-name'>茎叶类</view>
+        <view class='item-type-line flex-row'></view>
+        <view class='item-type-button'><image src="../common/images/xzspjh@2x.png"></image>新增商品</view>
+      </view>
+      <view class='item-box'>
+        <view class='shop-item'>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row shop-item-more'><image src='../common/images/expansion@3x.png'></image></view>
+          </view>
+        </view>
+        <view class='shop-item-line'></view>
+      </view>
+      <view class='item-type display-flex'>
+        <view class='item-type-name'>茎叶类</view>
+        <view class='item-type-line flex-row'></view>
+        <view class='item-type-button'><image src="../common/images/xzspjh@2x.png"></image>新增商品</view>
+      </view>
+      <view class='item-box'>
+        <view class='shop-item'>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row'>京包菜</view>
+          </view>
+          <view class='display-flex shop-item-box'>
+            <view class='flex-row'>大白菜</view>
+            <view class='flex-row'>生菜</view>
+            <view class='flex-row shop-item-more'><image src='../common/images/expansion@3x.png'></image></view>
+          </view>
+        </view>
+        <view class='shop-item-line'></view>
+      </view>
+    </view>
+  </view>
+  <view class='money_total'>
+    <view class='money_total_box display-flex'><view class='sure-button flex-row'>选完了（68）</view></view>
+  </view>
+  <view class='over-bg'></view>
+  <view class='shop-rule-box'>
+    <view class='display-flex shop-rule-title'>
+      <view class='flex-row shop-rule-text'>青远鸡</view>
+      <view class='shop-rule-icon'><image src='../common/images/remarkdelete@2x.png'></image></view>
+    </view>
+    <view class='display-flex shop-rule-unit'>
+      <view class='flex-row shop-rule-unit-input'><text>下单单位</text></view>
+      <view>只</view>
+    </view>
+    <view class='display-flex rule-tile-box'>
+      <view class='flex-row'>重量</view>
+    </view>
+    <view>
+      <view class='rule-item-box'>
+        <view>1-2斤</view>
+        <view>3-5斤</view>
+      </view>
+      <view class='add-rule-line'></view>
+    </view>
+    
+    <view class='display-flex rule-tile-box'>
+      <view class='flex-row'>要求</view>
+    </view>
+    <view>
+      <view class='rule-item-box'>
+        <view>1-2斤</view>
+        <view>3-5斤</view>
+      </view>
+      <view class='add-rule-line'></view>
+      <view class='display-flex shop-rule-unit'>
+        <view class='flex-row shop-rule-unit-input'><text>数量</text></view>
+        <view class='number-input-box display-flex'>
+          <view class='subtract'>-</view>
+          <view class='number-input'><input type='text'></input></view>
+          <view class='add'>+</view>
+        </view>
+      </view>
+    </view>
+    <view class='add-rule-comfire'>确定/收藏</view>
+  </view>
+</view>

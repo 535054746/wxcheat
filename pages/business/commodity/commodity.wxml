@@ -1,0 +1,207 @@
+<view class='container'>
+<movable-area class='fixed-button' style="height:{{screenHeight}}px;">
+    <view class='company-box' bindtap='setCompanyShowFlag' style='z-index:{{companyShowFlag?3:3}}'>
+      <view class='company-name display-flex'>
+        <view class='flex-row'>{{currentCompany==''?'暂无供应商':currentCompany}}</view>
+        <view class='company-down-icon'>
+          <image src='../../common/icons/images/spxzgysxl@2x.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='over-bg' wx:if="{{companyShowFlag||specialShowFlag||collectShowFlag}}" bindtap='closeBg'></view>
+    <view wx:if="{{collectShowFlag}}" class='special-box'>
+      <view class='display-flex special-box-item'>
+        <view class='special-shop-name'>{{currentShopData.itemname}}</view>
+        <view class='special-shop-price'>￥{{currentShopData.price}}</view>
+        <view class='special-shop-unit'>/{{currentShopData.unit}}</view>
+        <view class='flex-row'></view>
+        <image src='../../common/images/icons/tcgb@2x.png' bindtap='setShowFlag'></image>
+      </view>
+      <view class='lines'></view>
+      <view class='display-flex special-box-item' wx:if="{{currentShopData.itemspecifications!=''}}">
+        <view class='special-shop-normal'>{{currentShopData.itemspecifications}}</view>
+      </view>
+      <view class='lines'></view>
+      <view class='display-flex special-box-item'>
+        <view class='special-shop-normal'>下单单位</view>
+        <view class='flex-row'></view>
+        <view class='special-shop-unit2'>{{currentShopData.unit}}</view>
+      </view>
+      <view class='lines'></view>
+      <view>
+        <button class='special-button-active' bindtap='collectShop'>{{collectText}}</button>
+      </view>
+    </view>
+    <view wx:if="{{specialShowFlag}}" class='special-box'>
+      <view class='display-flex special-box-item'>
+        <view class='special-shop-name'>{{currentShopData.itemname}}</view>
+        <view class='special-shop-price'>￥{{currentShopData.price}}</view>
+        <view class='special-shop-unit'>/{{currentShopData.unit}}</view>
+        <view class='flex-row'></view>
+        <image src='../../common/images/icons/tcgb@2x.png' bindtap='setShowFlag'></image>
+      </view>
+      <view class='lines'></view>
+      <view class='display-flex special-box-item' wx:if="{{currentShopData.itemspecifications!=''}}">
+        <view class='special-shop-normal'>{{currentShopData.itemspecifications}}</view>
+      </view>
+      <view class='lines'></view>
+      <view class='display-flex special-box-item'>
+        <view class='special-shop-normal'>下单单位</view>
+        <view class='flex-row'></view>
+        <view class='special-shop-unit2'>{{currentShopData.unit}}</view>
+      </view>
+      <view class='lines'></view>
+      <view wx:for="{{currentShopData.propertiesnamejson}}" wx:for-item="specialList" wx:for-index="i">
+        <view class='display-flex special-box-item'>
+          <view class='special-shop-normal'>{{specialList.k}}</view>
+        </view>
+        <view class='special-group'>
+          <view wx:for="{{specialList.value}}" wx:for-item="specialItem" wx:for-index="j">
+            <view class='special-group-item {{specialItem.checked=="true"?"special-group-item-checked":"special-group-item-normal"}}' bindtap='specialRadioClick' data-indexone='{{i}}' data-indextwo='{{j}}'>
+              {{specialItem.v}}
+            </view>
+          </view>
+        </view>
+        <view class='clear'></view>
+      </view>
+      <view class='lines'></view>
+      <view class='display-flex special-box-item'>
+        <view class='special-shop-normal'>数量</view>
+        <view class='flex-row'></view>
+        <view class='display-flex orderNum'>
+          <view class='cutNum' bindtap='specialMinus'>-</view>
+          <input value='{{currentShopData.number}}' bindinput='bindInput' bindblur='bindBlur' type='digit'></input>
+          <view class='addNum' bindtap='specialAdd'>+</view>
+        </view>
+      </view>
+      <view class='lines'></view>
+      <view>
+        <button class='special-button-active' bindtap='updateShopNumber'>确定</button>
+      </view>
+    </view>
+    <scroll-view scroll-y='true' class="company-box2" wx:if="{{companyShowFlag}}">
+      <view class='company-item2' wx:for="{{customerData}}" wx:for-item="items" wx:for-index="index" hover-class="company-item2-press">
+        <view class="display-flex" data-companyid="{{items.id}}" data-companyname="{{items.companyName}}" bindtap='selectCompany'>
+          <view class='flex-row'>{{items.companyName}}</view>
+          <view class='select-icon' wx:if="{{items.id==currentCompanyId}}">
+            <image src='../../common/images/icons/zcsqdxzddicon@2x.png'></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="order-main bg" wx:if="{{shopType.length!=0}}">
+      <view class='order-table'>
+        <view class='type-header'>
+          <view class='type-header-box'>
+            <view class='type-header-box-box'>
+              <view class='type-header-box-box-box'>
+                <view class="{{'favorite'==currentShopType?'text-al current-type':''}}" bindtap='selectShopType' data-id='favorite'>常用商品</view>
+                <view class="{{items.itemcategoryid1==currentShopType?'text-al current-type':''}}{{index==shopType.length?'text-ar':''}}" wx:for="{{shopType}}" wx:for-item="items" wx:for-index="index" bindtap='selectShopType' data-id='{{items.itemcategoryid1}}'>{{items.itemcategoryname1}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='search-button' bindtap='showSearchBox'>
+            <image src='../../common/images/icons/navigationbarsearch@3x.png' class='search-icon'></image>
+          </view>
+        </view>
+      </view>
+      <scroll-view scroll-y style='max-height:{{screenHeight-86}}px;'>
+        <view wx:for="{{shopData}}" wx:for-item="item" wx:for-index="index">
+          <view class='shop-type'>{{item.itemcategoryname2}}</view>
+          <view wx:for="{{item.itemSkuList}}" wx:for-item="item2" wx:for-index="index2">
+            <view class='shop-item display-flex'>
+              <view class='shop-item-image'>
+                <image src='{{item2.picthumburl==undefined?"../../common/images/icons/defaultlogo.png":item2.picthumburl}}' bindtap='previewImage' data-url='{{item2.picthumburl}}'></image>
+              </view>
+              <view class='flex-row shop-item-name'>
+                <view class='shop-name-text display-flex' bindtap='showCollectDialog2' data-indexone='{{index}}' data-indextwo='{{index2}}'>{{item2.itemname}}
+                  <view class='flex-row'>
+                    <image src='{{item2.keepStatus == 0?"../../common/images/icons/spsc@2x.png":"../../common/images/icons/spsc_pr@2x.png"}}'></image>
+                  </view>
+                </view>
+                <view class='shop-name-unit' wx:if="{{item2.itemSkuList==undefined}}">
+                  <font>￥</font>
+                  <text>{{item2.price}}</text>/{{item2.assistantunit==undefined||item2.assistantunit==''?item2.unit:item2.assistantunit}}</view>
+                <view class='shop-name-unit' wx:if="{{item2.itemSkuList.length>0}}">
+                  <font>￥</font>
+                  <text>{{item2.minPrice}}~{{item2.maxPrice}}</text>/{{item2.assistantunit==undefined||item2.assistantunit==''?item2.unit:item2.assistantunit}}</view>
+              </view>
+              <view style='position: relative;' wx:if="{{item2.itemSkuList.length>0}}">
+                <view class='on-off' bindtap='showItemSku' data-indexone='{{index}}' data-indextwo='{{index2}}'>{{item2.showitemSkuList==true?'收起':'选规格'}}</view>
+              </view>
+              <view class='add-del-icon' wx:if="{{item2.itemSkuList==undefined}}">
+                <image src='../../common/images/icons/spjhh@2x.png' class='down-icon' wx:if="{{item2.number != 0}}" bindtap="deleteShopCar2" data-indexone="{{index}}" data-indextwo="{{index2}}"></image>
+                <input class='qty' wx:if="{{item2.number != 0}}" type='digit' bindinput='bindInput' bindfocus='bindFocus' bindblur='bindBlur' value='{{item2.number}}' data-indexone="{{index}}" data-indextwo="{{index2}}"></input>
+                <image src='../../common/images/icons/spjh@2x.png' class='down-icon' bindtap='addShopCar2' data-indexone="{{index}}" data-indextwo="{{index2}}" data-shopdata='{{shopData}}'></image>
+              </view>
+            </view>
+            <view class='special-text' wx:if="{{'favorite'==currentShopType&&item2.itemspecifications.length!=0}}">{{item2.itemspecifications}}</view>
+            <view wx:for="{{item2.itemSkuList}}" wx:for-item="item3" wx:for-index="index3" wx:if="{{item2.showitemSkuList==true}}">
+              <view class='shop-special-item display-flex'>
+                <text class='shop-special-item-value' bindtap='showCollectDialog2' data-indexone='{{index}}' data-indextwo='{{index2}}' data-indexthird='{{index3}}'>{{item3.itemspecifications}}</text>
+                <image class='shop-special-item-collect' src='{{item3.keepStatus == 0?"../../common/images/icons/spsc@2x.png":"../../common/images/icons/spsc_pr@2x.png"}}' bindtap='showCollectDialog2' data-indexone='{{index}}' data-indextwo='{{index2}}' data-indexthird='{{index3}}'></image>
+              </view>
+              <view class='shop-special-item display-flex'>
+                <text class='shop-special-item-price'>￥{{item3.price}}/{{item3.assistantunit==undefined||item3.assistantunit==''?item3.unit:item3.assistantunit}}</text>
+                <view class='flex-row'></view>
+                <view class='add-del-icon-special'>
+                  <image src='../../common/images/icons/spjhh@2x.png' class='down-icon' wx:if="{{item3.number != 0}}" bindtap='deleteSpecialShopCar' data-indexone="{{index}}" data-indextwo="{{index2}}" data-indexthird='{{index3}}'></image>
+                  <input class='qty' wx:if="{{item3.number != 0}}" type='digit' bindinput='bindInput' bindfocus='bindFocus' bindblur='bindBlur' value='{{item3.number}}' data-indexone="{{index}}" data-indextwo="{{index2}}" data-indexthird='{{index3}}'></input>
+                  <image src='../../common/images/icons/spjh@2x.png' class='down-icon' bindtap='addSpecialShopCar' data-indexone="{{index}}" data-indextwo="{{index2}}" data-indexthird='{{index3}}'></image>
+                </view>
+              </view>
+              <view style='height:1px;width:100%;background:white;padding:0px 15px;'>
+                <view style='height:1px;width:100%;background:#f5f5f5;'></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='search-box display-flex' wx:if="{{searchFlag}}">
+      <view class='search-input flex-row'>
+        <input bindinput='searchInput' type='text' placeholder='搜索商品名'></input>
+        <image src='../../common/images/icons/navigationbarsearch@3x.png' bindtap='getShopData'></image>
+      </view>
+      <view class='cancel-button' bindtap='showSearchBox'>取消</view>
+    </view>
+    <template is="footer" data="{{...footerData}}" />
+  <view class='emtry-view' wx:if="{{shopData.length==0}}">
+    <view>
+      <image src='../../common/images/icons/cry.png'></image>
+    </view>
+    <text>{{searchText==''?'一件商品都没有':'关键字“'+searchText+'”的商品没找到'}}</text>
+  </view>
+  <movable-view direction="all" x="{{screenWidth-90}}" y="{{screenHeight-140}}" class='move-view' wx:if="{{'favorite'==currentShopType&&shopData.length!=0&&!companyShowFlag}}" style='z-index:2;'>
+  <image src='../../common/images/icons/spqbjg@2x.png' bindtap='allInCart'></image>
+  </movable-view>
+</movable-area>
+</view>
+
+<view class='over-bg' wx:if="{{allCompanyFlag}}" bindtap='closeBg'></view>
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg">
+      <text class="tips_text">{{tipText}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="company-box" wx:if="{{allCompanyFlag}}">
+  <view class='company-item' wx:for="{{searchData}}" wx:for-item="items" wx:for-index="index">
+    <view class="display-flex" data-index="{{index}}" data-companyname="{{items.companyName}}" bindtap='selectCompany'>
+      <view class='flex-row'>{{items.companyName}}</view>
+      <view class='select-icon'>
+        <image src='../../common/images/icons/select-icon.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class='fixed-button2' wx:if="{{false}}" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;z-index:{{companyShowFlag?2:3}};">
+  <view class='share-print' bindtap='allInCart' bindtouchmove="ballMoveEvent">
+    <image src='../../common/images/icons/spqbjg@2x.png'></image>
+  </view>
+</view>

@@ -1,0 +1,102 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.4",
+	"appid": "wxabc3cdf2d856997d",
+	"projectname": "trunk",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/supplier/index/index",
+					"pathName": "pages/supplier/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/supplier/orderSale/orderSale",
+					"pathName": "pages/supplier/orderSale/orderSale",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/supplier/ordertoDetails/ordertoDetails",
+					"pathName": "pages/supplier/ordertoDetails/ordertoDetails",
+					"query": "id = 179",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/supplier/orderDetails/orderDetails",
+					"pathName": "pages/supplier/orderDetails/orderDetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/selectLoginType/selectLoginType",
+					"pathName": "pages/selectLoginType/selectLoginType",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/supplier/orderSaleDetail/orderSaleDetail",
+					"pathName": "pages/supplier/orderSaleDetail/orderSaleDetail",
+					"query": "item=%7B%22storeId%22%3A%228AEJHE4_005_012%22%2C%22deliveryTime%22%3A%222020-01-03%22%2C%22goodscode%22%3A%22H00004%22%2C%22ordername%22%3A%22chenou%22%2C%22receivetime%22%3A%222020-01-03%2020%3A31%3A50%22%2C%22storename%22%3A%22%E7%A6%8F%E7%94%B0%E5%BA%97%22%2C%22moneyAmount%22%3A0%7D",
+					"scene": null
+				}
+			]
+		}
+	}
+}

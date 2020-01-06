@@ -1,0 +1,29 @@
+<view class="container bg padding-tb">
+  <view class='shop-type-box'>
+    <view class='item-box' wx:for="{{orderData.dataList}}" wx:for-item="items" wx:for-index="index">
+      <view class='display-flex items border-bottom' data-index='{{index}}' bindtap="changeShow">
+        <view class='flex-row items-name'>{{items.customerName}}</view>
+        <view class='items-unit color1'>￥ {{items.totalAmount}}</view>
+        <view class='items-icon-one'><image src='{{items.flag?"../common/images/folding@3x.png":"../common/images/expansion@3x.png"}}'></image></view>
+      </view>
+      <view wx:if="{{items.flag}}">
+        <view class='display-flex items2 border-bottom2' wx:for="{{items.storeList}}" wx:for-item="items2" wx:for-index="index2" bindtap="jumpSaleDetail" data-customerid='{{items.customerId}}' data-storeid='{{items2.storeId}}'>
+          <view class='flex-row items-name color2'>{{items2.storeName}}</view>
+          <view class='items-unit'>￥ {{items2.totalAmount}}</view>
+          <view class='items-icon-two'><image src='../../common/images/icons/dlmore_pr.png'></image></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class='total-number display-flex'>
+    <view class='flex-row'>今日单数：<text>{{orderData.totalNum}}单</text></view>
+    <view class='flex-row te-ri'>今日总额：<text>￥{{orderData.totalAmount}}</text></view>
+  </view>
+</view>
+<view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+</view>

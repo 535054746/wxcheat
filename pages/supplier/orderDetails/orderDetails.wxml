@@ -1,0 +1,70 @@
+<view>
+<view class="header">
+  <view class="order_header">
+    <view class="flex_center" catchtap="tiem">
+        <view>{{tiemStart}}</view>
+        <image src="{{isFlag?xia:shang}}" class="xia"></image>
+    </view>
+    <view class="flex_center" bindtap="storeBtn">
+      <view>{{storeName}}</view>
+      <image src="{{isStore?xia:shang}}" class="xia"></image>
+    </view>
+  </view>
+    <view class="seachInput">
+        <input type="text" class="inputSal" placeholder="请输入单据编号" value="{{value}}" bindinput="searchInput"></input>
+        <icon class="weui-icon-search_in-box search-icon" type="search" size="20" bindtap="searchBtn"></icon>
+    </view>
+</view>
+  <view class="timeMoudle" hidden="{{isFlag}}" catchtouchmove = "doNotMove">
+    <view class="tipsMoudle">
+        <view catchtap="timeSlot" data-index="1"  data-text="今天">今天</view>
+        <view catchtap="timeSlot" data-index="2"  data-text="近7天">近7天</view>
+        <view catchtap="timeSlot" data-index="3"  data-text="近30天">近30天</view>
+        <view catchtap="timeSlot" data-index="4"  data-text="自定义">自定义
+          <view hidden="{{zdyi}}">
+            <picker mode="date" value="{{date}}" bindchange="bindDateChangeStart">
+              <view class="picker">
+                开始时间: {{startTime}}
+              </view>
+
+            </picker>
+            <picker mode="date" value="{{date}}"  bindchange="bindDateChangeEnd">
+              <view class="picker">
+                结束时间: {{endTime}}
+              </view>
+            </picker>
+            <button type="default" size="mini" class="timesloeBtn" catchtap="timesloeBtn">确定</button>
+          </view>
+        </view>
+    </view>
+    <view style="height: 100%" bindtap="doClose"></view>
+  </view>
+
+  <view class="dianMoudle" hidden="{{isStore}}"  catchtouchmove = "doNotMove">
+    <view class="itemDian" >
+      <view>
+        <view wx:for="{{dian}}" wx:key="*this" style="padding-left:20px" data-id="{{item.organizationid}}" bindtap="isStoreBtn" data-name="{{item.organizationname}}">{{item.organizationname}}</view>
+      </view>
+    </view>
+    <view style="height: 100%" bindtap="doCloseStr"></view>
+  </view>
+
+
+  <view style="margin-top:118px">
+      <view wx:for="{{conter}}" wx:key="*this" class="order_card">
+        <view class="order_deliveryTime">{{item.orderTime}}</view>
+        <view class="order_conter" bindtap="orderTodetails" data-id="{{item.id}}" wx:for="{{item.listInfo}}" wx:key="*this">
+            <view class="orderLeft">
+              <view class="orderName">{{item.storeName}}</view>
+              <view class="orderTime">下单时间：{{item.xiadanTime}}</view>
+            </view>
+            <view class="orderPrice">
+                <view style="text-align:left">￥{{item.moneyAmount / 100}}</view>
+              <image src="../../common/images/you.png"></image>
+            </view>
+        </view>
+
+      </view>
+  </view>
+
+</view>

@@ -1,0 +1,28 @@
+<view class='container' style='height:100%;'>
+  <view wx:for="{{notifiList}}" wx:for-item="notifi" bindtap='jumpLink' data-customerid='{{notifi.customerId}}' data-priceplanid='{{notifi.pricePlanId}}' data-id='{{notifi.id}}'>
+    <view class='item-time'>
+    </view>
+    <view class='item-box'>
+      <view class='item-title display-flex'>
+        <view class='item-title-left flex-row'>{{notifi.title}}</view>
+        <view class='{{notifi.status==1?"item-readed":"item-read"}}'>{{notifi.status==1?"已读":"未读"}}</view>
+      </view>
+      <view class='item-content'>
+        <text>{{notifi.content}}</text>
+      </view>
+      <view class='item-more display-flex'>
+        <view class='item-fulltime flex-row'>
+          {{notifi.createTime}}
+        </view>
+        <view>
+          查看详情
+        </view>
+        <image src='../../common/images/icons/more@2x.png'>
+        </image>
+      </view>
+    </view>
+    <view class='item-time'>
+    </view>
+  </view>
+  <view wx:if="{{notifiList.length==0}}" class='emtry-view'>暂无消息</view>
+</view>

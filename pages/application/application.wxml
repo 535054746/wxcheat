@@ -1,0 +1,84 @@
+<view>
+  <errorTips id='errorTips'></errorTips>
+  <view class="menu_box flow-1">
+    <view class="board_banner">
+      <image class="application_banner" src='../common/images/banner.png'></image>
+    </view>
+    <view class="menu_box_data">
+      <view class='emtry-view' wx:if="{{menuData.length==0&&isShowFlag}}">
+        <view>
+          <image src='../common/images/icons/cry.png'></image>
+        </view>
+        <text>{{tipText}}</text>
+      </view>
+      <view class="menuboxs" wx:for="{{menuData}}">
+        <view class="menubox-title">{{item.name}}</view>
+        <view class="menus">
+          <view class="menu" wx:for="{{item.childerList}}" wx:for-item="items">
+            <view data-url="{{items.url}}" bindtap="checkPermession">
+              <view class="menu-icon-box">
+                <view>
+                  <image src="{{items.icon}}" class="menu-icon"></image>
+                </view>
+                <view class="menu-icon-number" wx:if="{{items.totalNumMap.totalCount}}">{{items.totalNumMap.totalCount}}</view>
+              </view>
+              <view class="menu-text">{{items.name}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='login-out' bindtap='loginOutShow'>
+    <image src="{{loginOutIconFlag ? '../common/images/icons/lodout2.png':'../common/images/icons/lodout.png'}}" class='login-out-icon'></image>
+  </view>
+  <view class='remarks-fixed' wx:if="{{loginOutShowFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>确定要退出登录吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='loginOutCancel'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='loginOutComfire'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='certification-box' wx:if="{{certificationFlag}}">
+    <view class='bg'></view>
+    <view class='c-box'>
+      <view style='positon:relative;width:100%;'>
+        <image bindtap='hideCertification' class='c-close' src='../common/images/icons/tcgb@2x.png'></image>
+
+        <image src='../common/images/icons/qrz@2x.png'></image>
+        <view class='c-text'>
+          <text>{{certificationText}}</text>
+        </view>
+        <view class='btn-c' wx:if="{{certificationStatus!=2}}" bindtap='linkJump'>去认证</view>
+      </view>
+    </view>
+  </view>
+  <view class='certification-box' wx:if="{{downloadFlag}}">
+    <view class='bg'></view>
+    <view class='d-box'>
+      <view class='d-title display-flex'>
+        <image src='../common/images/logo.png'></image>
+        <view class='flex-row'>食食通 事事通 时时通</view>
+        <image src='../common/images/icons/popupsclose@2x.png' bindtap='hideCertification'></image>
+      </view>
+      <view class='d-photo'>
+        <image bindtap='openPic' src='../common/images/icons/zsewm.png'></image>
+        <view>扫一扫上面的二维码,下载食食通</view>
+      </view>
+      <view style='background:#f5f5f5;height:1px;width;100%;'></view>
+      <view class='display-flex'>
+      <view class='flex-row d-option' bindtap='savePic'>保存图片</view>
+      <view style='width:2px;height:40px;background:#f5f5f5;'></view>
+      <button class='flex-row d-option btn-share' open-type="share" plain="true">分享</button>
+      </view>
+    </view>
+  </view>
+</view>

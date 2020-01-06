@@ -1,0 +1,11 @@
+/* components/singlePicker/singlePicker.wxss */
+.singlePicker-mask{width: 100%;height: 100%;background: black;opacity: 0.2;position: fixed;top: 0;left: 0;z-index: 99}
+.singlePicker-main{width: 100%;height: 200px;background: white;position: fixed;bottom: 0;left: 0;z-index: 99}
+
+.singlePicker-option{background: #33b0ff;height: 50px;padding: 10px 20px;}
+.singlePicker-option>view{border-radius: 4px;font-size: 14px;border: 1px solid;text-align: center;padding: 3px 10px;}
+.singlePicker-option>view:first-child{border-color: white;color: white;float: left;background: #33b0ff;}
+.singlePicker-option>view:last-child{border-color: #33b0ff;color: #33b0ff;float: right;background: white;}
+
+.singlePicker-picker{width: 100%; height: 150px; color:#33b0ff;text-align: center;}
+.singlePicker-indicator{height: 50px;}

@@ -1,0 +1,54 @@
+<view class="bg">
+  <view class='body-bg'>
+  </view>
+  <view class='select-main'>
+    <view class="logo_box">
+      <image class="logo" src="../common/images/splash.png"></image>
+    </view>
+    <view class='select-button' wx:if="{{1==0}}">
+      <view bindtap='selectLoginType' data-billtype="0">供应商登录</view>
+      <view bindtap='selectLoginType' data-billtype="1">餐厅登录</view>
+    </view>
+  </view>
+  <view class='copyright-box'>
+  <!-- <view class='name'>食食通 事事通 时时通</view> -->
+  <!-- <view class='copyright'>Copyright©2018 SKX. All Rights Reserved.</view> -->
+  </view>
+</view>
+<view class='remarks-fixed' wx:if='{{shareFlag}}'>
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>{{shareType==1?"客户":"供应商"}}帐号密码
+        <image bindtap='closeShare' src='../common/images/icons/popupsclose@2x.png'></image>
+      </view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>客户</view>
+        <view class='shareValue'>{{customerName}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>营业执照</view>
+        <view class='shareValue'>{{customerCode}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>联系人</view>
+        <view class='shareValue'>{{contactsName}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>登陆账号</view>
+        <view class='shareValue'>{{mobile}}</view>
+      </view>
+      <view class='line-f7'></view>
+      <view class='display-flex shareItem'>
+        <view class='shareName'>默认密码</view>
+        <view class='shareValue'>123456</view>
+      </view>
+      <view class='tip-btns display-flex'>
+        <view class='shareBtn' bindtap='goLogin'>马上登录体验</view>
+      </view>
+    </view>
+  </view>
+</view>

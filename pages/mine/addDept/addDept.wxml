@@ -1,0 +1,21 @@
+<!--pages/mine/addDept/addDept.wxml-->
+<view class='container'>
+<view   class='display-flex changeCompanyName'>
+<view class='store-name'>部门名称</view>
+<input   class='flex-row input-change' placeholder-style='color:#b3b3b3;' value='{{changeName}}' bindinput='textInput' placeholder='{{isFocus?"":"请在此输入部门名称"}}' bindfocus='bindFocus' bindblur='bindBlur'></input>
+<view  class='clear-image' wx:if='{{changeName.length!=0}}'><image src='../../common/images/icons/txlreplyclose_pr.png' bindtap='clearInput'></image></view>
+</view>
+<view class='lines' ></view>
+
+<view class='button-box'><view bindtap='checkInput' class='change-btn' >保存</view></view>
+</view>
+
+
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+      <view class="tips_box">
+        <view class="tips_bg"></view>
+        <view class="tips_text">{{tipText}}</view>
+      </view>
+    </view>
+

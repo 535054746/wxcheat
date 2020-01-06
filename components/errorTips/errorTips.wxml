@@ -1,0 +1,8 @@
+<!--components /errorTips/errorTips.wxml-->
+<view class="ck_tips" hidden='{{!isShow}}'>
+  <view class="tips_box">
+    <view class="tips_bg">
+      <text class="tips_text">{{tipText}}</text>
+    </view>
+  </view>
+</view>

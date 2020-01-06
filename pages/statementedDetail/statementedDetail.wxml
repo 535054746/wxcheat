@@ -1,0 +1,69 @@
+<view class="container bg">
+  <view class="order_detail_info">
+    <view class='display-flex info-line' wx:if="{{billStatus==0}}">
+      <view class='option-center'></view>
+      <view class='delete-button' bindtap='deleteOrder'>删除</view>
+      
+      <view class='edit-button' wx:if="{{editFlag==1}}" bindtap='clickEdit'>编辑</view>
+      <view class='edit-button' wx:if="{{editFlag==2}}" bindtap='clickEdit'>完成</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">日期</view>
+      <view class="flex-row info-value">{{createtime}}</view>
+    </view>
+    <view class="display-flex info-line">
+      <view class="info-text">编码</view>
+      <view class="flex-row info-value">{{ordercode}}</view>
+    </view>
+    <view class="display-flex info-line">
+      <view class="info-text">最新状态</view>
+      <view class="flex-row info-value statu-color" wx:if="{{billStatus=='0'}}">待提交</view>
+      <view class="flex-row info-value statu-color" wx:if="{{billStatus=='1'}}">对账中</view>
+      <view class="flex-row info-value statu_color_close" wx:if="{{billStatus=='2'}}">已对账</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">门店</view>
+      <view class="flex-row info-value">{{storeName}}</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">收货人</view>
+      <view class="flex-row info-value">{{receivename}}</view>
+    </view>
+    <view class="info-show" bindtap='showTop'>
+      <image src="{{showTopFlag?'../common/images/icons/folding@2x.png':'../common/images/icons/expansion@2x.png'}}" class="up_ion"></image>
+    </view>
+  </view>
+  <view class="order_title display-flex">
+    <view class="title-text flex-row  display-flex">
+      <view><image src="../common/images/icons/order.png" class="title-icon"></image></view>
+      <view>对账单明细</view>
+    </view>
+    <view class="title-number">共{{totaldays}}天</view>
+  </view>
+  <view class="order-main">
+    <view class='margin-bottom-5' wx:for="{{orderData}}"  wx:for-index="index"  wx:for-item="items">
+      <view class='order-item border-bottom' data-index="{{index}}" bindtap='changeShow'>
+        <view class='order-item-left color-style'>{{items.billdate}} <image src="../common/images/icons/sqddelete@3x.png" wx:if="{{editFlag==2}}"  bindtap='deleteAllDept' data-mean="{{index}}"></image></view>
+        <view class='order-item-right color-style'>￥{{items.amount}} <image src='{{orderShowFlag[index]?"../common/images/icons/folding@2x.png":"../common/images/icons/expansion@2x.png"}}'></image></view>
+      </view>
+      <view wx:if='{{orderShowFlag[index]}}'>
+        <view wx:for="{{items.details}}"  wx:for-index="index1"  wx:for-item="items1">
+          <view class='order-item-store'>
+            <view class='order-item-store-left'>{{items1.deptname}}<image src="../common/images/icons/sqddelete@3x.png" data-id="{{items1.id}}" wx:if="{{editFlag==2}}" bindtap='deleteDept' data-index-one="{{index}}" data-index-two="{{index1}}"></image></view>
+            <view class='order-item-store-right' bindtap='jumpPage' data-id="{{items1.inwarehouseid}}">￥{{items1.amount}} <image src='../common/images/icons/dlmore_pr.png'></image></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='bottom-white-50'></view>
+  <view class='sure-view' wx:if="{{billStatus==0}}">
+    <view class='add-view' wx:if="{{editFlag==2}}" bindtap='addStatement'>
+      <image src="../common/images/icons/navigationbaradd@3x.png"></image>继续添加
+    </view>
+    <view class='money_total'>
+      <view class='money_total_text'>合计：<text>￥{{totalamount}}</text></view>
+      <view class='money_total_button' bindtap='comfireStatement'>提交</view>
+    </view>
+  </view>
+</view>

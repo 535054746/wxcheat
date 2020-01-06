@@ -1,0 +1,135 @@
+<!--pages/application/merchant/transfersDetail/transfersDetail.wxml-->
+<view class='container'>
+  <view style='height:43px;'></view>
+  <errorTips id='errorTips'></errorTips>
+  <editDialog id='editDialog' bind:leftTap="editDialogLeftTap" bind:rightTap="editDialogRightTap"></editDialog>
+  <bluetoothDialog id='bluetoothDialog' bind:connectBluetooth='bluetoothItemTap'></bluetoothDialog>
+  <view class='display-flex mTab'>
+    <view class='flex-row {{mTab==0?"mTab-check":""}}' bindtap='changeTab' data-tab='0'>基本详情</view>
+    <view class='flex-row {{mTab==1?"mTab-check":""}}' bindtap='changeTab' data-tab='1'>流程助手</view>
+  </view>
+  <view class='remark-bar display-flex' hidden='{{mTab==0?true:orderDetail.billStatus==6}}'>
+    <view class='flex-row'>
+      <input value='{{inputValue}}' bindinput='bindInput'></input>
+    </view>
+    <view bindtap='addMsg'>确定</view>
+  </view>
+  <view class='mBottom' hidden='{{mTab==1?true:orderDetail.billStatus==5?false:orderDetail.billStatus!=6}}'>
+    <bottomBtn id='bottomBtn' mainBtnText='{{orderDetail.billStatus==5?"验收":"打印"}}' leftBtns='{{orderDetail.billStatus==5?leftBtnList:[]}}' bind:leftTap='leftTap' bind:mainTap='mainTap'></bottomBtn>
+  </view>
+  <view class='mBottom' hidden='{{fromApproval?mTab==1?true:orderDetail.billStatus!=3:true}}'>
+    <yesNoBtn id='yesNoBtn' bind:ynTap='ynTap'></yesNoBtn>
+  </view>
+  <view hidden='{{mTab==1}}'>
+    <view class='order-detail {{expand?"order-detail-fold":""}}'>
+      <view hidden='{{!expand}}' class='detail-item display-flex'>
+        <view class='detail-item-name'>日期</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.billDate}}</view>
+      </view>
+      <view class='detail-item display-flex'>
+        <view class='detail-item-name'>编码</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.number}}</view>
+      </view>
+      <view class='detail-item display-flex'>
+        <view class='detail-item-name'>最新状态</view>
+        <view class='flex-row detail-item-value' wx:if='{{orderDetail.billStatus==1}}'>待审核</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==2}}'>已退回</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==3}}'>审核中</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==4}}'>已审核</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==5}}'>待验收</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==6}}'>已完成</view>
+      </view>
+      <view hidden='{{!expand}}' class='detail-item display-flex'>
+        <view class='detail-item-name'>申请部门</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.storeName}} {{orderDetail.deptName}}</view>
+      </view>
+      <view hidden='{{!expand}}' class='detail-item display-flex'>
+        <view class='detail-item-name'>申请人</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.createUserName}}</view>
+      </view>
+      <view class='detail-item-arrow' bindtap='expand'>
+        <image class='{{expand?"":"down-arrow"}}' src='../../../common/images/icons/folding@2x.png'></image>
+      </view>
+    </view>
+    <view class='title display-flex'>
+      <image src='../../../common/images/icons/bqlgwc_pr@2x.png'></image>
+      <view class='title-value flex-row'>申请明细</view>
+      <view class='total'>共{{orderDetail.totalNum}}种</view>
+    </view>
+    <view class='shop-list'>
+      <view wx:for='{{mList}}' wx:for-item='firstItem' wx:for-index='index1'>
+        <view class='list-line' hidden='{{i==0}}'></view>
+        <view class='display-flex list-type-item' bindtap='expandItem' data-type='shop' data-first='{{index1}}'>
+          <view class='flex-row list-name'>{{firstItem.itemcategoryname1}}</view>
+          <view class='count'>{{firstItem.count}}种</view>
+          <image class='{{firstItem.expand==undefined?"down-arrow":firstItem.expand?"down-arrow":""}}' src='../../../common/images/icons/expansion@2x.png'></image>
+        </view>
+        <view class='list-line'></view>
+        <view wx:for='{{firstItem.list}}' wx:for-item='secondItem' wx:for-index='index2' hidden='{{firstItem.expand==undefined?false:!firstItem.expand}}'>
+          <view class='list-type2-line'>
+            <view class='list-type2-name'>{{secondItem.itemcategoryname2}}</view>
+          </view>
+          <view>
+            <view wx:for='{{secondItem.list}}' wx:for-item='thirdItem' wx:for-index='index3' class='{{index3%2==0?"list-item":"list-item2"}}'>
+              <view class='display-flex'>
+                <view class='flex-row list-name'>{{thirdItem.itemname}}</view>
+                <view class='list-count'>
+                  <text>{{thirdItem.qty}}    </text>{{thirdItem.assistantunit==undefined||thirdItem.assistantunit==''?thirdItem.unit:thirdItem.assistantunit}}</view>
+              </view>
+              <view class='display-flex' hidden='{{orderDetail.billStatus==3||orderDetail.billStatus==4}}'>
+                <view class='flex-row item-qty display-flex'>
+                  <image src='../../../common/images/icons/sqicon.png'></image>
+                  <view>{{thirdItem.qty}} {{thirdItem.unit}}</view>                  
+                </view>
+                <view class='flex-row item-qty display-flex'>
+                  <image src='../../../common/images/icons/fhicon.png'></image>
+                  <view>{{thirdItem.ratifyqty}} {{thirdItem.unit}}</view>
+                </view>
+                <view class='flex-row item-qty display-flex' hidden='{{orderDetail.billStatus!=6}}'>
+                  <image src='{{thirdItem.receiveType==0?"../../../common/images/icons/sred@3x.png":"../../../common/images/icons/sblue@3x.png"}}'></image>
+                  <view>{{thirdItem.receiveqty}} {{thirdItem.unit}}</view>
+                </view>
+                <view class='flex-row item-qty' hidden='{{orderDetail.billStatus!=5}}'>
+                  <view class='display-flex'>
+                    <view class='flex-row'>
+                      <input class='{{thirdItem.receiveType==0?"handInput":"bluetoothInput"}}' type='digit' bindfocus='weightFocus' bindblur='weightBlur' bindinput='weightInput' data-findex='{{index1}}' data-sindex='{{index2}}' data-tindex='{{index3}}'
+                        value='{{thirdItem.number}}'></input>
+                    </view>
+                    <view>{{thirdItem.unit}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view hidden='{{mTab==0}}'>
+    <view wx:for='{{msgList}}' wx:for-item='item' wx:for-index='i' class='msgList'>
+      <view class='display-flex msg-time'>
+        <image src='{{i==0?"../../../common/images/icons/lczstimels.png":"../../../common/images/icons/lczstimehs.png"}}'></image>
+        <view class='flex-row'>{{item.assigneeName}}</view>
+        <view>{{item.createTime}}</view>
+      </view>
+      <view class='msg'>
+        <view class='msg-status display-flex'>
+          <view>{{item.messageType}}</view>
+          <view hidden='{{!item.messageContente}}'>：</view>
+          <view>{{item.messageContente}}</view>
+        </view>
+        <view class='msg-remark'>
+          <view class='msg-remark-title' hidden='{{!item.txtNoteApply}}'>备注</view>
+          <view class='display-flex msg-remark-value'>
+            <view class='flex-row'>{{item.txtNoteApply}}</view>
+            <view hidden='{{!item.sumbitAble}}'>
+              <image bindtap='deleteMsg' data-index='{{i}}' class='add-msg-pic' src='../../../common/images/icons/tjgd@2x.png'></image>
+              <view hidden='{{orderDetail.billStatus==5}}' bindtap='sumbitMsg' data-index='{{i}}' class='add-msg-btn'>发表</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:50px;'></view>
+</view>

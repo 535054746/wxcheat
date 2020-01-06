@@ -1,0 +1,60 @@
+<view wx:if="{{!flag}}">
+  <view class='container'>
+    <view class='display-flex'>
+      <view class='flex-row'>
+        <view class='display-flex contacts'>
+          <view class='contacts-name'>公司</view>
+          <input class='contacts-input flex-row' value='{{company}}' placeholder='{{isPersonFocus?"":"必填"}}' bindinput='bindInput' bindfocus='isFocus' bindblur='isBlur' data-type='company' maxlength='20'></input>
+          <view class='clear-image'>
+            <image src='../../common/images/icons/txlreplyclose_pr.png' bindtap='clearInput' data-type='person'></image>
+          </view>
+        </view>
+        <view class='lines'></view>
+        <view class='display-flex contacts'>
+          <view class='contacts-name'>联系人</view>
+          <input class='contacts-input flex-row' value='{{contact}}' placeholder='{{isPhoneFocus?"":"必填"}}' bindinput='bindInput' bindfocus='isFocus' bindblur='isBlur' data-type='contact' maxlength='6'></input>
+          <view class='clear-image'>
+            <image src='../../common/images/icons/txlreplyclose_pr.png' bindtap='clearInput' data-type='phone'></image>
+          </view>
+        </view>
+        <view class='lines'></view>
+        <view class='display-flex contacts'>
+          <view class='contacts-name'>手机号码</view>
+          <input class='contacts-input flex-row' value='{{phone}}' placeholder='{{isPersonFocus?"":"必填"}}' bindinput='bindInput' bindfocus='isFocus' bindblur='isBlur' data-type='phone' maxlength='11'></input>
+          <view class='clear-image'>
+            <image src='../../common/images/icons/txlreplyclose_pr.png' bindtap='clearInput' data-type='person'></image>
+          </view>
+        </view>
+        <view class='lines'></view>
+        <view class='display-flex contacts'>
+          <view class='contacts-name'>职位</view>
+          <input class='contacts-input flex-row' placeholder="选填"></input>
+          <view class='clear-image'>
+            <image src='../../common/images/icons/txlreplyclose_pr.png' bindtap='clearInput' data-type='phone'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='lines'></view>
+
+    <view class='button-box'>
+      <button class='change-btn' bindtap='checkInput'>保存</button>
+    </view>
+  </view>
+</view>
+<view wx:if="{{flag}}" class='success'>
+<image class='myImage' src='../common/images/icons/gyshzselected@3x.png'></image>
+<text class='myText'>
+您的资料已提交，
+工作人员会在1-3个工作日内审核，
+审核通过后会通过手机短信通知您，
+请耐心等待，谢谢！
+</text>
+</view>
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg"></view>
+    <view class="tips_text">{{tipText}}</view>
+  </view>
+</view>

@@ -1,0 +1,2 @@
+/* components/refreshBar/refreshBar.wxss */
+.refresh{line-height: 30px;height: 0px;color: #1a1a1a;font-size: 16px;text-align: center;background: #f5f5f5;overflow: hidden;}

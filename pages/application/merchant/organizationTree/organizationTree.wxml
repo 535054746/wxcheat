@@ -1,0 +1,50 @@
+<!--pages/application/merchant/organizationTree/organizationTree.wxml-->
+<view class='container'>
+  <errorTips id='errorTips'></errorTips>
+  <view class='mBottom'>
+    <bottomBtn id='bottomBtn' mainBtnText='确定' bind:mainTap='bbMainTap'></bottomBtn>
+  </view>
+  <view class='orgTree-main'>
+    <view wx:for='{{orgList}}' wx:for-index='firstIndex' wx:for-item='firstItem'>
+      <view class='display-flex list-item' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-typeid='{{firstItem.organizationtypeid}}'>
+        <image class='expand-img {{firstItem.expand?"expand-item":""}}' src='{{firstItem.orgList?"../../../common/images/icons/rule-icon5.png":""}}'></image>
+        <view class='flex-row'>{{firstItem.organizationname}}</view>
+        <image class='check-img' hidden='{{firstItem.organizationtypeid!=2}}' src='../../../common/images/icons/{{firstItem.isCheck?"gyshzselected@3x":"gyshzunselected@2x"}}.png'></image>
+      </view>
+      <view hidden='{{firstItem.expand}}'>
+        <view wx:for='{{firstItem.orgList}}' wx:for-index='secondIndex' wx:for-item='secondItem'>
+          <view class='display-flex list-item' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-secondindex='{{secondIndex}}' data-typeid='{{secondItem.organizationtypeid}}'>
+            <view class='padding30'></view>
+            <image class='expand-img {{secondItem.expand?"expand-item":""}}' src='{{secondItem.orgList?"../../../common/images/icons/rule-icon5.png":""}}'></image>
+            <view class='flex-row'>{{secondItem.organizationname}}</view>
+            <image class='check-img' hidden='{{secondItem.organizationtypeid!=2}}' src='../../../common/images/icons/{{secondItem.isCheck?"gyshzselected@3x":"gyshzunselected@2x"}}.png'></image>
+          </view>
+          <view hidden='{{secondItem.expand}}'>
+            <view wx:for='{{secondItem.orgList}}' wx:for-index='thirdIndex' wx:for-item='thirdItem'>
+              <view class='display-flex list-item' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-secondindex='{{secondIndex}}' data-thirdindex='{{thirdIndex}}' data-typeid='{{thirdItem.organizationtypeid}}'>
+                    <view class='padding30'></view>
+                <view class='padding30'></view>
+                <image class='expand-img {{thirdItem.expand?"expand-item":""}}' src='{{thirdItem.orgList?"../../../common/images/icons/rule-icon5.png":""}}'></image>
+                <view class='flex-row'>{{thirdItem.organizationname}}</view>
+                <image class='check-img' hidden='{{thirdItem.organizationtypeid!=2}}' src='../../../common/images/icons/{{thirdItem.isCheck?"gyshzselected@3x":"gyshzunselected@2x"}}.png'></image>
+              </view>
+              <view hidden='{{thirdItem.expand}}'>
+                <view wx:for='{{thirdItem.orgList}}' wx:for-index='fourthIndex' wx:for-item='fourthItem'>
+                  <view class='display-flex list-item' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-secondindex='{{secondIndex}}' data-thirdindex='{{thirdIndex}}' data-fourthindex='{{fourthIndex}}' data-typeid='{{fourthItem.organizationtypeid}}'>
+                    <view class='padding30'></view>
+                    <view class='padding30'></view>
+                    <view class='padding30'></view>
+                    <image class='expand-img {{fourthItem.expand?"expand-item":""}}' src='{{fourthItem.orgList?"../../../common/images/icons/rule-icon5.png":""}}'></image>
+                    <view class='flex-row'>{{fourthItem.organizationname}}</view>
+                    <image class='check-img' hidden='{{fourthItem.organizationtypeid!=2}}' src='../../../common/images/icons/{{fourthItem.isCheck?"gyshzselected@3x":"gyshzunselected@2x"}}.png'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:50px;'></view>
+</view>

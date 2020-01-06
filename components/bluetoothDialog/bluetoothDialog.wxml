@@ -1,0 +1,15 @@
+<!--components/bluetoothDialog/bluetoothDialog.wxml-->
+<view class='dialog-mask' hidden='{{!isDialogShow}}'>
+</view>
+<view class='dialog-main' hidden='{{!isDialogShow}}'>
+  <view class='dialog-main-title'>蓝牙<image bindtap='hide' src='../../pages/common/images/icons/popupsclose@2x.png'></image></view>
+  <view class='dialog-main-content'>
+      <scroll-view class='bluetooth-list' scroll-y>
+        <view class="bluetooth-item" wx:for="{{deviceList}}" wx:for-item="item" style='border-bottom:4px solid #f5f5f5;' bindtap='connectBluetooth' data-deviceid='{{item.deviceId}}'>
+          <text class="bluetooth-item-row">{{item.name}}</text>
+          <text wx:if='{{connedId==item.deviceId}}' class='conn-active'>已连接</text>
+          <text wx:else class='conn-normal'>未连接</text>
+        </view>
+      </scroll-view>
+  </view>
+</view>

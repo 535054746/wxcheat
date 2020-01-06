@@ -1,0 +1,160 @@
+page{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.flex_left{
+  width: 50%;
+  height: 100%;
+  /* border-right: 1px solid #33b0ff; */
+  padding-bottom: 9px;
+  padding-top: 10px;
+}
+.flex_right{
+  width: 50%;
+  height: 100%;
+   padding-top: 10px;
+  padding-bottom: 9px
+}
+
+a{ text-decoration:none;}
+.display-column{display: -webkit-flex;display: flex;flex-direction: column; }
+
+.menuboxs{ width:100%; background-color:#fff;}
+.menubox-title{ width:100%; height:40px; border-bottom:1px solid #e9e9e9;line-height:40px; padding-left:10px; color:#333; font-size:14px;}
+.menus{ overflow:hidden;display: flex;}
+.menu{ float:left; flex:1; color:#333; display: flex }
+.menu-icon{ width:60px; height:55px;  display:block; margin-left:auto; margin-right:auto;}
+.menu-icon-box{ width:100%; text-align:center; position: relative;}
+.menu-icon-number{position: absolute;
+    right: 15%;
+    top: -10px;
+    margin-right: -10px;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: red;
+    color: #fff;
+    text-align: center;}
+.menu-text{ text-align:center; font-size:16px;margin-left: 5px;}
+.company-box{ 
+  margin: 26px auto 0;
+  color: gray
+}
+
+.company-face{ 
+  padding: 0px 0 0 20px;
+  display: flex;
+  align-items: center;
+}
+.company-name{ font-size: 15px} 
+.banner-box{ position: absolute; left: 0px; bottom: 0px; top: 0px; right: 0px;z-index: -1}
+.board_banner img{width:100%; display:block;}
+.link-icon{ width: 7px; height: 15px; vertical-align: middle; margin-top: -3px; margin-left: 5px;}
+.application_banner{
+    width: 100%; 
+    height: 100%;
+    display: block;
+    position: fixed;
+    background-size: 100% 100%;
+    z-index: -1;
+    top: 0
+  }
+.menu-tips{
+    width: 70%;
+    position: fixed;
+    left: 50%;
+    margin-left: -35%;
+    top: 45%;
+    z-index: 9999999;
+    text-align: center;
+}
+.menu-tips-bg{
+    filter:alpha(opacity=0.7); /* IE */
+    -moz-opacity:0.7; /* 老版Mozilla */
+    -khtml-opacity:0.7; /* 老版Safari */
+    opacity: 0.7; /* 支持opacity的浏览器*/
+    background-color: #333;
+    height: 100%;
+   
+}
+.outShow{
+  font-size: 13px;
+  padding-top: 28px;
+  text-align: right;
+  padding-right: 23px;
+}
+.menu-tips-box{ position: relative;}
+.menu-tips-bg{ position: absolute;top: 0px; bottom: 0px; width: 100%; border-radius: 6px; z-index: -1}
+.menu-tips-text{ padding: 5px 12px; color: #fff; font-size: 13px; text-align: center;width: 100%}
+.login-out{width:100%; height: 45px; line-height: 45px;  text-align: center; color: #AD5044; background-color: #FCFCFC; font-size: 14px;}
+.login-out-icon{height: 50px; width: 50px; display: block;}
+.remarks-fixed{ position: fixed; left: 0px; top: 0px; right: 0px; bottom: 0px;}
+.remarks-relative{position: relative; width: 100%; height: 100%; justify-content: center; align-items: center;}
+.over-bg{ background-color: #000;opacity: 0.3; width: 100%; height: 100%;position: absolute;left: 0px; top: 0px;}
+.remarks-content{ background-color: #fff; position: relative; z-index: 1; width: 80%; border-radius:6px; margin-top: -10%;}
+.remarks-title{height: 50px; line-height: 50px; text-align: center; color: #fff; background-color: #33b0ff; border-radius:6px 6px 0px 0px;font-size: 18px;font-weight: bold;}
+.tip-text{ padding: 10px 10px; text-align: center;height: 85px;display: -webkit-flex;display: flex;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center; color: #1a1a1a;font-size: 14px;}
+.tip-btns{border-top:1px solid #E9E9E9; padding: 0px 10px;}
+.cancel-btn,.comfire-btn{ text-align: center; height: 45px; line-height: 45px;font-size: 16px;font-weight: bold;}
+.cancel-btn{border-right:1px solid #E9E9E9;color: #999;}
+.comfire-btn{ color: #33b0ff;}
+.border1{ border-right: 1px solid #e9e9e9;}
+.company-image{ width: 55px; height: 55px}
+.company-price{ padding: 0px 24px; margin-top: 20px;}
+.price-text{ font-size: 24px;}
+.price-tip{ font-size: 12px;}
+.order-number{padding-top: 17px;}
+.menu-item-box{ width: 100px; height: 100px; display: flex; justify-content:  center; align-items:  center; position: relative; margin: 6px}
+.totalNumber{height: 17px !important; padding: 0px 3px; border-radius: 20px; background-color: red; color: #fff; position: absolute; top: 0px;right: 15px; font-size: 12px; line-height: 17px !important;min-width: 17px; z-index: 1; text-align: center;}
+
+
+
+.nav-flex{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 130rpx;
+  border-bottom: 1px solid d9f1ff;
+  padding-bottom: 8px;
+  box-shadow: 5px 5px 5px #f3f3f3;
+  align-items: center;
+  /* height: 100px; */
+  /* line-height: 100px; */
+  /* align-items: center; */
+  
+}
+.img{
+  width: 28px;
+  height: 28px
+}
+.flex{
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+.font{
+  font-weight: bold;
+  font-size: 18px;
+  width: 428rpx;
+  word-wrap:break-word;
+}
+.line{
+  background: #8acef9;
+  width: 2px;
+  height: 24px;
+}
+.flex-sp{
+  display: flex;
+  align-items: center;
+  margin: 100rpx auto 0;
+  color: gray;
+  justify-content: space-between;
+}
+.flex-bot{
+  display: flex;
+  justify-content: space-between;
+}

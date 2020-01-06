@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="chosen/chosen.css" rel="stylesheet" /> <!--引入chosen.css-->
+    <script src="jquery.min..js"></script>
+	<script src="chosen/chosen.jquery.js"></script>
+</head>
+<body>
+    <select data-placeholder="Choose a Country..." class="chzn-select" multiple style="width:350px;" id="dl_chose2">
+        <option value=""></option>
+        <option value="1">a</option>
+        <option value="2">b</option>
+        <option value="3">c</option>
+        <option value="4">d</option>
+        <option value="5">e</option>
+        <option value="6">f</option>
+        <option value="7">g</option>
+        <option value="8">h</option>
+        <option value="9">i</option>
+    </select>
+    <input type="button" onClick="getresult()" value="获取结果"/>
+    <!--<a onclick="chose_mult_set_ini(‘#dl_chose2‘,‘1,3,5,8‘);" href="javascript:;;">Set a,c,e,h to Chose Mult-Select</a>-->
+
+
+   
+    <script language="javascript">
+		function getresult(){
+			alert($(".chzn-select").val().toString());	
+		}
+        // 多选 select 数据初始化
+        function chose_mult_set_ini(select, values) {
+            var arr = values.split(',');
+            var length = arr.length;
+            var value = '';
+            for (i = 0; i < length; i++) {
+                value = arr[i];
+                $(select + " option[value='" + value + "']").attr('selected', 'selected');
+            }
+            $(select).trigger("liszt:updated");
+        }
+
+        $(document).ready(function () {
+            // 如果要初始化已选中的项，需要在调用chosen()函数之前调用chose_mult_set_ini()函数
+            // 设置<select>的<option>属性selected=‘selected‘，这样chosen()函数被调用时，相应项会显示在框中
+            //chose_mult_set_ini('#dl_chose2', '1,3,5,8');
+
+            //初始化
+			$(".chzn-select").append("<option value='111'>lll</option>");
+            $(".chzn-select").chosen();
+			
+        });
+    </script>
+</body>
+</html>

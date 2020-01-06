@@ -1,0 +1,26 @@
+/* pages/application/merchant/approvalSelfList/approvalSelfList.wxss */
+.firstItem{background: #f5f5f5;color: #33b0ff;font-size: 14px;height: 30px;line-height: 30px;padding: 0 12px;}
+.firstItem image:first-child{width: 16px;height: 16px;margin-top: 7px;margin-right: 5px;}
+.firstItem image:last-child{width: 13px;height: 7px;margin-top: 11px;}
+.folding-arrow{transform: rotate(180deg);}
+
+.secondItem{border-bottom: 8px solid #f5f5f5;}
+.secondItem-time{border-bottom: 1px solid #e3e3e3;padding: 0 12px;}
+.secondItem-time view{height: 40px; line-height: 40px;font-size: 14px;color: #999999;}
+.secondItem-content{border-bottom: 1px solid #e3e3e3;padding: 6px 12px;}
+.secondItem-icon image{width: 48px;height: 48px;margin-right: 10px;}
+.icon-right image{width: 7px;height: 13px;margin-top: 19px;}
+.secondItem-detail view{line-height: 25px;}
+.secondItem-number{color: #1a1a1a;font-weight: bold;font-size: 16px;}
+.secondItem-person{color: #999999;font-size: 14px;}
+.status-33b0ff{color: #33b0ff!important;}
+.status-FA7362{color: #FA7362!important;}
+.secondItem-approval{height: 30px;}
+.secondItem-approval view{float: right;border: 1px solid;border-radius: 9px;font-size: 12px;line-height: 18px;padding: 0 10px;margin: 0 12px;margin-top: 5px;}
+.secondItem-approval view:first-child{color: #1a1a1a;border-color: #1a1a1a;}
+.secondItem-approval view:last-child{color: #999999;border-color: #999999;}
+
+
+.emtry-view{height: 100%;text-align: center;background: white;}
+.emtry-view image{width: 80px; height: 100px;margin-top: 150px;margin-bottom: 20px;}
+.emtry-view text{color: #999999;}

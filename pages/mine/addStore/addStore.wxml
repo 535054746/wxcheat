@@ -1,0 +1,21 @@
+<!--pages/mine/addStore/addStore.wxml-->
+<view class='container'>
+<view   class='display-flex changeCompanyName'>
+<view class='store-name'>门店名称</view>
+<input   class='flex-row input-change' placeholder-style='color:#b3b3b3;' bindinput='textInput' placeholder='{{isFocus?"":"可采用品牌+门店所在商圈"}}' value='{{name}}' bindfocus='bindFocus' bindblur='bindBlur'></input>
+<view  class='clear-image' wx:if='{{name.length!=0}}'><image src='../../common/images/icons/txlreplyclose_pr.png' bindtap='clearInput'></image></view>
+</view>
+<view class='lines' ></view>
+
+<view class='button-box'><view  class='change-btn' bindtap='checkInput'>保存</view></view>
+</view>
+
+
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+      <view class="tips_box">
+        <view class="tips_bg">
+        <text class="tips_text">{{tipText}}</text>
+        </view>
+      </view>
+    </view>

@@ -1,0 +1,161 @@
+<view class="container bg}}">
+  <view class="order_detail_info">
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">日期</view>
+      <view class="flex-row info-value">{{createtime}}</view>
+    </view>
+    <view class="display-flex info-line">
+      <view class="info-text">编码</view>
+      <view class="flex-row info-value">{{ordercode}}</view>
+    </view>
+    <view class="display-flex info-line">
+      <view class="info-text">最新状态</view>
+      <view class="flex-row info-value statu-color" wx:if="{{orderData.billstate=='0'}}">待发货</view>
+      <view class="flex-row info-value statu-color" wx:if="{{orderData.billstate=='1'}}">已发货</view>
+      <view class="flex-row info-value statu-color" wx:if="{{orderData.billstate=='2'}}">待确认</view>
+      <view class="flex-row info-value statu-color" wx:if="{{orderData.billstate=='3'}}">已完成</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">客户</view>
+      <view class="flex-row info-value">{{storename}}</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">联系人</view>
+      <view class="flex-row info-value">{{createusername}}</view>
+    </view>
+    <view class="info-show" bindtap='showTop'>
+      <image src="{{showTopFlag?'../common/images/icons/folding@2x.png':'../common/images/icons/expansion@2x.png'}}" class="up_ion"></image>
+    </view>
+  </view>
+  <view class="order_title display-flex">
+    <view class="title-text flex-row  display-flex">
+      <view><image src="../common/images/icons/order.png" class="title-icon"></image></view>
+      <view>订单明细</view>
+    </view>
+    <view class="title-number">共{{orderData.count}}种</view>
+  </view>
+  <view class="order-main">
+    <view class="order-item" wx:for="{{orderData.order}}" wx:for-index="index1" wx:for-item="items">
+      <view class="order-item-top">
+        <view class="shop-name-box display-flex">
+          <view class="flex-row shop-name display-flex">
+            <view class="border-left-icon"></view>
+            <view>
+              {{items.storename}}
+            </view>
+          </view>
+          <view class="shop-number display-flex" data-index='{{index1}}' bindtap="showIndexOne">
+            <view>{{items.count}}种</view>
+            <view><image src="{{showIndex1[index1]?'../common/images/icons/folding@2x.png':'../common/images/icons/expansion@2x.png'}}" class="shop-number-icon"></image></view>
+          </view>
+        </view>
+        <view>
+          <image src="../common/images/icons/gysddguide@2x.png" class="address-icon"></image>
+          <text class="address-text">地址: {{items.address}}</text>
+        </view>
+      </view>
+      <view class="order-item-bottom display-flex">
+        <view class="look-remarks" bindtap='showRemarks' data-index='{{index1}}' wx:if="{{items.noteList}}" data-storename='{{items.storename}}'>查看备注 ></view>
+        <view wx:if="{{orderData.order[index1].performanceId !='' && items.noteList}}" class="look-remarks-line"></view>
+        <view class="look-remarks" bindtap='lookQuality' data-performanceid='{{orderData.order[index1].performanceId}}' data-storeid='{{orderData.order[index1].storeid}}' wx:if="{{orderData.order[index1].performanceId !=''}}">质检记录 ></view>
+        <view class="flex-row order-item-bottom-statu" wx:if="{{orderData.order[index1].billstatus=='0'}}">
+          <button class="deliver-button" data-storeid='{{items.storeid}}' bindtap='orderDelivery'>发货</button>
+        </view>
+        <view class="flex-row order-item-bottom-statu statu-color" wx:if="{{orderData.order[index1].billstatus=='1'}}">
+          已发货
+        </view>
+        <view class="flex-row order-item-bottom-statu statu-color" wx:if="{{orderData.order[index1].billstatus=='2'}}">
+          待确认
+        </view>
+        <view class="flex-row order-item-bottom-statu statu-color" wx:if="{{orderData.order[index1].billstatus=='3'}}">
+          已完成
+        </view>
+      </view>
+      <view class="order-item-time display-flex" wx:if='{{items.placeDate}}'>
+        <view class="flex-row">发货：{{items.placeDate}}</view>
+        <view class="flex-row text-right" wx:if='{{items.checkDate}}'>验收：{{items.checkDate}}</view>
+      </view>
+      <view wx:if="{{showIndex1[index1]}}"> 
+        <view class="shop-type"  wx:for="{{items.code1}}" wx:for-index='index2'>
+          <view class="display-flex shop-type-title"  data-index='{{index1}}-{{index2}}'  bindtap="showIndexTwo">
+            <view class="flex-row shop-type-name">{{item.itemcategoryname1}}</view>
+            <view class="shop-number">{{item.count}}种
+              <image src="{{showIndex2[index1][0]?'../common/images/icons/folding@2x.png':'../common/images/icons/expansion@2x.png'}}" class="shop-weight-icon"></image>
+            </view>
+          </view>
+          <view wx:if="{{showIndex2[index1][0]}}">
+            <view wx:for="{{item.code2}}">
+              <view class="shop-type-line"> 
+                <view class="type-line-border"></view>
+                <view class="display-flex type-line-text-box"><view class="type-line-text">{{item.itemcategoryname2}}</view></view>
+              </view>
+              <view class="padding-olo" wx:for="{{item.itemList}}"  wx:for-index='index3' wx:for-item='itemx'>
+                <view class="{{((index3%2)==0)? 'bg-white' :'bg-blue'}}">
+                  <view class="display-flex shop-type-detail-title" data-index='{{index1}}-{{index2}}-{{index3}}'  bindtap="showIndexThree">
+                    <view class="shop-type-deital-name {{((items.billstatus=='2' || items.billstatus=='3') && itemx.redFlag)?'color-red':''}}">{{itemx.itemname}}</view>
+                    <view class='shop-weight-book' wx:if="{{items.billstatus=='2' || items.billstatus=='3'}}"><image src='../common/images/icons/ysapplyhs@2x.png' class='book-icon'></image>{{itemx.qty}}{{itemx.unit}}</view>
+                    <view class='shop-weight-real' wx:if="{{items.billstatus=='2' || items.billstatus=='3'}}"><image src='../common/images/icons/sblue@2x.png' class='real-icon'></image>{{itemx.invqty}}{{itemx.unit}}</view>
+                    <view class="shop-weight-text"><text wx:if="{{items.billstatus!='2' & items.billstatus!='3'}}">{{itemx.qty}}{{itemx.assistantunit}}</text><image src="{{showIndex3[index1][0][0]?'../common/images/icons/folding@2x.png':'../common/images/icons/expansion@2x.png'}}" class="shop-weight-icon"></image></view>
+                  </view>
+                  <view wx:if="{{showIndex3[index1][0][0]}}">
+                    <view class="display-flex distribution-box" wx:if="{{items.billstatus=='0' || items.billstatus=='1'}}">
+                      <view class='flex-row' wx:for="{{itemx.list}}">{{item.deptname}}：{{item.qty}}{{item.assistantunit}}</view>
+                    </view>
+                     <view wx:for="{{itemx.list}}" wx:if="{{items.billstatus=='2' || items.billstatus=='3'}}" class="display-flex distribution-box padding-right-17">
+                        <view class="shop-type-deital-name">{{item.deptname}}</view>
+                        <view class='shop-weight-book'><image src='../common/images/icons/ysapplyhs@2x.png' class='book-icon'></image>{{item.qty}}{{item.assistantunit}}</view>
+                        <view class='shop-weight-real'><image src='../common/images/icons/sblue@2x.png' class='real-icon'></image>{{item.deliveryqty}}{{item.assistantunit}}</view>
+                      </view>
+                    <view class="distribution-detail" wx:if="{{itemx.itemspecifications != ''}}">
+                      <view  wx:for="{{itemx.list}}"><text class="shop-weight-text">{{item.deptname}}：{{item.qty}}{{item.assistantunit}}</text><text> {{item.itemspecifications}}</text></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="deliver-box" wx:if="{{orderData.billstate=='0'}}"> 
+  <button class="deliver-big-button" bindtap='delivery'>（{{orderData.count}}）全部发货</button>
+  </view>
+  <view class="deliver-box" wx:if="{{orderData.billstate=='2'}}">
+  <button class="deliver-big-button" bindtap='sureOrder'>（{{orderData.count}}）全部确认</button>
+  </view>
+  <view class='remarks-fixed' wx:if="{{remarksShowFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view bindtap='closeRemarks'>
+          <image class='remarks-close-icon' src='../common/images/icons/popupsclose@2x.png'></image>
+        </view>
+        <view class='remarks-title'>查看备注</view>
+        <view class='remarks-shop-name'>{{storeNameChange}}</view>
+        <view class='scroll-remarks'>
+          <view class='remarks-item' wx:for="{{noteLists}}">
+            <view class="department-remarks display-flex">
+              <view class='flex-row'>{{item.deptname}}： {{item.createUserName}}</view>
+              <view data-phone='{{item.phone}}' bindtap='callPhone'>
+                <image class='remarks-phone-icon' src='../common/images/icons/QCcall@2x.png'></image>
+              </view>
+            </view>
+            <view class='remarks-detail'>
+              <view class="remarks-detail-autio" wx:if="{{item.voiceNoteApply}}">
+                <image class="autio_button" src='../common/images/icons/pause@2x.png' data-voice='{{item.voiceNoteApply.src}}' bindtap='voicePlay'></image>
+                <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image>
+                <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image>
+                <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image>
+                <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image>
+                <text class='autio-middle'>{{item.voiceNoteApply.length}}'</text>
+              </view>
+              <view class="remarks-detail-text">{{item.txtNoteApply}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='bottom-white-50'></view>
+</view>

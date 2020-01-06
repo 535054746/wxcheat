@@ -1,0 +1,62 @@
+<!--pages/mine/manageDept/manageDept.wxml-->
+<view class='container'>
+  <view class='display-flex company_name' bindtap='jumpLink' data-url='../../mine/changeDept/changeDept?deptName={{deptName}}&id={{id}}'>
+    <view class=' text_name'>部门</view>
+    <view class='flex-row company_name_text '>{{deptName}}</view>
+    <view class='link-icon'>
+      <image src='../../common/images/icons/more@2x.png'></image>
+    </view>
+  </view>
+  <view class='lines'></view>
+
+  <view class='add-container'>
+    <view class='display-flex add-view'>
+      <view class='add-icon'>
+        <image src='../../common/images/icons/tjgd@2x.png'></image>
+      </view>
+      <view class='add-text' bindtap='jumpLink' data-url='../../mine/addOrderPerson/addOrderPerson?organizationid={{organizationid}}'>新增下单人</view>
+      <view class='flex-row'></view>
+      <view class='tips-icon' bindtap='showTips' data-type='orderTips'>
+        <image src='../../common/images/icons/wh_pr@2x.png'></image>
+      </view>
+    </view>
+    <view class='bot-text'>
+      <text>*</text>可以用手机号直接登录食食通小程序下要货单</view>
+  </view>
+  <view class='lines-wide'></view>
+  <view wx:for="{{orderPersonList}}" wx:for-item="person" wx:for-index="i">
+    <view class='phone-container'>
+      <view class='display-flex add-phone'>
+        <view class='add-name'>{{person.name}}</view>
+        <view class='add-number'>{{person.phone}}</view>
+        <view class='phone-icon'>
+          <image src='../../common/images/icons/QCcall@2x.png' bindtap='callPhone' data-phone='{{person.phone}}'></image>
+        </view>
+        <view class='flex-row'></view>
+        <view class='delet-icon' bindtap='showTips' data-type='delete' data-id='{{person.id}}'>
+          <image src='../../common/images/icons/sqddelete@3x.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='lines'></view>
+  </view>
+</view>
+
+
+<view class='remarks-fixed' wx:if="{{isShowTips}}">
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>操作提示</view>
+      <view class='tip-text'>
+        <view wx:if="{{tipsType==0}}"> 1、新增的下单人可以直接用手机号下要货单，默认登录密码为123456<view style='height:5px;'></view>2、若下单人离职或修改了手机号码，直接在原资料上编辑新下单人信息即可。</view>
+        <text wx:if="{{tipsType!=0}}" style='text-align:center;width:100%;justify-content:center;line-height:180%'>{{tipsText}}</text>
+      </view>
+      <view class='tip-btns display-flex'>
+        <view class='comfire-btn flex-row' bindtap='loginOutCancel' wx:if="{{tipsType==0||tipsType==2}}">我知道了</view>
+        <view class='cancel-btn flex-row' bindtap='loginOutCancel' wx:if="{{tipsType==1}}">取消</view>
+        <view class='comfire-btn flex-row' bindtap='loginOutComfire' wx:if="{{tipsType==1}}">确定</view>
+      </view>
+    </view>
+  </view>
+</view>

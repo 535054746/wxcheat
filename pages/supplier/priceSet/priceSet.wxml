@@ -1,0 +1,61 @@
+<view class="container bg">
+  <view class='price-set-item display-flex mb5'><view class='flex-row'>启用/禁用</view><view class='price-set-start'><image src='{{priceStatus==3?"../common/images/szqy_jy@2x.png":"../common/images/szqy@2x.png"}}' bindtap='startTapTip'></image></view></view>
+  <view class='price-set-item display-flex mb5'>
+    <view class='flex-row'>删除该报价方案</view>
+    <view class='delete-button' bindtap='deleteTapTip'>删除</view>
+  </view>
+  <!--<view class='price-set-item display-flex' bindtap='clickJumpHistory'>
+    <view class='flex-row'>查看历史报价</view>
+    <view class='price-set-more'><image src='../../common/images/icons/more@2x.png'></image></view>
+  </view>-->
+  <view class='remarks-fixed' wx:if="{{startTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>禁用后可以点击按钮再次启用<view></view>确定要禁用吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelStart'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='startTap'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{deleteTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>删除后不可恢复，确定要删除吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelStart'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='deletePrice'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{notTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>该客户已产生过交易不能删除<view></view>可以选择禁用该报价方案</view>
+        </view>
+       <view class='tip-btns display-flex'>
+          <view class='cancel-btn cancel-btn2 flex-row color-33b0ff' bindtap='cancelStart'>我知道了</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+  </view>
+</view>

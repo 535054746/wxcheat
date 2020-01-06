@@ -1,0 +1,13 @@
+<view class="container bg">
+  <view class='userinfo display-flex'>
+    <view class='userinfo-face'><image src='../common/images/icons/face.png' class='userinfo-face-image'></image></view>
+    <view class='userinfo-box flex-row margin-left-15'>
+      <view class='userinfo-name'>刘静文</view>
+      <view class='userInfo-supname'>罗云炎供应商</view>
+    </view>
+  </view>
+  <view class='color-fff'>
+    <view class='login-out-but'>切换账号</view>
+  </view>
+  
+</view>

@@ -1,0 +1,100 @@
+<view class="container bg" wx:if="{{pageBgFlag}}">
+  <view class="order-main" wx:if="{{shopType.length>0}}">
+    <view class='order-table'>
+      <view class='type-header'>
+        <view class='type-header-box'>
+          <view class='type-header-box-box'>
+            <view class='type-header-box-box-box'>
+              <view class="{{shopTypeFlag[currentItemType] && index==currentItemType?'text-al current-type':''}}{{index==shopType.length?'text-ar':''}}" wx:for="{{shopType}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='changeItemcategory'>{{items.itemcategoryname}}</view>
+            </view>
+          </view>
+        </view>
+        <view class='search-button' bindtap='showSearchBox'><image src='../common/images/navigationbarsearch@3x.png' class='search-icon'></image></view>
+      </view>
+    </view>
+  </view>
+  <view class='search-box display-flex' wx:if="{{searchFlag}}">
+    <view class='search-input flex-row'><input type='text' placeholder='搜索商品名、首字母' bindconfirm='searchShop' bindinput='keyWord'></input><image src='../common/images/navigationbarsearch@3x.png' ></image></view>
+    <view class='cancel-button'  bindtap='showSearchBox'>取消</view>
+  </view>
+  <view style="padding-top:45px;background:white;">
+  <view wx:for="{{shopData}}" wx:for-item="items" wx:for-index="index"  wx:if="{{shopShowFlag && shopData.length>0}}">
+    <view class='shop-type'>{{items.itemcategoryname}}</view>
+    <view class='' wx:for="{{shopData[index].itemList}}" wx:for-item="items2" wx:for-index="index2">
+      <view class='display-flex shop-item'>
+        <view class='shop-item-image' wx:if="{{items2.picthumburl}}" bindtap='' data-itemid='{{items2.id}}'><image src='{{items2.picthumburl}}'></image></view>
+        <view class='shop-item-image' wx:if="{{!items2.picthumburl}}" bindtap='' data-itemid='{{items2.id}}'><image src='../common/images/defaultlogo.png'></image></view>
+        <view class='flex-row shop-item-name'>
+          <view class='shop-name-text'>{{items2.itemname}}</view>
+          <view class='shop-name-unit'>{{items2.assistantunit}}{{items2.assistantunit.length>0?'/':''}}{{items2.unit}}</view>
+        </view>
+        <view class='edit-icon' data-itemid="{{items2.id}}" bindtap='editShop'>
+          <image src='../common/images/edit-icon.png' class='down-icon'></image>
+        </view>
+        <view class='delete-icon' data-itemid="{{items2.id}}" data-propertiesid="" bindtap='deleteShopDataTip'>
+          <image src='../common/images/sqddelete@3x.png' class='down-icon'></image>
+        </view>
+      </view>
+      <view wx:for="{{items2.propertiesnamejson}}" wx:for-item="items3" wx:for-index="index3">
+        <view class='item-rule' wx:for="{{items3.value}}" wx:for-item="items4" wx:for-index="index4">
+          {{items3.k}}：{{items4.v}}
+        </view>
+      </view>
+    </view>
+  </view> 
+  <view wx:if="{{shopShowFlag==false && shopData2.length>0}}">
+    <view class='shop-item display-flex' wx:for="{{shopData2}}" wx:for-item="items2" wx:for-index="index2">
+      <view class='shop-item-image' wx:if="{{items2.picthumburl}}" bindtap='' data-itemid='{{items2.id}}'><image src='{{items2.picthumburl}}'></image></view>
+      <view class='shop-item-image' wx:if="{{!items2.picthumburl}}" bindtap='' data-itemid='{{items2.id}}'><image src='../common/images/defaultlogo.png'></image></view>
+      <view class='flex-row shop-item-name'>
+        <view class='shop-name-text'>{{items2.itemname}}</view>
+        <view class='shop-name-unit'>{{items2.assistantunit}}{{items2.assistantunit.length>0?'/':''}}{{items2.unit}}</view>
+      </view>
+      <view class='edit-icon' data-itemid="{{items2.id}}" bindtap='editShop'>
+        <image src='../common/images/edit-icon.png' class='down-icon'></image>
+      </view>
+      <view class='delete-icon' data-itemid="{{items2.id}}" data-propertiesid="" bindtap='deleteShopDataTip'>
+        <image src='../common/images/sqddelete@3x.png' class='down-icon'></image>
+      </view>
+    </view>
+  </view>
+  </view>
+  <view class='no-data-tip' wx:if="{{shopShowFlag && shopData.length==0}}">
+    <view class='no-data-image'><image src="../../common/images/icons/animalone@2x.png"></image></view>
+    <view>暂无商品</view>
+    <view>赶快点击【添加商品】按钮添加吧~</view>
+  </view>
+  <view class='no-data-tip' wx:if="{{shopShowFlag==false && shopData2.length==0}}">
+    <view class='no-data-image2'><image src="../../common/images/icons/cry.png"></image></view>
+    <view>为搜索到与“{{word}}”相关的商品</view>
+    <view>换个关键词试试吧~</view>
+  </view>
+  <view class='money_total'>
+    <view class='money_total_box display-flex'><view class='sure-button flex-row' bindtap='selectShop'>添加商品</view></view>
+  </view>
+  <view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{deleteTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>确定要删除商品吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelTip'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='deleteShopData'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="fiveTen"  wx:if="{{shopType.length>0}}"></view>
+</view>
+
+<view class='loading-bg' wx:if="{{loading}}"></view>
+<view class='loading-icon display-flex' wx:if="{{loading}}"><image src='../../common/images/icons/loading.gif'></image></view>

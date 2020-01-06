@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "要货单详情",
+  "usingComponents": {
+    "errorTips": "/components/errorTips/errorTips",
+    "bottomBtn": "/components/bottomBtn/bottomBtn",
+    "bluetoothDialog": "/components/bluetoothDialog/bluetoothDialog",
+    "editDialog": "/components/editDialog/editDialog",
+    "yesNoBtn": "/components/yesNoBtn/yesNoBtn"
+  }
+}

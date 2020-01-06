@@ -1,0 +1,20 @@
+<!--pages/application/merchant/approval/approval.wxml-->
+<view class='container'>
+  <errorTips id='errorTips'></errorTips>
+  <view>
+    <view class='approval-item' bindtap='goList' data-type='1'>
+      <image src='../../../common/images/icons/sqdsq.png'></image>
+      <view class='red-count' wx:if='{{redCount>0}}'>{{redCount}}</view>
+      <view>待审批</view>
+    </view>
+    <view class='approval-item' bindtap='goList' data-type='2'>
+      <image src='../../../common/images/icons/spysp.png'></image>
+      <view>已审批</view>
+    </view>
+    <view class='approval-item' bindtap='goList' data-type='3'>
+      <image src='../../../common/images/icons/spwfqd.png'></image>
+      <view>我发起的</view>
+    </view>
+  </view>
+  <view class='line'></view>
+</view>

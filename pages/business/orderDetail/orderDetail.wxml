@@ -1,0 +1,191 @@
+<view class="container bg padding-bottom-80">
+  <view class="order_detail_info">
+    <view class="display-flex info-line">
+      <view class="info-text">客户</view>
+      <view class="flex-row info-value">{{suplierName}}</view>
+    </view>
+    <view class="display-flex info-line">
+      <view class="info-text">最新状态</view>
+      <view class="flex-row info-value statu-color" wx:if="{{orderData.appStatus=='0'}}">已下单</view>
+      <view class="flex-row info-value statu-color" wx:if="{{orderData.appStatus=='1'}}">待验收</view>
+      <view class="flex-row info-value statu-color" wx:if="{{orderData.appStatus=='2'}}">已验收</view>
+      <view class="flex-row info-value statu-color-finished" wx:if="{{orderData.appStatus=='3'}}">已完成</view>
+      <view class="flex-row info-value statu-color-cancel" wx:if="{{orderData.appStatus=='4'}}">已取消</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">联系人</view>
+      <view class="flex-row info-value">{{person}}</view>
+      <view class='phone-icon'>
+        <image src='../../common/images/icons/QCcall@2x.png' bindtap='callPhone'></image>
+      </view>
+    </view>
+
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">编码</view>
+      <view class="flex-row info-value">{{orderData.number}}</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">收货时间</view>
+      <view class="flex-row info-value">{{orderData.aogDate}}</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag}}">
+      <view class="info-text">下单时间</view>
+      <view class="flex-row info-value">{{orderData.billDate}}</view>
+    </view>
+    <view class="display-flex info-line" wx:if="{{showTopFlag&&orderData.appStatus=='1'&&orderData.autoDays>0}}">
+      <view class="info-text">自动验收</view>
+      <view class="flex-row info-value">还剩{{autoDay}}天{{autoHour}}小时</view>
+    </view>
+    <view class="info-show" bindtap='showTop'>
+      <image src="{{showTopFlag?'../../common/images/icons/folding@2x.png':'../../common/images/icons/expansion@2x.png'}}" class="up_ion"></image>
+    </view>
+  </view>
+  <view wx:if="{{!orderData.remarks==''}}">
+    <view class="order_title">
+      <view class="title-text flex-row  display-flex">
+        <view>
+          <image src="../../common/images/icons/bz@3x.png" class="remarks-icon"></image>
+        </view>
+        <view>备注</view>
+      </view>
+    </view>
+    <view class="order_remarks">
+      <view class='order_remarks_text'>
+        {{orderData.remarks}}
+      </view>
+    </view>
+  </view>
+  <view class="order_title display-flex">
+    <view class="title-text flex-row  display-flex">
+      <view>
+        <image src="../../common/images/icons/orderdetails@3x.png" class="title-icon"></image>
+      </view>
+      <view>订单明细</view>
+    </view>
+    <view class="title-number">共{{orderData.total}}种
+      <text>金额：￥{{orderData.totalAmount}}</text>
+    </view>
+  </view>
+  <view class="order-main">
+    <view class='order-table'>
+      <view class='type-header'>
+        <view class='type-header-box'>
+          <view class='type-header-box-box'>
+            <view class='type-header-box-box-box'>
+              <view class="{{index==currentType?'current-type ':''}}" wx:for="{{orderData.list}}" wx:for-item="items" wx:for-index="index" bindtap='changeShopType' data-index="{{index}}">{{items.itemcategoryname1}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class=''>
+        <view class='shop-item' wx:for="{{shopData[currentType]}}" wx:for-item="items" wx:for-index="index">
+          <view class='display-flex item-top'>
+            <view class='item-top-image'>
+              <image src="{{items.picurl?items.picurl:'../../common/images/icons/defaultlogo.png'}}"></image>
+            </view>
+            <view class='flex-row item-top-name'>
+              <view class='item-name-text'>{{items.itemName}}</view>
+              <view class='item-name-price'>
+                <text>￥</text>{{items.price}}</view>
+            </view>
+            <view class='item-top-weight'>
+              <view class='display-flex apply-box'>
+                <view class='apply-icon'>
+                  <image src="../../common/images/icons/sqicon.png"></image>
+                </view>
+                <view class='align-right'>{{items.qty}}{{items.assistantUnit}}</view>
+              </view>
+              <view class='display-flex apply-box' wx:if="{{orderData.appStatus=='1'||orderData.appStatus=='2'||orderData.appStatus=='3'}}">
+                <view class='apply-icon'>
+                  <image src="../../common/images/icons/fhicon.png"></image>
+                </view>
+                <view class='align-right'>{{items.purQty}}{{items.assistantUnit}}</view>
+              </view>
+              <view class='display-flex apply-box' wx:if="{{orderData.appStatus=='1'}}">
+                <view class='deliver-icon'>
+                  <image src="../../common/images/icons/ssslx@3x.png"></image>
+                </view>
+                <view class='deliver-input'>
+                  <input class='{{items.receiveType==0?"handInput":"bluetoothInput"}}' type='digit' bindinput='weightInput' confirm-type="done" data-index='{{index}}' value="{{items.number}}" bindfocus='bindFocus' bindblur='bindBlur'></input>{{items.unit}}</view>
+              </view>
+              <view class='display-flex apply-box' wx:if="{{orderData.appStatus=='2'||orderData.appStatus=='3'}}">
+                <view class='apply-icon'>
+                  <image src="{{items.receiveType==0?'../../common/images/icons/sred@3x.png':'../../common/images/icons/sblue@3x.png'}}"></image>
+                </view>
+                <view class='align-right' style='color:{{items.receiveType==0?"red":"blue"}};'>{{items.deliveryQty}}{{items.unit}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='item-rule' wx:if="{{items.itemspecifications!=undefined}}">
+            {{items.itemspecifications}}
+          </view>
+        </view>
+
+      </view>
+
+
+    </view>
+  </view>
+  <view class='bottom-white-50'></view>
+  <view class='money_total' wx:if="{{orderData.appStatus=='0'}}">
+    <view class='money_total_box display-flex'>
+      <view class='sure-button flex-row' bindtap='comfirmDialog' data-type='cancelOrder'>取消订单</view>
+    </view>
+  </view>
+  <view class='money_total' wx:if="{{orderData.appStatus=='1'}}">
+    <view class='money_total_box display-flex'>
+      <view class='conn-photo' bindtap='controlBluetooth'>
+        <image class='display-flex' src="{{isConnectBluetooth?'../../common/images/icons/ljlyylj@3x.png':'../../common/images/icons/ljlywlj@3x.png'}}"></image>
+        <text class='display-flex' style="color:{{isConnectBluetooth?'#33b0ff':'#b5b5b5'}};">{{isConnectBluetooth?'断开蓝牙':'连接蓝牙'}}</text>
+      </view>
+      <view class='sure-button flex-row' bindtap='comfirmDialog' data-type='checkOrder'>验收</view>
+    </view>
+  </view>
+  <view class='money_total' wx:if="{{orderData.appStatus=='3'}}">
+    <view class='money_total_box display-flex'>
+      <view class='sure-button flex-row' bindtap='comfirmDialog' data-type='printOrder'>打印</view>
+    </view>
+  </view>
+</view>
+
+<view class='remarks-fixed' wx:if="{{isShowComfirm}}">
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>操作提示</view>
+      <view class='tip-text'>
+        <text style='text-align:center;width:100%;'>{{tipsText}}</text>
+      </view>
+      <view class='tip-btns display-flex'>
+        <view class='cancel-btn flex-row' bindtap='comfirmDialog'>取消</view>
+        <view class='comfire-btn flex-row' bindtap='{{comfirmFunction}}'>确定</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg">
+      <text class="tips_text">{{tipText}}</text>
+    </view>
+  </view>
+</view>
+
+<view class='remarks-fixed' wx:if="{{isShowBluetooth}}">
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title' bindtap='getDevice'>蓝牙</view>
+      <view class='closeDialog'>
+        <image src='../../common/images/icons/popupsclose@2x.png' bindtap='closeBluetoothDialog'></image>
+      </view>
+      <scroll-view class='bluetooth-list' scroll-y>
+        <view class="display-flex" wx:for="{{bluetoothList}}" wx:for-item="item" style='border-bottom:4px solid #f5f5f5;' bindtap='connectBluetooth' data-deviceid='{{item.deviceId}}'>
+          <text class="flex-row">{{item.name}}</text>
+          <text class='{{currentConnBluetoothId==item.deviceId?"conn-active":"conn-normal"}}'>{{currentConnBluetoothId==item.deviceId?'已连接':'未连接'}}</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+<view class="container">
+  <view class='price-set-item display-flex' wx:for="{{priceData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" data-storeid="{{items.storeId}}" bindtap='jumpLink'>
+    <view class='flex-row'>{{items.storeName}}</view>
+    <view class='price-itemNum'>{{items.itemNum}}种</view>
+    <view class='price-set-more'><image src='../../common/images/icons/more@2x.png'></image></view>
+  </view>
+</view>

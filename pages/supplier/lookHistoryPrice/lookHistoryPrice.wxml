@@ -1,0 +1,7 @@
+<view class="container">
+  <view class='price-set-item display-flex' wx:for="{{priceData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" data-id="{{items.id}}" bindtap='jumpLink'><view class='flex-row'>{{items.startPeriod}}-{{items.endPeriod}}</view><view class='price-set-more'><image src='../../common/images/icons/more@2x.png'></image></view></view>
+  <view class='no-data-tip' wx:if="{{priceData.length==0}}">
+    <view class='no-data-image2'><image src="../../common/images/icons/cry.png"></image></view>
+    <view>暂无历史报价</view>
+  </view>
+</view>

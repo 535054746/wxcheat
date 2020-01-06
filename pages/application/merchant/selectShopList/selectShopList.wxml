@@ -1,0 +1,81 @@
+<!--pages/application/merchant/selectShopList/selectShopList.wxml-->
+<view class='container'>
+  <errorTips id='errorTips'></errorTips>
+  <view class='mBottom'>
+    <bottomBtn id='bottomBtn' mainBtnText='去下单' leftBtns='{{leftBtnList}}' bind:leftTap='bbLeftTap' bind:mainTap='bbMainTap'></bottomBtn>
+  </view>
+  <shopDetailDialog id='shopDetailDialog' source='{{source}}' bind:errorMsg='showTips' bind:rebackShop='rebackShop'></shopDetailDialog>
+  <view hidden='{{!isShowList}}'>
+    <view class='shopList-mask'></view>
+    <view class='shopList-main'>
+      <view class='shopList-main-title display-flex'>
+        <view>已选商品</view>
+        <view class='flex-row' bindtap='clearShopList'>- 清空商品</view>
+        <image src='../../../common/images/icons/tcgb@2x.png' bindtap='hideShopList'></image>
+      </view>
+      <scroll-view scroll-y style='max-height:200px;'>
+        <view wx:for='{{shopList}}' wx:for-index='index' class='shopList-item-border'>
+          <view class='shopList-item display-flex'>
+            <view>{{item.itemname}}</view>
+            <view class='flex-row display-flex'>
+              <amountInput bind:amountInput='amountInput' amountInputValue='{{item.qty}}' data-index='{{index}}'></amountInput>
+              <view>{{item.unit}}</view>
+            </view>
+            <image bindtap='deleteShop' data-index='{{index}}' src='../../../common/images/icons/sqddelete@3x.png'></image>
+          </view>
+          <view class='shopList-item-itemspecifications'>{{item.itemspecifications}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class='search-area-border'>
+    <view class='search-area display-flex'>
+      <input class='flex-row' bindinput='searchInput' placeholder='搜索名称、首字母'></input>
+      <image src='../../../common/images/icons/navigationbarsearch@3x.png'></image>
+    </view>
+  </view>
+  <view wx:if='{{searchValue==""}}' class='display-flex scroll-main'>
+    <scroll-view scroll-y class='left-area' style='height:{{screenHeight-101}}px;'>
+      <view wx:for='{{leftList}}' wx:for-index='i' wx:for-item='item' class='left-are-item {{item.id==currentLeftType?"left-are-item-active":""}}' bindtap='selectType' data-id='{{item.id}}'>
+        {{item.itemcategoryname}}
+      </view>
+    </scroll-view>
+    <scroll-view scroll-y class='flex-row right-area' style='height:{{screenHeight-101}}px;'>
+      <view wx:for='{{rightList}}' wx:for-index='i' wx:for-item='firstItem'>
+        <view class='right-area-firstItem'>
+          <view class='right-area-firstItem-name'>{{firstItem.itemcategoryname}}</view>
+        </view>
+        <view class='right-area-secondItem-main'>
+          <view wx:for='{{firstItem.itemList}}' wx:for-item='secondItem' wx:for-index='j'>
+            <view class='right-area-secondItem'>
+              <view class='right-area-secondItem-name {{secondItem.isCheck?"right-area-secondItem-check":""}}' bindtap='selectShop' data-findex='{{i}}' data-sindex='{{j}}'>{{secondItem.itemname}}</view>
+            </view>
+          </view>
+          <view class='clear'></view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:else>
+    <scroll-view scroll-y style='height:{{screenHeight-101}}px;'>
+      <view wx:if='{{searchList.length!=0}}'>
+        <view class='display-flex search-item'>
+          <view class='flex-row'>商品名称</view>
+          <view class='flex-row'>单位</view>
+          <view class='flex-row'>选择</view>
+        </view>
+        <view wx:for='{{searchList}}' wx:for-index='index' wx:for-item='item' class='display-flex search-item {{index%2==1?"search-item-bg":""}}' bindtap='selectShop' data-findex='{{index}}'>
+          <view class='flex-row'>{{item.itemname}}</view>
+          <view class='flex-row'>{{item.assistantunit==undefined||item.assistantunit==''?item.unit:item.assistantunit}}</view>
+          <view class='flex-row'><image src='../../../common/images/icons/select-icon.png'></image></view>
+        </view>
+      </view>
+      <view wx:else>
+        <view class='emtry-view'>
+          <image src='../../../common/images/icons/cry.png'></image>
+          <view>未搜索到与'{{searchValue}}'相关的商品，请换个关键词试试~</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,88 @@
+<view class="container bg">
+  <view class='search-top display-flex'>
+    <view class='search-input-box flex-row'>
+      <input type='text' class='search-input' placeholder-style='color:#B3B3B3'	 placeholder='搜索商品名、首字母' bindinput='keyWord' value='{{word}}'></input>
+      <image src='../common/images/navigationbarsearch@3x.png' class='search-icon'></image>
+    </view>
+    <view class='search-text' bindtap='searchShop' wx:if="{{searchButFlag}}">搜索</view>
+    <view class='search-text' bindtap='cancelSearchShop' wx:if="{{searchButFlag == false}}">取消</view>
+  </view>
+  <view class='bgw' wx:if="{{shopShowFlag==false}}">
+        <view class='display-flex shop-type-item' wx:for="{{shopData2}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='saveItemValue'>
+            <view class='flex-row shop-type-item-text'>{{items.itemname}}</view>
+            <view class='shop-type-item-icon'><image src='../../common/images/icons/select-icon.png'></image></view>
+        </view>
+  </view>
+  <view class='select-center display-flex'  wx:if="{{shopShowFlag}}">
+    <view class='select-center-left'>
+      <view class="{{shopTypeFlag[currentItemType] && index==currentItemType?'current-type':''}}" wx:for="{{shopType}}" wx:for-item="items" wx:for-index="index" bindtap='changeItemcategory' data-index='{{index}}' data-itemcodeone="{{items.id}}" data-itemnameone="{{items.itemcategoryname}}">{{items.itemcategoryname}}</view>
+    </view>
+    <view class='select-center-right flex-row'>
+      <view  wx:for="{{shopData}}" wx:for-item="items" wx:for-index="index">
+        <view class='item-type display-flex'>
+          <view class='item-type-name'>{{items.itemcategoryname}}</view>
+          <view class='item-type-line flex-row'></view>
+          <view class='item-type-button' bindtap='addGoods' data-itemcodetwo="{{items.id}}" data-itemnametwo="{{items.itemcategoryname}}"><image src="../common/images/xzspjh@2x.png"></image>新增商品</view>
+        </view>
+        <view class='item-box'>
+          <view class='shop-item'>
+            <view class='shop-item-box'>
+              <view class='{{(index2+1)%3==0?"mrnone":""}}' wx:for="{{shopData[index].itemList}}" wx:for-item="items2" wx:for-index="index2" data-id="{{items2.id}}" bindtap='selectShop'>{{items2.itemname}}</view>
+            </view>
+          </view>
+          <view class='shop-item-line'></view>
+        </view>
+      </view>
+      
+    </view>
+  </view>  
+  <view class='over-bg' wx:if="{{showShopFlag}}" bindtap='closeShopDetail'></view>
+  <view class='shop-rule-box' wx:if="{{showShopFlag}}">
+    <view class='display-flex shop-rule-title'>
+      <view class='flex-row shop-rule-text'>{{shopDetail.itemname}}</view>
+      <view class='shop-rule-icon' bindtap='closeShopDetail'><image src='../common/images/remarkdelete@2x.png'></image></view>
+    </view>
+    <view class='display-flex shop-rule-unit'>
+      <view class='flex-row shop-rule-unit-input'><text>下单单位： {{shopDetail.assistantunit}}</text><!--<input type='text' value='{{shopDetail.assistantunit}}' bindinput='keyInputAsunit' maxlength='4'></input>--></view>
+      <view class='flex-row shop-rule-unit-input tr'><text>验收单位: {{shopDetail.unit}}</text><!--<input type='text' value='{{shopDetail.unit}}' bindinput='keyInputUnit' maxlength='4'></input>--></view>
+    </view>
+    <view wx:for="{{shopDetail.propertiesnamejson}}" wx:for-item="items" wx:for-index="index">
+      <view class='display-flex rule-tile-box'>
+        <view class='flex-row'>{{items.k}}</view>
+        <view class='flex-row tr color-33b0ff' bindtap='addRuleItemValue' data-index='{{index}}'>+新增</view>
+      </view>
+      <view>
+        <view class='rule-item-box'>
+          <view class='{{shopDetail.propertiesnamejson[index].value[index2].select?"blue-item":""}}' wx:for="{{shopDetail.propertiesnamejson[index].value}}" wx:for-item="items2" wx:for-index="index2" data-indexone="{{index}}" data-indextwo="{{index2}}" bindtap='selectValue'>{{items2.v}}</view>
+        </view>
+        <view class='display-flex add-rule-box' wx:for="{{ruleDataFlag[index]}}" wx:for-item="items3" wx:for-index="index3">
+          <view class='flex-row add-rule-input display-flex'><input type='text' placeholder='请输入新增内容' class='flex-row' value="{{items3}}" bindinput='keyItemValue' data-index='{{index}}' data-val-index='{{index3}}' maxlength='16'></input><view class='add-rule-sure' bindtap='comfireRuleValue' data-index='{{index}}' data-val-index='{{index3}}'>确定</view></view>
+          <view class='delet-rule-icon' bindtap="deleteRuleValue" data-index='{{index}}' data-val-index='{{index3}}'><image src='../common/images/xzspsc@2x.png'></image></view>
+        </view>
+        <view class='add-rule-line'></view>
+      </view>
+    </view>
+    <view class='display-flex add-rule-box mt10' wx:if="{{addRuleFLag==false}}">
+          <view class='flex-row add-rule-input display-flex'><input type='text' placeholder='请输入新增内容' class='flex-row' value='{{ruleValue}}' bindinput='keyRuleValue' maxlength='8'></input><view class='add-rule-sure' bindtap='addRuleItem'>确定</view></view>
+          <view class='delet-rule-icon' bindtap='hideRuleInput'><image src='../common/images/xzspsc@2x.png'></image></view>
+    </view>
+    <!--<view class='add-rule-button' wx:if="{{addRuleFLag==true}}"><view class='flex-row color-33b0ff' bindtap='showAddRuleInput'>+新增规格项</view></view>-->
+    <view class='add-rule-comfire' bindtap='saveShop'>确定</view>
+  </view>
+  <view class='no-data-tip' wx:if="{{shopShowFlag==false && shopData2.length==0}}">
+    <view class='no-data-image2'><image src="../../common/images/icons/cry.png"></image></view>
+    <view>为搜索到与“{{word}}”相关的商品</view>
+    <view>换个关键词试试吧~</view>
+  </view>
+</view>
+<view class='money_total'>
+  <view class='money_total_box display-flex'><view class='sure-button flex-row' bindtap='backUpPage'>完成</view></view>
+</view>
+<view class='loading-bg' wx:if="{{loading}}"></view>
+<view class='loading-icon display-flex' wx:if="{{loading}}"><image src='../../common/images/icons/loading.gif'></image></view>
+<view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+  </view>

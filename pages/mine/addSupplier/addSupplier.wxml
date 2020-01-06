@@ -1,0 +1,48 @@
+<!--pages/mine/addOrderPerson/addOrderPerson.wxml-->
+<view class='container' style='padding-top:45px;'>
+  <view class='display-flex contacts' style='z-index:2;background:white;position:fixed;top:1px;width:100%;'>
+    <view class='contacts-name' style='margin-right:6px;'>公司</view>
+    <input class='contacts-input {{forbiddenInput?"disable-input":""}}' placeholder-style='color:#b3b3b3;' disabled='{{forbiddenInput}}' placeholder='{{isCompanyNameFocus?"":"必填/请确保和营业执照上名称相同"}}' bindinput='companyInput' value='{{companyName}}' bindfocus='bindFocus' bindblur='bindBlur' data-type='company'></input>
+    <image bindtap='clearData' src='../../business/common/images/remarkdelete@2x.png'></image>
+  </view>
+
+  <scroll-view scroll-y='true' class='search-container' wx:if="{{maskFlag}}">
+    <view wx:for="{{searchList}}" wx:for-item="company">
+      <view class='lines'></view>
+      <view class='search-item display-flex' bindtap='bindData' data-supplier='{{company}}'>
+        <view class='flex-row'>{{company.companyName}}</view>
+        <view><image src='../../common/images/icons/select-icon.png'></image></view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view wx:if="{{searchList.length!=0&&maskFlag}}" class='mask' bindtap='closeBg'></view>
+  <view class='lines'></view>
+  <view class='display-flex contacts'>
+    <view class='contacts-name'>营业执照</view>
+    <input class='contacts-input {{forbiddenInput?"disable-input":""}}' placeholder-style='color:#b3b3b3;' disabled='{{forbiddenInput}}' type='text' maxlength='18' placeholder='{{isBusinessFocus?"":"必填/请确保号码填写正确"}}' bindinput='businessInput' value='{{business}}' bindfocus='bindFocus' bindblur='bindBlur' data-type='business'></input>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex contacts'>
+    <view class='contacts-name'>联系人</view>
+    <input class='contacts-input {{forbiddenInput?"disable-input":""}}' placeholder-style='color:#b3b3b3;' maxlength='6' disabled='{{forbiddenInput}}' placeholder='{{isPersonFocus?"":"必填"}}' bindinput='personInput' value='{{person}}' bindfocus='bindFocus' bindblur='bindBlur' data-type='person'></input>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex contacts'>
+    <view class='contacts-name'>手机号码</view>
+    <input class='contacts-input {{forbiddenInput?"disable-input":""}}' placeholder-style='color:#b3b3b3;' type='number' disabled='{{forbiddenInput}}' placeholder='{{isPhoneFocus?"":"必填"}}' bindinput='phoneInput' value='{{phone}}' maxlength='11' bindfocus='bindFocus' bindblur='bindBlur' data-type='phone'></input>
+  </view>
+  <view class='lines'></view>
+  <view class='bot-text'>
+    <text>* </text>手机号码会自动创建登录账号,默认密码：123456</view>
+  <view class='button-box'>
+    <view class='change-btn' bindtap='checkInput'>保存</view>
+  </view>
+</view>
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg"></view>
+    <view class="tips_text">{{tipText}}</view>
+  </view>
+</view>

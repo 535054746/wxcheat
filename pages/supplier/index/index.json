@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "蒜子接单宝",
+  "enablePullDownRefresh":true,
+  "backgroundColor":"#33b0ff",
+  "navigationBarBackgroundColor": "#33b0ff",
+  "navigationBarTextStyle": "white"
+}

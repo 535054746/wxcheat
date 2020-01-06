@@ -1,0 +1,9 @@
+<!--components/bottomBtn/bottomBtn.wxml-->
+<view class='bottomBtn-border'>
+  <view wx:for='{{leftBtns}}' wx:for-item='item' class='leftBtn' bindtap='leftTap' data-index='{{index}}'>
+    <image mode='aspectFit' src='../../pages/common/images/icons/{{!item.pic?"mygdgn@2x":item.pic}}.png'></image>
+    <view class='{{item.color?"leftBtnBlue":"leftBtnNormal"}}'>{{item.name}}</view>
+    <view class='leftBtn-red-count' hidden='{{item.count?item.count==0:true}}'>{{item.count}}</view>
+  </view>
+  <view class='mainBtn' bindtap='mainTap'>{{mainBtnText}}</view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText":"集采申请",
+  "usingComponents": {
+    "errorTips": "/components/errorTips/errorTips",
+    "refreshBar": "/components/refreshBar/refreshBar"
+  }
+}

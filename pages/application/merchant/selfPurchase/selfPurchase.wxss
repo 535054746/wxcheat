@@ -1,0 +1,33 @@
+/* pages/application/merchant/selfPurchase/selfPurchase.wxss */
+.move-area{width: 100%;height: 100%;}
+.move-view{}
+.addPur{width: 200px;}
+.addPur image{width: 48px;height: 48px;}
+.workflow-item{width: 200px;line-height: 40px;margin: 5px 0;text-align: right;font-weight: bold;font-size: 16px;color: #1a1a1a;}
+.workflow-item>image{width: 40px;height: 40px;margin: 0 4px;}
+
+.over-mask{height: 100%;width: 100%;background: white;opacity: 0.8;position: fixed;top: 0;bottom: 0;left: 0;right: 0;}
+
+.tabList{height: 50px;border-bottom: 10px solid #f7f7f7;}
+.tabList>view{width: 20%;height: 40px;line-height: 40px;float: left;text-align: center;position: relative}
+.red-count{position: absolute!important;top: 0;right: 0;min-width: 16px;height: 16px!important;line-height: 16px!important;border-radius: 8px;background: red;color: white;font-size: 12px;padding: 0 4px;}
+.currentTab{font-weight: bold;color: #33b0ff;border-bottom: 2px solid #33b0ff;}
+
+.loadMore{line-height: 50px;height: 50px;color: #1a1a1a;font-size: 16px;text-align: center;}
+
+.item{border-bottom: 8px solid #f5f5f5;}
+.item-time{border-bottom: 1px solid #e3e3e3;padding: 0 12px;}
+.item-time view{height: 40px; line-height: 40px;font-size: 14px;color: #999999;}
+.item-content{border-bottom: 1px solid #e3e3e3;padding: 6px 12px;}
+.item-icon image{width: 48px;height: 48px;margin-right: 10px;}
+.icon-right image{width: 7px;height: 13px;margin-top: 19px;}
+.item-detail view{line-height: 25px;}
+.item-number{color: #1a1a1a;font-weight: bold;font-size: 16px;}
+.item-person{color: #999999;font-size: 14px;}
+.status-33b0ff{color: #33b0ff!important;}
+.status-FA7362{color: #FA7362!important;}
+
+
+.emtry-view{text-align: center;background: white;}
+.emtry-view image{width: 80px; height: 100px;margin-top: 150px;margin-bottom: 20px;}
+.emtry-view text{color: #999999;}

@@ -1,0 +1,24 @@
+<view class='container'>
+  <view class='display-flex item'>
+    <image src='../common/images/icons/xgmmymm@2x.png'></image>
+    <input bindinput='pwdInput' placeholder='请输入密码' maxlength='16' type='password'></input>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex item'>
+    <image src='../common/images/icons/xgmmxmm@2x.png'></image>
+    <input bindinput='reInput' placeholder='请再次输入密码' maxlength='16' type='password'></input>
+  </view>
+  <view class='lines'></view> 
+      <view>
+        <button bindtap="checkInput" class='sumbit-button' hover-class='hover-button'>确定</button>
+      </view>
+</view>
+
+
+  <view class="ck_tips" wx:if="{{tipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg">
+        <text class="tips_text">{{tipText}}</text>
+      </view>
+    </view>
+  </view>

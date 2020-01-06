@@ -1,0 +1,24 @@
+<view class="container">
+  <view>
+    <view class='store-item' wx:for="{{customerData}}" wx:for-item="item" wx:for-index="index">
+        <view class='store-icon' wx:if="{{item.select==false}}" bindtap='selectCustomer' data-index="{{index}}"><image src='{{dataSelectFlag[index]?"../../common/images/icons/gyshzselected@3x.png":"../../common/images/icons/gyshzunselected@2x.png"}}' class=''></image></view>
+        <view class='store-icon' wx:if="{{item.select==true}}"><image src='../../common/images/icons/gyshzunselected@2x.png' class=''></image></view>
+        <view class='store-name {{item.select==false?"":"store-statu"}}'><view>{{item.companyName}}</view></view>
+        <view class='store-statu' wx:if="{{item.select==true}}">已有价格方案</view>
+    </view>
+  </view>
+  <view class='order_tab_five'>
+      <view class='store-icon'><image src="{{isAllSelect?'../../common/images/icons/gyshzselected@3x.png':'../../common/images/icons/gyshzunselected@2x.png'}}" class='' bindtap='selectAll'></image></view>
+      <view class='order_all'>全选</view>
+      <view class='create-botton-sure' bindtap='saveData'>确定</view>
+  </view>
+  <view class="ck_tips" wx:if="{{tipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg">
+        <text class="tips_text">{{tipText}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='loading-bg' wx:if="{{loading}}"></view>
+  <view class='loading-icon display-flex' wx:if="{{loading}}"><image src='../../common/images/icons/loading.gif'></image></view>
+</view>

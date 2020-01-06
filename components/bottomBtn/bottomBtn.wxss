@@ -1,0 +1,9 @@
+/* components/bottomBtn/bottomBtn.wxss */
+.bottomBtn-border{border-top: 1px solid #e6e6e6;display: flex;width: 100%;}
+.bottomBtn-border>view{text-align: center;}
+.leftBtn{border-right: 1px solid #e6e6e6;font-size: 12px;padding: 5px;width: 60px;position: relative;}
+.leftBtn-red-count{position: absolute;top: 0;right: 0;text-align: center;min-width: 20px;height: 20px;background: red;color: white;border-radius: 10px;line-height: 20px;}
+.leftBtn image{width: 20px;height: 20px;margin: auto;}
+.leftBtnBlue{color: #33b0ff;}
+.leftBtnNormal{color: #999999;}
+.mainBtn{flex: 1;background: #33b0ff;border-radius: 5px;color: white;font-size: 16px;font-weight: bold;line-height: 40px;margin: 5px;}

@@ -1,0 +1,2 @@
+<!--components/refreshBar/refreshBar.wxml-->
+<view animation='{{animationData}}' class='refresh' bindtap='hideAn'>正在刷新</view>

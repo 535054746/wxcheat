@@ -1,0 +1,6 @@
+<!--components/amountInput/amountInput.wxml-->
+<view class='amountInputBorder'>
+  <view bindtap='minusNum'>-</view>
+  <input type='digit' value='{{amountInputValue}}' placeholder='{{amountInputPlaceholder}}' placeholder-class='amountInputPlaceholder' bindfocus='bindAmountFocus' bindblur='bindAmountBlur' bindinput='bindAmountInput'></input>
+  <view bindtap='addNum'>+</view>
+</view>

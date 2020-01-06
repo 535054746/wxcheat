@@ -1,0 +1,75 @@
+<view>
+<view class="header">
+  <view class="order_header">
+    <view class="flex_center" catchtap="tiem">
+        <view >{{tiemStart}}</view>
+        <image src="{{isFlag?xia:shang}}" class="xia"></image>
+    </view>
+    <view class="flex_center" bindtap="storeBtn" >
+      <view >{{storeName}}</view>
+      <image src="{{isStore?xia:shang}}" class="xia"></image>
+    </view>
+  </view>
+    <view class="seachInput" hidden="true">
+        <input type="text" class="inputSal" placeholder="请输入门店名称" value="{{value}}" bindinput="searchInput"></input>
+        <icon class="weui-icon-search_in-box search-icon" type="search" size="20" bindtap="searchBtn"></icon>
+    </view>
+</view>
+  <view class="timeMoudle" hidden="{{isFlag}}" catchtouchmove = "doNotMove">
+    <view class="tipsMoudle">
+        <view catchtap="timeSlot" data-index="1"  data-text="今天">今天</view>        
+        <view catchtap="timeSlot" data-index="2"  data-text="近7天">近7天</view>
+        <view catchtap="timeSlot" data-index="3"  data-text="近30天">近30天</view>
+        <view catchtap="timeSlot" data-index="4"  data-text="自定义">自定义
+          <view hidden="{{zdyi}}">
+            <picker mode="date" value="{{date}}" bindchange="bindDateChangeStart">
+              <view class="picker">
+                开始时间: {{startTime}}
+              </view>
+
+            </picker>
+            <picker mode="date" value="{{date}}"  bindchange="bindDateChangeEnd">
+              <view class="picker">
+                结束时间: {{endTime}}
+              </view>
+            </picker>
+            <button type="default" size="mini" class="timesloeBtn" catchtap="timesloeBtn">确定</button>
+          </view>
+        </view>
+    </view>
+    <view style="height: 100%" bindtap="doClose"></view>
+  </view>
+
+  <view class="dianMoudle" hidden="{{isStore}}"  catchtouchmove = "doNotMove">
+    <view class="itemDian" >
+      <view>
+        <view wx:for="{{dian}}" wx:key="*this" style="padding-left:20px" data-id="{{item.organizationid}}" bindtap="isStoreBtn" data-name="{{item.organizationname}}">{{item.organizationname}}</view>
+      </view>
+    </view>
+    <view style="height: 100%" bindtap="doClosestor"></view>
+  </view>
+
+
+  <view style="margin-top:70px">
+    <view wx:for="{{conter}}" wx:key="*this" class="order_card">
+        <view>
+            <view class="order_deliveryTime">{{item.deliveryTime}}</view>
+            <view class="order_conter" wx:for="{{item.listInfo}}" bindtap="orderTodetails" data-id="{{item.storeId}}" data-deliveryTime="{{item.deliveryTime}}" data-orderName="{{item.receiverName}}" data-receiveTime="{{item.receiveTime}}" data-goodsCode="{{item.goodscode}}" data-storeName="{{item.storeName}}" data-moneyAmount="{{item.moneyAmount}}" wx:key="*this">
+                <view class="orderLeft">
+                  <view class="orderName">{{item.storeName}}</view>
+                  <view class="orderTime">收货人:{{item.receiverName}}</view>
+                </view>
+                <view class="orderPrice">
+                  <view>
+                    <view style="text-align:right;color: gray">￥{{item.moneyAmount / 100}}</view>
+                    <view style="color: gray;font-size:12px;text-align:right">收货时间：{{item.receiveTime}}</view>
+                  </view>
+                    <image src="../../common/images/you.png"></image>
+                </view>
+            </view>
+        </view>
+      </view>
+
+
+  </view>
+</view>

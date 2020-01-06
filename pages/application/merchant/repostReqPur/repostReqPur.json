@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "要货单详情",
+  "usingComponents": {
+    "errorTips": "/components/errorTips/errorTips",
+    "amountInput": "/components/amountInput/amountInput",
+    "shopShowType": "/components/shopShowType/shopShowType",
+    "singlePicker": "/components/singlePicker/singlePicker",
+    "bottomBtn": "/components/bottomBtn/bottomBtn"
+  }
+}

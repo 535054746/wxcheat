@@ -1,0 +1,133 @@
+<!--pages/application/merchant/repostReqPur/repostReqPur.wxml-->
+<view class='container'>
+  <view style='height:43px;'></view>
+  <errorTips id='errorTips'></errorTips>
+  <view class='display-flex mTab'>
+    <view class='flex-row {{mTab==0?"mTab-check":""}}' bindtap='changeTab' data-tab='0'>基本详情</view>
+    <view class='flex-row {{mTab==1?"mTab-check":""}}' bindtap='changeTab' data-tab='1'>流程助手</view>
+  </view>
+  <view class='remark-bar display-flex' hidden='{{true}}'>
+    <view class='flex-row'>
+      <input value='{{inputValue}}' bindinput='bindInput'></input>
+    </view>
+    <view bindtap='addMsg'>确定</view>
+  </view>
+  <view hidden='{{mTab==1}}'>
+  <view class='mBottom' hidden='{{allList?allList.length==0:true}}'>
+    <bottomBtn id='bottomBtn' mainBtnText='{{allList.length!=0?"( ":""}}{{allList.length}}{{allList.length!=0?" ) ":""}}{{id?"重新提交":"提交"}}' bind:mainTap='bbMainTap'></bottomBtn>
+  </view>
+    <view class='order-detail {{expand?"order-detail-fold":""}}'>
+      <view hidden='{{!expand}}' class='detail-item display-flex'>
+        <view class='detail-item-name'>日期</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.billDate}}</view>
+      </view>
+      <view class='detail-item display-flex'>
+        <view class='detail-item-name'>编码</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.number}}</view>
+      </view>
+      <view class='detail-item display-flex'>
+        <view class='detail-item-name'>最新状态</view>
+        <view class='flex-row detail-item-value' wx:if='{{orderDetail.billStatus==1}}'>待审核</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==2}}'>已退回</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==3}}'>审核中</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==4}}'>已审核</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==5}}'>待验收</view>
+        <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==6}}'>已完成</view>
+      </view>
+      <view hidden='{{!expand}}' class='detail-item display-flex'>
+        <view class='detail-item-name'>申请部门</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.storeName}} {{orderDetail.deptName}}</view>
+      </view>
+      <view hidden='{{!expand}}' class='detail-item display-flex'>
+        <view class='detail-item-name'>申请人</view>
+        <view class='flex-row detail-item-value'>{{orderDetail.createUserName}}</view>
+      </view>
+      <view class='detail-item-arrow' bindtap='expand'>
+        <image class='{{expand?"":"down-arrow"}}' src='../../../common/images/icons/folding@2x.png'></image>
+      </view>
+    </view>
+    <view class='display-flex title'>
+      <image src='../../../common/images/icons/bqlgwc_pr@2x.png'></image>
+      <view class='flex-row'>明细</view>
+      <view hidden='{{allList.length==0}}' bindtap='clearShopList'>- 清空商品</view>
+      <view bindtap='goShopList'>{{allList.length==0?'+ 添加商品':'+ 继续添加'}}</view>
+    </view>
+    <view class='emtry-view' hidden='{{allList.length!=0}}'>
+      <image src='../../../common/images/icons/animalone@2x.png'></image>
+      <view>暂无清单</view>
+      <view>赶紧点击【+添加】按钮添加把~</view>
+    </view>
+    <view hidden='{{allList.length==0}}'>
+      <shopShowType id='shopShowType' mode='1' bind:selectTab='selectTab'></shopShowType>
+    </view>
+    <scroll-view scroll-y style='min-height:300px;max-height:{{screenHeight-143}}px;' hidden='{{shopTab!=0}}'>
+      <view wx:for='{{allList}}' wx:for-item='item' wx:for-index='i' class='all-list' style='background: #{{i%2==0?"fff":"f8fdff"}};'>
+        <view class='display-flex all-list-item'>
+          <view>{{item.itemname}}</view>
+          <view class='display-flex'>
+            <amountInput amountInputValue='{{item.qty}}' bind:amountInput='amountInput' data-index='{{i}}'></amountInput>
+            <view>{{item.unit}}</view>
+          </view>
+          <image bindtap='deleteShop' data-index='{{i}}' src='../../../common/images/icons/sqddelete@3x.png'></image>
+        </view>
+        <view>{{item.itemspecifications}}</view>
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y style='min-height:300px;max-height:{{screenHeight-143}}px;' hidden='{{shopTab!=1}}'>
+      <view wx:for='{{typeList}}' wx:for-index='firstIndex' wx:for-item='firstItem'>
+        <view class='display-flex list-item' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-expandtype='type'>
+          <view class='flex-row list-item-name'>{{firstItem.itemcategoryname1}}</view>
+          <view class='list-item-count'>{{firstItem.count}}种</view>
+          <image class='{{firstItem.expand?"expandImg":""}}' src='../../../common/images/icons/folding@2x.png'></image>
+        </view>
+        <view hidden='{{firstItem.expand}}'>
+          <view wx:for='{{firstItem.itemList}}' wx:for-index='secondIndex' wx:for-item='secondItem'>
+            <view class='list-item-line'>
+              <view class='list-item-line-name'>{{secondItem.itemcategoryname2}}</view>
+            </view>
+            <view wx:for='{{secondItem.itemList}}' wx:for-index='thirdIndex' wx:for-item='thirdItem' class='all-list' style='background: #{{thirdIndex%2==0?"fff":"f8fdff"}};'>
+              <view class='display-flex all-list-item'>
+                <view>{{thirdItem.itemname}}</view>
+                <view class='display-flex'>
+                  <amountInput amountInputValue='{{thirdItem.qty}}' bind:amountInput='amountInput2' data-item='{{thirdItem}}'></amountInput>
+                  <view>{{thirdItem.unit}}</view>
+                </view>
+                <image bindtap='deleteShop2' data-item='{{thirdItem}}' src='../../../common/images/icons/sqddelete@3x.png'></image>
+              </view>
+              <view>{{item.itemspecifications}}</view>
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view hidden='{{mTab==0}}'>
+    <view wx:for='{{msgList}}' wx:for-item='item' wx:for-index='i' class='msgList'>
+      <view class='display-flex msg-time'>
+        <image src='{{i==0?"../../../common/images/icons/lczstimels.png":"../../../common/images/icons/lczstimehs.png"}}'></image>
+        <view class='flex-row'>{{item.assigneeName}}</view>
+        <view>{{item.createTime}}</view>
+      </view>
+      <view class='msg'>
+        <view class='msg-status display-flex'>
+          <view>{{item.messageType}}</view>
+          <view hidden='{{!item.messageContente}}'>：</view>
+          <view>{{item.messageContente}}</view>
+        </view>
+        <view class='msg-remark'>
+          <view class='msg-remark-title' hidden='{{!item.txtNoteApply}}'>备注</view>
+          <view class='display-flex msg-remark-value'>
+            <view class='flex-row'>{{item.txtNoteApply}}</view>
+            <view hidden='{{!item.sumbitAble}}'>
+              <image bindtap='deleteMsg' data-index='{{i}}' class='add-msg-pic' src='../../../common/images/icons/tjgd@2x.png'></image>
+              <view hidden='{{orderDetail.billStatus==5}}' bindtap='sumbitMsg' data-index='{{i}}' class='add-msg-btn'>发表</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style='height:50px;'></view>
+  </view>
+</view>

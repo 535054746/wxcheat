@@ -1,0 +1,28 @@
+<view class="container bg padding-tb">
+  <view class='company-info'>
+    <view class='display-flex company-box'>
+      <view class='company-image'><image src='../common/images/ddmxicon@3x.png'></image></view>
+      <view class='flex-row company-name'>
+        <view class='company-name-text'>{{orderData.name}}</view>
+        <view class='company-name-time'>2017-12-19 12:12</view>
+      </view>
+      <view class='company-number'>共{{orderData.orderDetailSize}}种</view>
+    </view>
+  </view>
+  <view class='shop-type-box'>
+    <view class='item-box' wx:for="{{orderData.listAll}}" wx:for-item="items" wx:for-index="index">
+      <view class='display-flex items border-bottom'>
+        <view class='flex-row items-name'>{{items.itemname}}</view>
+        <view class='items-unit color1'>{{items.qty}}{{items.unit}}</view>
+      </view>
+      <view class='display-flex items2 {{index2==0?"border-bottom2":""}}' wx:for="{{items.detailList}}" wx:for-item="items2" wx:for-index="index2">
+        <view class='flex-row items-name color2'>{{items2.itemspecifications}}</view>
+        <view class='items-unit'>{{items2.qty}}{{items2.unit}}</view>
+      </view>
+    </view>
+
+  </view>
+  <view class='money_total'>
+    <view class='money_total_box display-flex'><view class='sure-button flex-row' bindtap='jumpLogin'>去登陆</view></view>
+  </view>
+</view>

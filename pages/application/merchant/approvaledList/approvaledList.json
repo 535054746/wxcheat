@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "已审批",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "editDialog": "/components/editDialog/editDialog",
+    "errorTips": "/components/errorTips/errorTips"
+  }
+}

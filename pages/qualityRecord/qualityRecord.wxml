@@ -1,0 +1,39 @@
+<view class="container bg">
+  <view class="display-flex info-line">
+    <view class="info-text">日期</view>
+    <view class="flex-row info-value">2017-03-08</view>
+  </view>
+  <view class='remarks-item' wx:for="{{qualityData}}" wx:for-index="index1">
+    <view class="department-remarks display-flex" bindtap='showShop' data-index="{{index1}}">
+      <view class='flex-row'>{{item.receivedeptname}}： {{item.receiveusername}} <image class='remarks-phone-icon' src='../common/images/icons/QCcall@2x.png' data-phone="{{item.tel}}" bindtap='callPhone'></image></view>
+      <view class="shop-weight-text">{{item.total}}种<image src="{{showFlagArray[index1]?'../common/images/icons/folding@2x.png':'../common/images/icons/expansion@2x.png'}}" class="shop-weight-icon"></image></view>
+    </view>
+    <view wx:if="{{showFlagArray[index1]}}">
+      <view class='remarks-detail-box' wx:if='{{item.voice || item.description}}'>
+        <view class='remarks-detail'>
+          <view class="remarks-detail-autio" wx:if='{{item.voice}}'>
+            <image class="autio_button" src='../common/images/icons/pause@2x.png' data-voice='{{item.voice.src}}'  bindtap='playVoice'></image>
+            <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image>
+            <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image>
+            <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image>
+            <image class="autio_progress" src='../common/images/icons/Soundwave@2x.png'></image> 
+            <text class='autio-middle'>{{item.voice.length}}'</text>
+          </view>
+          <view class="remarks-detail-text">{{item.description}}</view>
+        </view>
+      </view>
+      <view class='remark-shop-box'>
+        <view class='remark-shop-item' wx:for="{{item.srmBasePerformancedetail}}" wx:for-index="index2">
+          <view class='shop-item-title display-flex'>
+            <view class='shop-name'>{{item.itemname}}</view>
+            <view class='shop-weight-book'><image src='../common/images/icons/ddysapplyd.png' class='book-icon'></image>{{item.qty}}{{item.unit}}</view>
+            <view class='shop-weight-real'><image src='../common/images/icons/ddysapplys.png' class='real-icon'></image>{{item.actualqty}}{{item.unit}}</view>
+          </view>
+          <view class="display-flex shop-images">
+            <view class="shop-image-box" wx:for="{{item.photos}}"><image src='{{item.small}}' class="shop-image"  data-large='{{item.large}}' bindtap='showLarge'  data-index-one="{{index1}}" data-index-two="{{index2}}"></image></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

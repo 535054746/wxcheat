@@ -1,0 +1,13 @@
+<view class="container bg">
+  <view class='select-center display-flex'>
+    <view class='select-center-left'>
+      <view class='{{index==currentItem?"current-type":""}}' wx:for="{{itemTypeData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='changeItemValue'>{{items.itemcategoryname}}</view>
+    </view>
+    <view class='select-center-right flex-row'>
+      <view class='display-flex shop-type-item' wx:for="{{itemTypeValueData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='saveItemValue'>
+        <view class='flex-row shop-type-item-text'>{{items.itemcategoryname}}</view>
+        <view class='shop-type-item-icon' wx:if="{{items.select}}"><image src='../common/images/zcsqdxzddicon@2x.png'></image></view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,122 @@
+<!--pages/application/merchant/concentratePurchaseDetail/concentratePurchaseDetail.wxml-->
+<view class='container'>
+  <errorTips id='errorTips'></errorTips>
+  <editDialog id='editDialog' bind:leftTap="editDialogLeftTap" bind:rightTap="editDialogRightTap"></editDialog>
+  <view class='mBottom' hidden='{{fromApproval?orderDetail.billStatus!=0:true}}'>
+    <yesNoBtn id='yesNoBtn' bind:ynTap='ynTap'></yesNoBtn>
+  </view>
+  <view class='order-detail {{expand?"order-detail-fold":""}}'>
+    <view hidden='{{!expand}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>日期</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.billDate}}</view>
+    </view>
+    <view class='detail-item display-flex'>
+      <view class='detail-item-name'>编码</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.number}}</view>
+    </view>
+    <view class='detail-item display-flex'>
+      <view class='detail-item-name'>最新状态</view>
+      <view class='flex-row detail-item-value' wx:if='{{orderDetail.billStatus==0}}'>待审核</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==1}}'>已审核</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==2}}'>已下单</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==3}}'>待验收</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==4}}'>已验收</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==6}}'>已完成</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billStatus==11}}'>待提交</view>
+    </view>
+    <view hidden='{{!expand}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>申请部门</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.storeName}} {{orderDetail.deptName}}</view>
+    </view>
+    <view hidden='{{!expand}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>申请人</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.createUserName}}</view>
+    </view>
+    <view class='detail-item-arrow' bindtap='expand'>
+      <image class='{{expand?"":"down-arrow"}}' src='../../../common/images/icons/folding@2x.png'></image>
+    </view>
+  </view>
+  <view class='title display-flex'>
+    <image src='../../../common/images/icons/bqlgwc_pr@2x.png'></image>
+    <view class='title-value flex-row'>明细</view>
+    <view class='total'>共{{orderDetail.totalNum}}种</view>
+  </view>
+  <view class='detail-tab'>
+    <shopShowType id='shopShowType' bind:selectTab='selectTab'></shopShowType>
+  </view>
+  <view class='all-list' hidden='{{tabIndex!=0}}'>
+    <view wx:for='{{orderDetail.list}}' wx:for-item='item' wx:for-index='index' class='display-flex {{index%2==0?"list-item":"list-item2"}}'>
+      <view class='flex-row list-name'>{{item.itemname}}</view>
+      <view class='list-count'>
+        <text>{{item.qty}}    </text>{{item.assistantunit==undefined||item.assistantunit==''?item.unit:item.assistantunit}}</view>
+    </view>
+  </view>
+  <view class='shop-list' hidden='{{tabIndex!=1}}'>
+    <view wx:for='{{listByType}}' wx:for-item='firstItem' wx:for-index='i'>
+      <view class='list-line' hidden='{{i==0}}'></view>
+      <view class='display-flex list-type-item' bindtap='expandItem' data-type='shop' data-first='{{i}}'>
+        <view class='flex-row list-name'>{{firstItem.itemcategoryname1}}</view>
+        <view class='count'>{{firstItem.count}}种</view>
+        <image class='{{firstItem.expand==undefined?"down-arrow":firstItem.expand?"down-arrow":""}}' src='../../../common/images/icons/expansion@2x.png'></image>
+      </view>
+      <view class='list-line'></view>
+      <view wx:for='{{firstItem.categories}}' wx:for-item='secondItem' hidden='{{firstItem.expand==undefined?false:!firstItem.expand}}'>
+        <view class='list-type2-line'>
+          <view class='list-type2-name'>{{secondItem.itemcategoryname2}}</view>
+        </view>
+        <view>
+          <view wx:for='{{secondItem.details}}' wx:for-item='thirdItem' wx:for-index='i' class='display-flex {{i%2==0?"list-item":"list-item2"}}'>
+            <view class='flex-row list-name'>{{thirdItem.itemname}}</view>
+            <view class='list-count'>
+              <text>{{thirdItem.qty}}    </text>{{thirdItem.assistantunit==undefined||thirdItem.assistantunit==''?thirdItem.unit:thirdItem.assistantunit}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='supplier-list' hidden='{{tabIndex!=2}}'>
+    <view wx:for='{{listBySupplier}}' wx:for-item='firstItem' wx:for-index='i'>
+      <view class='display-flex list-supplier-item' bindtap='expandItem' data-type='supplier' data-first='{{i}}'>
+        <view class='blue-block'></view>
+        <view class='flex-row list-supplier-name'>{{firstItem.suppliername}}</view>
+        <view class='count'>{{firstItem.count}}种</view>
+        <image class='{{firstItem.expand==undefined?"down-arrow":firstItem.expand?"down-arrow":""}}' src='../../../common/images/icons/expansion@2x.png'></image>
+      </view>
+      <view class='list-supplier-remark'>
+        <view class='remark'>
+        <view>
+          <view class='workflowNote-voice display-flex' hidden='{{!firstItem.applyvoice}}' bindtap='playVoice' data-index='{{i}}'>
+            <image src='{{firstItem.isPlay?"../../../common/images/icons/play@2x.png":"../../../common/images/icons/pause@2x.png"}}'></image>
+            <view>{{firstItem.applyvoice.length}}'</view>
+          </view>
+          <view class='workflowNote-value'>
+            {{firstItem.applytext}}
+          </view>
+        </view>
+        </view>
+      </view>
+      <view wx:for='{{firstItem.list}}' wx:for-item='secondItem' wx:for-index='j' hidden='{{firstItem.expand==undefined?false:!firstItem.expand}}'>
+        <view class='display-flex list-type-item' bindtap='expandItem' data-type='supplier' data-first='{{i}}' data-second='{{j}}'>
+      <view class='list-line' hidden='{{i==0}}'></view>
+          <view class='flex-row list-name'>{{secondItem.itemcategoryname1}}</view>
+          <view class='count'>{{secondItem.count}}种</view>
+          <image class='{{secondItem.expand==undefined?"down-arrow":secondItem.expand?"down-arrow":""}}' src='../../../common/images/icons/expansion@2x.png'></image>
+        </view>
+      <view class='list-line'></view>
+        <view wx:for='{{secondItem.categories}}' wx:for-item='thirdItem' hidden='{{secondItem.expand==undefined?false:!secondItem.expand}}'>
+          <view class='list-type2-line'>
+            <view class='list-type2-name'>{{thirdItem.itemcategoryname2}}</view>
+          </view>
+          <view>
+            <view wx:for='{{thirdItem.details}}' wx:for-item='fourthItem' wx:for-index='i' class='display-flex {{i%2==0?"list-item":"list-item2"}}'>
+              <view class='flex-row list-name'>{{fourthItem.itemname}}</view>
+              <view class='list-count'>
+                <text>{{fourthItem.qty}}    </text>{{fourthItem.assistantunit==undefined||fourthItem.assistantunit==''?fourthItem.unit:fourthItem.assistantunit}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+    <view style='height:50px;'></view>
+</view>

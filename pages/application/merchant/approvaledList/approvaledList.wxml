@@ -1,0 +1,77 @@
+<!--pages/application/merchant/approvaledList/approvaledList.wxml-->
+<view class='container'>
+<errorTips id='myTips'></errorTips>
+<editDialog id='editDialog'
+      title='审核意见'
+      hintText='选填/请在此输入审核意见'
+      leftBtnText='取消'
+      RightBtnText='审核'
+      bind:leftTap="leftTap"  
+      bind:rightTap="rightTap">
+</editDialog>
+  <view wx:for='{{mList}}' wx:for-item='firstItem' wx:for-index='i'>
+    <view class='firstItem display-flex' bindtap='showSecondItem' data-index='{{i}}'>
+      <image src='../../../common/images/icons/dspicon.png'></image>
+      <view class='flex-row'>{{firstItem.billType}}</view>
+      <image class='{{firstItem.expand?"folding-arrow":""}}folding-arrow' src='../../../common/images/icons/folding@2x.png'></image>
+    </view>
+    <view wx:if='{{firstItem.expand}}'>
+      <view wx:for='{{firstItem.list}}' wx:for-item='secondItem' wx:for-index='j'>
+        <view class='secondItem' bindtap='goDetail' data-type='{{secondItem.type}}' data-id='{{secondItem.id}}'>
+          <view class='display-flex secondItem-time'>
+            <view class='flex-row'>{{secondItem.createtime}}</view>
+            <view wx:if='{{secondItem.type=="BU0001"&&secondItem.billStatus==1}}' class='status-33b0ff'>待审核</view>
+            <view wx:elif='{{secondItem.type=="BU0001"&&secondItem.billStatus==2}}' class='status-33b0ff'>已退回</view>
+            <view wx:elif='{{secondItem.type=="BU0001"&&secondItem.billStatus==3}}' class='status-33b0ff'>审核中</view>
+            <view wx:elif='{{secondItem.type=="BU0001"&&secondItem.billStatus==4}}' class='status-33b0ff'>已审核</view>
+            <view wx:elif='{{secondItem.type=="BU0001"&&secondItem.billStatus==5}}' class='status-33b0ff'>待验收</view>
+            <view wx:elif='{{secondItem.type=="BU0001"&&secondItem.billStatus==6}}' class='status-33b0ff'>已完成</view>
+
+
+            <view wx:elif='{{secondItem.type=="BU0002"&&secondItem.billStatus==0}}' class='status-33b0ff'>待审核</view>
+            <view wx:elif='{{secondItem.type=="BU0002"&&secondItem.billStatus==1}}' class='status-33b0ff'>已审核</view>
+            <view wx:elif='{{secondItem.type=="BU0002"&&secondItem.billStatus==2}}' class='status-33b0ff'>已下单</view>
+            <view wx:elif='{{secondItem.type=="BU0002"&&secondItem.billStatus==3}}' class='status-33b0ff'>待验收</view>
+            <view wx:elif='{{secondItem.type=="BU0002"&&secondItem.billStatus==4}}' class='status-33b0ff'>已验收</view>
+            <view wx:elif='{{secondItem.type=="BU0002"&&secondItem.billStatus==6}}' class='status-33b0ff'>已完成</view>
+
+
+            <view wx:elif='{{secondItem.type=="BU0003"&&secondItem.billStatus==1}}' class='status-33b0ff'>待审核</view>
+            <view wx:elif='{{secondItem.type=="BU0003"&&secondItem.billStatus==2}}' class='status-33b0ff'>已退回</view>
+            <view wx:elif='{{secondItem.type=="BU0003"&&secondItem.billStatus==3}}' class='status-33b0ff'>审核中</view>
+            <view wx:elif='{{secondItem.type=="BU0003"&&secondItem.billStatus==4}}' class='status-33b0ff'>已审核</view>
+            <view wx:elif='{{secondItem.type=="BU0003"&&secondItem.billStatus==5}}' class='status-33b0ff'>待验收</view>
+            <view wx:elif='{{secondItem.type=="BU0003"&&secondItem.billStatus==6}}' class='status-33b0ff'>已完成</view>
+            
+            <view wx:else class='status-33b0ff'>{{secondItem.flagBillstatus}}</view>
+          </view>
+          <view class='secondItem-content display-flex'>
+            <view class='secondItem-icon' wx:if='{{secondItem.type=="BU0002"}}'>
+              <image wx:if="{{secondItem.billStatus==3||secondItem.billStatus==4}}" src='../../../common/images/icons/ordericonys@2x.png'></image>
+              <image wx:elif="{{secondItem.billStatus==6}}" src='../../../common/images/icons/orderdone@2x.png'></image>
+              <image wx:else src='../../../common/images/icons/shoppingcart@2x.png'></image>
+            </view>
+            <view class='secondItem-icon' wx:else>
+              <image wx:if="{{secondItem.billStatus==5}}" src='../../../common/images/icons/ordericonys@2x.png'></image>
+              <image wx:elif="{{secondItem.billStatus==6}}" src='../../../common/images/icons/orderdone@2x.png'></image>
+              <image wx:else src='../../../common/images/icons/zcsqdshicon@2x.png'></image>
+            </view>
+            <view class='flex-row secondItem-detail'>
+              <view class='secondItem-number'>{{secondItem.businessKey}}</view>
+              <view class='secondItem-person'>部门：{{secondItem.storename}}({{secondItem.deptname}}){{secondItem.createusername}}</view>
+            </view>
+            <view class='icon-right'>
+              <image src='../../../common/images/icons/more@2x.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='emtry-view' wx:if='{{mList.length==0}}'>
+    <view>
+      <image src='../../../common/images/icons/animalone@2x.png'></image>
+    </view>
+    <text>暂无订单</text>
+  </view>
+</view>

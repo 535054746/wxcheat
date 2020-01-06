@@ -1,0 +1,59 @@
+<view class="container bg">
+  <view class='select-center display-flex {{itemTypeOneFlag!=false && itemTypeTwoFlag != 1?"":"bottom-50"}} '>
+    <scroll-view class='select-center-left' scroll-top="{{leftNumber}}" scroll-y="true" bindscroll="leftScroll">
+      <view class='{{index==currentRule?"current-type current-type-font":""}}' wx:for="{{ruleData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='changeRuleValue'>{{items.k}}</view>
+      <view class='add-rule current-type' wx:if="{{itemTypeOneFlag==false}}">
+        <input type='text' value='{{kvalue}}' bindinput='kValueInput' confirm-type="完成" bindconfirm="kValueConfirm" maxlength='4'></input>
+      </view>
+      <view class='add-rule' wx:if="{{itemTypeOneFlag && skuproperty.length==0}}" bindtap='changeOneFlag'>
+        <image src="../common/images/xzspjh@2x.png"></image>新增</view>
+    </scroll-view>
+    <scroll-view class='select-center-right flex-row' scroll-top="{{rightNumber}}" scroll-y="true" bindscroll="rightScroll">
+      <view class='display-flex shop-type-item' wx:for="{{ruleValueData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='saveRuleId'>
+        <view class='flex-row shop-type-item-text'>{{items.v}}</view>
+        <view class='shop-type-item-icon' wx:if="{{items.select}}">
+          <image src='../common/images/zcsqdxzddicon@2x.png'></image>
+        </view>
+      </view>
+      <view class='display-flex shop-type-item no-border' wx:if="{{itemTypeTwoFlag==1}}">
+        <view class='flex-row shop-type-item-text'>
+          <input type='text' placeholder='请在此填写规格值' value='{{vvalue}}' bindinput='vValueInput' confirm-type="完成" bindconfirm="vValueConfirm" maxlength='16'></input>
+        </view>
+        <view class='delete-rule-icon'>
+          <image src='../common/images/xzspsc@2x.png'></image>
+        </view>
+      </view>
+      <view class='display-flex add-rule-value' wx:if="{{itemTypeTwoFlag==0}}">
+        <view class='flex-row add-rule-button' wx:if="{{itemTypeTwoFlag==0}}" bindtap='changeTwoFlag'>
+          <image src="../common/images/xzspjh@2x.png"></image>添加更多规格值</view>
+      </view>
+      <view style="width:100%; height:50px;"></view>
+    </scroll-view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{otherTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>{{tipMsg}}</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn cancel-btn2 flex-row color-33b0ff' bindtap='cancelTips'>我知道了</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="money_total" wx:if="{{itemTypeOneFlag==false}}">
+    <view class='money_total_box display-flex'>
+      <view class='{{(kvalue.length!=0)?"cancel-button2":"cancel-button"}} flex-row' bindtap='changeOneFlag'>取消</view>
+      <view class='sure-button flex-row' bindtap='kValueConfirm'>保存</view>
+    </view>
+  </view>
+  <view class="money_total" wx:if="{{itemTypeTwoFlag==1}}">
+    <view class='money_total_box display-flex'>
+      <view class='{{(vvalue.length!=0)?"cancel-button2":"cancel-button"}} flex-row' bindtap='changeTwoFlag'>取消</view>
+      <view class='sure-button flex-row' bindtap='vValueConfirm'>保存</view>
+    </view>
+  </view>
+</view>

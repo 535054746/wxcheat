@@ -1,0 +1,29 @@
+<!--pages/mine/companyDetail/companyDetail.wxml-->
+<view class='container'>
+<view class='display-flex company_name'>
+  <view class=' text_name'>公司</view>
+  <view class='flex-row company_name_text '>{{companyItem.companyName}}</view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>营业执照号</view>
+  <view class='flex-row company_name_text '>{{companyItem.blNum}}</view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>联系人</view>
+  <view class='flex-row company_name_text '>{{companyItem.contactsName}}</view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>联系人电话</view>
+  <view class='flex-row company_name_text '>{{companyItem.mobile}}</view>
+</view>
+<view class='lines' ></view>
+<!-- <view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>地址</view>
+  <view class='flex-row company_name_text '>{{companyItem.address}}</view>
+</view> -->
+</view>
+

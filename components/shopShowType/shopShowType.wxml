@@ -1,0 +1,6 @@
+<!--components/shopShowType/shopShowType.wxml-->
+<view class='sst-border'>
+  <view class='{{checkIndex==0?"sst-tab-check":"sst-tab"}}' bindtap='selectTab' data-index='0'>全部明细</view>
+  <view class='{{checkIndex==1?"sst-tab-check":"sst-tab"}}' bindtap='selectTab' data-index='1'>商品分类</view>
+  <view wx:if='{{mode==0}}' class='{{checkIndex==2?"sst-tab-check":"sst-tab"}}' bindtap='selectTab' data-index='2'>供应商分类</view>
+</view>

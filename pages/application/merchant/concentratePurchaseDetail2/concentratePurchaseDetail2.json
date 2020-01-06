@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "usingComponents": {
+    "yesNoBtn": "/components/yesNoBtn/yesNoBtn",
+    "errorTips": "/components/errorTips/errorTips",
+    "bottomBtn": "/components/bottomBtn/bottomBtn",
+    "bluetoothDialog": "/components/bluetoothDialog/bluetoothDialog"
+  }
+}

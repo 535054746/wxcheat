@@ -1,0 +1,109 @@
+<!--pages/application/merchant/concentratePurchaseDetail2/concentratePurchaseDetail2.wxml-->
+<view class='container'>
+  <errorTips id='errorTips'></errorTips>
+  <bluetoothDialog id='bluetoothDialog' bind:connectBluetooth='bluetoothItemTap'></bluetoothDialog>
+  <view class='mBottom' hidden='{{orderDetail.billstatus!=1}}'>
+    <bottomBtn id='bottomBtn' mainBtnText='打印' leftBtns='{{bbLeftBtns}}' bind:leftTap='bbLeftTap' bind:mainTap='bbMainTap'></bottomBtn>
+  </view>
+  <view class='order-detail {{expand?orderDetail.billstatus==1?"order-detail-fold-auto":"order-detail-fold":""}}'>
+    <view class='detail-item display-flex'>
+      <view class='detail-item-name'>供应商</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.titleName}}</view>
+    </view>
+    <view class='detail-item display-flex'>
+      <view class='detail-item-name'>最新状态</view>
+      <view class='flex-row detail-item-value' wx:if='{{orderDetail.billstatus==0}}'>已下单</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billstatus==1}}'>待验收</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billstatus==2}}'>已验收</view>
+      <view class='flex-row detail-item-value' wx:if='{{orderDetail.billstatus==3}}'>已完成</view>
+      <view class='flex-row detail-item-value' wx:elif='{{orderDetail.billstatus==4}}'>已取消</view>
+    </view>
+    <view hidden='{{!expand}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>联系人</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.createusername}}</view>
+    </view>
+    <view hidden='{{!expand}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>编码</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.number}}</view>
+    </view>
+    <view hidden='{{!expand}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>收货时间</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.aogDate}}</view>
+    </view>
+    <view hidden='{{!expand}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>下单时间</view>
+      <view class='flex-row detail-item-value'>{{orderDetail.createTime}}</view>
+    </view>
+    <view hidden='{{orderDetail.billstatus==1?!expand:true}}' class='detail-item display-flex'>
+      <view class='detail-item-name'>自动验收</view>
+      <view class='flex-row detail-item-value'>还剩{{orderDetail.autoDay}}天{{orderDetail.autoHour}}小时</view>
+    </view>
+    <view class='detail-item-arrow' bindtap='expand'>
+      <image class='{{expand?"":"down-arrow"}}' src='../../../common/images/icons/folding@2x.png'></image>
+    </view>
+  </view>
+  <view class='approvalMsg' hidden='{{!orderDetail.remarks||!orderDetail.voiceNote}}'>
+    <view class='title display-flex'>
+      <image src='../../../common/images/icons/bz@3x.png'></image>
+      <view class='title-value flex-row'>备注</view>
+    </view>
+    <view class='remark'>
+        <view class='workflowNote-voice display-flex' hidden='{{!orderDetail.voiceNote}}' bindtap='playVoice'>
+          <image src='{{isPlay?"../../../common/images/icons/play@2x.png":"../../../common/images/icons/pause@2x.png"}}'></image>
+          <view>{{orderDetail.voiceNote.length}}'</view>
+        </view>
+        <view class='workflowNote-value'>
+          {{orderDetail.remarks}}
+        </view>
+    </view>
+  </view>
+  <view wx:for='{{mList}}' wx:for-item='firstItem' wx:for-index='firstIndex'>
+    <view class='display-flex list-supplier-item' bindtap='expandItem' data-i='{{firstIndex}}'>
+      <view class='blue-block'></view>
+      <view class='flex-row list-supplier-name'>{{firstItem.storeName}} {{firstItem.deptName}}</view>
+      <view class='count'>{{firstItem.count}}种</view>
+      <image class='{{firstItem.expand?"":"down-arrow"}}' src='../../../common/images/icons/expansion@2x.png'></image>
+    </view>
+    <view class='item-line'></view>
+    <view class='list-check display-flex' hidden='{{firstItem.billstatus!=3}}'>
+      <view class='flex-row'></view>
+      <view bindtap='checkTap' data-id='{{firstItem.id}}'>验收</view>
+    </view>
+    <view class='item-line' hidden='{{firstItem.billstatus!=3}}'></view>
+    <view wx:for='{{firstItem.list}}' wx:for-item='secondItem' wx:for-index='secondIndex' hidden='{{firstItem.expand}}'>
+      <view class='display-flex list-type-item' bindtap='expandItem' data-i='{{firstIndex}}' data-j='{{secondIndex}}'>
+        <view class='flex-row list-name'>{{secondItem.itemcategoryname1}}</view>
+        <view class='count'>{{secondItem.count}}种</view>
+        <image class='{{secondItem.expand?"":"down-arrow"}}' src='../../../common/images/icons/expansion@2x.png'></image>
+      </view>
+      <view class='item-line'></view>
+      <view wx:for='{{secondItem.list}}' wx:for-item='thirdItem' wx:for-index='thirdIndex' hidden='{{secondItem.expand}}'>
+        <view class='list-type2-line'>
+          <view class='list-type2-name'>{{thirdItem.itemcategoryname2}}</view>
+        </view>
+        <view>
+          <view wx:for='{{thirdItem.list}}' wx:for-item='fourthItem' wx:for-index='fourIndex' style='background:#{{fourIndex%2==0?"ffffff":"f8fdff"}};'>
+            <view class='display-flex {{fourIndex%2==0?"list-item":"list-item2"}}'>
+              <view class='flex-row list-name2'>{{fourthItem.itemname}}</view>
+              <view class='list-count'>
+                <text>{{fourthItem.qty}}    </text>{{fourthItem.assistantunit==undefined||fourthItem.assistantunit==''?fourthItem.unit:fourthItem.assistantunit}}</view>
+            </view>
+            <view class='item-line'></view>
+            <view class='display-flex list-check-bar' hidden='{{firstItem.billstatus!=3}}'>
+              <view class='display-flex'>
+                <image class='icon-img' src='../../../common/images/icons/fhicon.png'></image>
+                <view>{{fourthItem.ratifyqty}} {{fourthItem.unit}}</view>
+              </view>
+              <view>实收数量</view>
+              <input class='{{fourthItem.receiveType==0?"handInput":"bluetoothInput"}}' type='digit' bindfocus='weightFocus' bindblur='weightBlur' bindinput='weightInput' data-firstindex='{{firstIndex}}' data-secondindex='{{secondIndex}}' data-thirdindex='{{thirdIndex}}' data-fourindex='{{fourIndex}}' value='{{fourthItem.checkNumber}}'></input>
+              <view>{{fourthItem.assistantunit==undefined||fourthItem.assistantunit==''?fourthItem.unit:fourthItem.assistantunit}}</view>
+            </view>
+            <view class='item-line' hidden='{{orderDetail.billstatus!=1}}'></view>
+          </view>
+        </view>
+      </view>
+      <view class='item-line'></view>
+    </view>
+  </view>
+  <view style='height:50px;'></view>
+</view>

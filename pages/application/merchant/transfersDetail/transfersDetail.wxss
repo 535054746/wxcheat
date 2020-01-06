@@ -1,0 +1,59 @@
+/* pages/application/merchant/transfersDetail/transfersDetail.wxss */
+.mTab{border-bottom: 1px solid #f5f5f5;text-align: center;color: #999999;height: 40px;line-height: 40px;position: fixed;top: 0;left: 0;width: 100%;background: #ffffff;border-top: 1px solid #e6e6e6;}
+.mTab-check{color: #33b0ff;font-weight: bold;border-bottom: 3px solid #33b0ff;}
+
+.order-detail{height:136px;padding: 0 12px;border-bottom: 10px solid #e3e3e3;transition: height 0.3s;overflow: hidden;}
+.order-detail-fold{height:274px;}
+.detail-item{border-bottom: 1px solid #f5f5f5;height: 46px;line-height: 46px;}
+.detail-item-name{color: #999999;font-size: 14px;width: 80px;}
+.detail-item-value{color: #666666;font-size: 14px;}
+.detail-item-arrow image{width: 26px;height: 14px;margin: 0 auto;display: block;padding: 10px 0;transition: all 0.5s;}
+.down-arrow{transform: rotate(180deg)}
+
+.title{height: 48px;border-bottom: 1px solid #e3e3e3;line-height: 48px;padding: 0 12px;}
+.title image{width: 20px;height: 20px;margin-top: 14px;margin-right: 10px;}
+.title-value{font-weight: bold;font-size: 16px;color: #1a1a1a;}
+.total{font-size: 14px;color: #999999;}
+
+
+
+
+.shop-list{border-top: 6px solid #f5f5f5;}
+.list-line{height: 1px;background: #e3e3e3;}
+
+.list-item2{background: #f8fdff;line-height: 46px;padding: 0 10px;border-bottom: 1px solid #f5f5f5;}
+.list-item{background: #ffffff;line-height: 46px;padding: 0 10px;border-bottom: 1px solid #f5f5f5;}
+
+.list-type-item{height: 46px;line-height: 46px;padding: 0 10px;}
+.list-type-item .count{font-size: 14px;color: #999999;margin-right: 5px;}
+.list-type-item image{width: 13px;height: 7px;margin-top: 20px;}
+.list-name{font-weight: bold;color: #1a1a1a;font-size: 16px;}
+
+.list-type2-item{height: 46px;line-height: 46px;padding: 0 10px;}
+.list-type2-line{height: 13px;border-bottom: 1px solid #33b0ff;margin-bottom: 20px;margin-top: 10px;}
+.list-type2-name{color: #ffffff;padding: 0 10px;border-radius: 8px;height: 25px;line-height: 25px;font-size: 14px;background: #33b0ff;margin: 0 auto;text-align: center;width: 100px;}
+
+.item-qty image{width: 20px;height: 20px;margin-top: 13px;margin-right: 10px;}
+.item-qty input{border: 1px solid #e3e3e3;border-radius: 3px;width: 100px;margin-right: 10px;margin-top: 9px;}
+
+.msgList{margin: 10px 15px;}
+.msg-time{color: #1a1a1a;font-size: 14px;}
+.msg-time image{width: 20px;height: 20px;margin-right: 10px;}
+
+.msg{margin: 10px;border: 1px solid #e3e3e3;background: #f5f5f5;border-radius: 8px;padding: 10px 20px;}
+.msg-status{color: #33b0ff;}
+.msg-status view:last-child{color: #1a1a1a;}
+.msg-remark-title{color: #b3b3b3;font-size: 14px;}
+.msg-remark-value{color: #1a1a1a;font-size: 12px;}
+.add-msg-pic{width: 20px;height: 20px;transform: rotate(45deg);margin-left: 18px;}
+.add-msg-btn{background: #33b0ff;border-radius: 5px;color: white;font-size: 14px;text-align: center;width: 40px;height: 26px;line-height: 26px;margin-top: 10px;}
+
+.remark-bar{width:100%;border-top: 1px solid #f5f5f5;padding: 10px;position: fixed;bottom: 0;left: 0;background: #ffffff;}
+.remark-bar input{border: 1px solid #e3e3e3;border-radius: 3px;padding: 0 5px;}
+.remark-bar view:last-child{margin-left: 10px;line-height: 27px; border: 1px solid #e3e3e3;border-radius: 3px;padding: 0 5px;}
+
+.mBottom{position: fixed;bottom: 0;left: 0;background: #ffffff;width: 100%;}
+
+
+.handInput{color: red;}
+.bluetoothInput{color: blue;}

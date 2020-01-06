@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bottomBtn": "/components/bottomBtn/bottomBtn",
+    "errorTips": "/components/errorTips/errorTips"
+  }
+}

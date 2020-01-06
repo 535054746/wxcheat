@@ -1,0 +1,7 @@
+.userinfo{ background-color: #fff; padding: 10px 10px;border-top:1px solid #ccc;border-bottom:1px solid #e1e1e1;}
+.userinfo-face-image{width: 64px; height: 64px;}
+.margin-left-15{ margin-left: 10px;}
+.userinfo-name{ margin-top: 8px;font-size: 16px;}
+.userInfo-supname{  color: #999; margin-top: 2px;}
+.login-out-but{ background-color: #fff; border-radius: 5px; text-align: center; color: #33B0FF; height: 35px; line-height: 35px;box-shadow: 0px 0px 5px #ccc;}
+.color-fff{ background-color: #fff; padding: 20px 10px;}

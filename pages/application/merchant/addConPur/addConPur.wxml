@@ -1,0 +1,116 @@
+<!--pages/application/merchant/addConPur/addConPur.wxml-->
+<view class='container'>
+  <errorTips id='errorTips'></errorTips>
+  <singlePicker id='singlePicker' list='{{orgList}}' bind:comfirm='singlePickerTap'></singlePicker>
+  <view class='apply-area'>
+    <view class='display-flex apply-item' bindtap='goOrganizationTree'>
+      <view>申请部门</view>
+      <view class='flex-row'>{{deptName}}</view>
+      <image hidden='{{id}}' src='../../../common/images/icons/more@2x.png'></image>
+    </view>
+    <view class='display-flex apply-item'>
+      <view>申请人</view>
+      <view class='flex-row'>{{personName}}</view>
+    </view>
+  </view>
+  <view class='mBottom' hidden='{{allList?allList.length==0:true}}'>
+    <bottomBtn id='bottomBtn' mainBtnText='{{allList.length!=0?"( ":""}}{{allList.length}}{{allList.length!=0?" ) ":""}}提交申购单' bind:mainTap='bbMainTap'></bottomBtn>
+  </view>
+  <view class='display-flex title'>
+    <image src='../../../common/images/icons/bqlgwc_pr@2x.png'></image>
+    <view class='flex-row'>明细</view>
+    <view hidden='{{allList.length==0}}' bindtap='clearShopList'>- 清空商品</view>
+    <view bindtap='goShopList'>{{allList.length==0?'+ 添加商品':'+ 继续添加'}}</view>
+  </view>
+  <view class='emtry-view' hidden='{{allList.length!=0}}'>
+    <image src='../../../common/images/icons/animalone@2x.png'></image>
+    <view>暂无清单</view>
+    <view>赶紧点击【+添加】按钮添加把~</view>
+  </view>
+  <view hidden='{{allList.length==0}}'>
+    <shopShowType id='shopShowType' bind:selectTab='selectTab'></shopShowType>
+  </view>
+  <scroll-view scroll-y style='min-height:300px;max-height:{{screenHeight-143}}px;' hidden='{{shopTab!=0}}'>
+    <view wx:for='{{allList}}' wx:for-item='item' wx:for-index='i' class='all-list' style='background: #{{i%2==0?"fff":"f8fdff"}};'>
+      <view class='display-flex all-list-item'>
+        <view>{{item.itemname}}</view>
+        <view class='display-flex'>
+          <amountInput amountInputValue='{{item.qty}}' bind:amountInput='amountInput' data-index='{{i}}'></amountInput>
+          <view>{{item.unit}}</view>
+        </view>
+        <image bindtap='deleteShop' data-index='{{i}}' src='../../../common/images/icons/sqddelete@3x.png'></image>
+      </view>
+      <view>{{item.itemspecifications}}</view>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y style='min-height:300px;max-height:{{screenHeight-143}}px;' hidden='{{shopTab!=1}}'>
+    <view wx:for='{{typeList}}' wx:for-index='firstIndex' wx:for-item='firstItem'>
+      <view class='display-flex list-item' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-expandtype='type'>
+        <view class='flex-row list-item-name'>{{firstItem.itemcategoryname1}}</view>
+        <view class='list-item-count'>{{firstItem.count}}种</view>
+        <image class='{{firstItem.expand?"expandImg":""}}' src='../../../common/images/icons/folding@2x.png'></image>
+      </view>
+      <view hidden='{{firstItem.expand}}'>
+        <view wx:for='{{firstItem.itemList}}' wx:for-index='secondIndex' wx:for-item='secondItem'>
+          <view class='list-item-line'>
+            <view class='list-item-line-name'>{{secondItem.itemcategoryname2}}</view>
+          </view>
+          <view wx:for='{{secondItem.itemList}}' wx:for-index='thirdIndex' wx:for-item='thirdItem' class='all-list' style='background: #{{thirdIndex%2==0?"fff":"f8fdff"}};'>
+            <view class='display-flex all-list-item'>
+              <view>{{thirdItem.itemname}}</view>
+              <view class='display-flex'>
+                <amountInput amountInputValue='{{thirdItem.qty}}' bind:amountInput='amountInput2' data-item='{{thirdItem}}'></amountInput>
+                <view>{{thirdItem.unit}}</view>
+              </view>
+              <image bindtap='deleteShop2' data-item='{{thirdItem}}' src='../../../common/images/icons/sqddelete@3x.png'></image>
+            </view>
+            <view>{{item.itemspecifications}}</view>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y style='min-height:300px;max-height:{{screenHeight-143}}px;' hidden='{{shopTab!=2}}'>
+    <view wx:for='{{supplierList}}' wx:for-index='firstIndex' wx:for-item='firstItem'>
+      <view class='display-flex list-item2' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-expandtype='supplier'>
+        <view class='blue-block'></view>
+        <view class='flex-row list-item-name'>{{firstItem.suppliername}}</view>
+        <view class='list-item-count'>{{firstItem.count}}种</view>
+        <image class='{{firstItem.expand?"expandImg":""}}' src='../../../common/images/icons/folding@2x.png'></image>
+      </view>
+      <view hidden='{{firstItem.expand}}'>
+        <view wx:for='{{firstItem.itemList}}' wx:for-index='secondIndex' wx:for-item='secondItem'>
+          <view class='display-flex list-item3' bindtap='expandItem' data-firstindex='{{firstIndex}}' data-secondindex='{{secondIndex}}'>
+            <view class='flex-row list-item-name'>{{secondItem.itemcategoryname1}}</view>
+            <view class='list-item-count'>{{secondItem.count}}种</view>
+            <image class='{{secondItem.expand?"expandImg":""}}' src='../../../common/images/icons/folding@2x.png'></image>
+          </view>
+          <view hidden='{{secondItem.expand}}'>
+            <view wx:for='{{secondItem.itemList}}' wx:for-index='thirdIndex' wx:for-item='thirdItem'>
+              <view class='list-item-line'>
+                <view class='list-item-line-name'>{{thirdItem.itemcategoryname2}}</view>
+              </view>
+              <view wx:for='{{thirdItem.itemList}}' wx:for-index='fourthIndex' wx:for-item='fourthItem' class='all-list' style='background: #{{fourthIndex%2==0?"fff":"f8fdff"}};'>
+                <view class='display-flex all-list-item'>
+                  <view>{{fourthItem.itemname}}</view>
+                  <view class='display-flex'>
+                    <amountInput amountInputValue='{{fourthItem.qty}}' bind:amountInput='amountInput2' data-item='{{fourthItem}}'></amountInput>
+                    <view>{{fourthItem.unit}}</view>
+                  </view>
+                  <image bindtap='deleteShop2' data-item='{{fourthItem}}' src='../../../common/images/icons/sqddelete@3x.png'></image>
+                </view>
+                <view>{{item.itemspecifications}}</view>
+
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view style='height:50px;'></view>
+</view>

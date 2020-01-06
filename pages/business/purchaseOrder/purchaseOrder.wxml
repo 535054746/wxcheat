@@ -1,0 +1,161 @@
+<view class="container bg">
+  <view class="order_tab">
+    <view class='order_tab_left color-33b0ff' bindtap='changeSearchFlag'>
+      <image src='../../common/images/icons/navigationbarsearch@3x.png' class='down-icon'></image>搜索</view>
+    <view class='order_tab_line'></view>
+    <view class='order_tab_right color-33b0ff {{rule_flag?"rule-check":""}}' bindtap='changeFilterFlag'>
+      <image src='{{rule_flag?"../../common/images/icons/gysdzssbs_pr@3x.png":"../../common/images/icons/gysdzssbs@3x.png"}}' class='rule-icon'></image>筛选</view>
+  </view>
+  <view class="order_tab_two">
+    <view data-order-statu="" bindtap="changeStatu">
+      <text class="{{appstatus=='' ? 'current_menu':''}}">全部</text>
+    </view>
+    <view data-order-statu="0" bindtap="changeStatu">
+      <text class="{{appstatus=='0' ? 'current_menu':''}}">已下单</text>
+    </view>
+    <view class="red-area" data-order-statu="1" bindtap="changeStatu">
+      <text class="{{appstatus=='1' ? 'current_menu':''}} ">待验收</text>
+      <view class='red-count' wx:if="{{checkRedCount>0 && rule_flag==false}}">{{checkRedCount}}</view>
+    </view>
+    <view data-order-statu="3" bindtap="changeStatu">
+      <text class="{{appstatus=='3' ? 'current_menu':''}}">已完成</text>
+    </view>
+  </view>
+  <view class='order_tab_three display-flex' wx:if="{{search_flag}}">
+    <view class='search-input flex-row'>
+      <input bindinput='searchInput' type='text' value='{{keyword}}' placeholder='搜索单号、供应商、供应商联系人'></input>
+      <image src='../../common/images/icons/txlreplyclose_pr.png' bindtap='clearInput' wx:if='{{keyword.length!=0}}'></image>
+    </view>
+    <view class='cancel-button' bindtap='changeSearchFlag'>取消</view>
+  </view>
+  <scroll-view class='order_tab_four' style='height:{{windowHeight-41}}px;' scroll-y='true' wx:if="{{rule_flag}}">
+    <view class='filter-title' bindtap='folding' data-type='supplier'>
+      <image src='../../common/images/icons/rule-icon1.png' class='filter-title-icon'></image>选择供应商
+      <image src='{{supplier_flag?"../../common/images/icons/folding@3x.png":"../../common/images/icons/expansion@3x.png"}}' class='filter-allow-icon'></image>
+    </view>
+    <view class='store-title' bindtap='selectAllStore' wx:if="{{customerData.length!=0&&supplier_flag}}">
+      <view class='store-name' style='color:#33b0ff;'>全部供应商</view>
+      <view class='store-icon'>
+        <image src='{{isAllStore?"../../common/images/icons/gyshzselected@3x.png":"../../common/images/icons/gyshzunselected@2x.png"}}' class=''></image>
+      </view>
+    </view>
+    <view class='scroll-view' wx:if='{{supplier_flag}}'>
+      <view>
+        <view wx:for="{{customerData}}">
+          <view class='store-item' bindtap='saveStoreId' data-index="{{index}}">
+            <view class='store-more'>
+
+            </view>
+            <view class='store-name'>{{item.companyName}}</view>
+            <view class='store-icon'>
+              <image src='{{item.isSelected?"../../common/images/icons/gyshzselected@3x.png":"../../common/images/icons/gyshzunselected@2x.png"}}' class=''></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='time-title' bindtap='folding' data-type='ship'>
+      <view>
+        <image src='../../common/images/icons/rule-icon2.png' class='filter-title-icon'></image>收货时间
+        <image src='{{ship_flag?"../../common/images/icons/folding@3x.png":"../../common/images/icons/expansion@3x.png"}}' class='filter-allow-icon'></image>
+      </view>
+    </view>
+    <view class='time-item' wx:if='{{ship_flag}}'>
+      <view data-mean='0' bindtap='changeTime' class='{{currentDateFlag=="0"?"current_date":"normal_date"}}'>今天</view>
+      <view data-mean='7' bindtap='changeTime' class='{{currentDateFlag=="7"?"current_date":"normal_date"}}'>近一周</view>
+      <view data-mean='30' bindtap='changeTime' class='{{currentDateFlag=="30"?"current_date":"normal_date"}}'>近一月</view>
+      <view data-mean='365' bindtap='changeTime' class='{{currentDateFlag=="365"?"current_date":"normal_date"}}'>近一年</view>
+    </view>
+    <view class='time-item-input' wx:if='{{ship_flag}}'>
+      <picker mode="date" value="{{startTime==''?currentTime:startTime}}" start="1999-01-01" end="2200-12-31" bindchange="bindDateChange" data-mean="0" class='picker-box'>
+        <view class="picker">
+          {{startTime==''?'开始 年/月/日':startTime}}
+        </view>
+      </picker>
+      <picker mode="date" value="{{endTime==''?currentTime:endTime}}" start="1999-01-01" end="2200-12-31" bindchange="bindDateChange" data-mean="1" class='picker-box'>
+        <view class="picker">
+          {{endTime==''?'结束 年/月/日':endTime}}
+        </view>
+      </picker>
+    </view>
+    <view class='time-title' bindtap='folding' data-type='order'>
+      <view>
+        <image src='../../common/images/icons/rule-icon3.png' class='filter-title-icon'></image>下单时间
+        <image src='{{order_flag?"../../common/images/icons/folding@3x.png":"../../common/images/icons/expansion@3x.png"}}' class='filter-allow-icon'></image>
+      </view>
+    </view>
+    <view class='time-item' wx:if='{{order_flag}}'>
+      <view data-mean='0' bindtap='changeTime2' class='{{currentOrderDate=="0"?"current_date":"normal_date"}}'>今天</view>
+      <view data-mean='7' bindtap='changeTime2' class='{{currentOrderDate=="7"?"current_date":"normal_date"}}'>近一周</view>
+      <view data-mean='30' bindtap='changeTime2' class='{{currentOrderDate=="30"?"current_date":"normal_date"}}'>近一月</view>
+      <view data-mean='365' bindtap='changeTime2' class='{{currentOrderDate=="365"?"current_date":"normal_date"}}'>近一年</view>
+    </view>
+    <view class='time-item-input' wx:if='{{order_flag}}'>
+      <picker mode="date" value="{{orderStartTime==''?currentTime:orderStartTime}}" start="1999-01-01" end="2200-12-31" bindchange="bindDateChange2" data-mean="0" class='picker-box'>
+        <view class="picker">
+          {{orderStartTime==''?'开始 年/月/日':orderStartTime}}
+        </view>
+      </picker>
+      <picker mode="date" value="{{orderEndTime==''?currentTime:orderEndTime}}" start="1999-01-01" end="2200-12-31" bindchange="bindDateChange2" data-mean="1" class='picker-box'>
+        <view class="picker">
+          {{orderEndTime==''?'结束 年/月/日':orderEndTime}}
+        </view>
+      </picker>
+    </view>
+    <view style='height:64px;width:100%;'></view>
+  </scroll-view>
+    <view class="rule-botton" wx:if="{{rule_flag}}">
+      <view class='rule-botton-clear' bindtap='resetRule'>重置</view>
+      <view class='rule-botton-sure' bindtap='sureFilter'>查询</view>
+    </view>
+
+  <!--全部-->
+  <view class='scroll-header'>{{refreshText}}</view>
+  <scroll-view wx:if="{{orderData.length!=0}}" style='height:{{windowHeight-87}}px;' class="order_main" bindscrolltolower="myscrolltolower" scroll-y="true" bindscrolltoupper="bindScroll">
+    <view class="order_item" wx:for="{{orderData}}" wx:for-item="items" wx:for-index="index">
+      <view class="order_item_title display-flex">
+        <view class="flex-row order_time">{{items.billdate}}</view>
+        <view class="statu_color" wx:if="{{items.appstatus=='0'}}">已下单</view>
+        <view class="statu_color" wx:if="{{items.appstatus=='1'}}">待验收</view>
+        <view class="statu_color" wx:if="{{items.appstatus=='2'}}">已验收</view>
+        <view class="statu_color_finished" wx:if="{{items.appstatus=='3'}}">已完成</view>
+        <view class="statu_color_close" wx:if="{{items.appstatus=='4'}}">已取消</view>
+      </view>
+      <view class="order_item_content display-flex" bindtap='jumpLink2' data-index="{{index}}" data-suplierid="{{items.supplierId}}" data-phone='{{items.phone}}' data-person='{{items.createusername}}' data-supliername='{{items.suppliername}}'>
+
+        <view class="order_statu_icon">
+          <image src='../../common/images/icons/shoppingcart@2x.png' class="order_statu_icon" wx:if="{{items.appstatus=='0'}}"></image>
+          <image src='../../common/images/icons/ordericonys@2x.png' class="order_statu_icon" wx:if="{{items.appstatus=='1'}}"></image>
+          <image src='../../common/images/icons/ordericonys@2x.png' class="order_statu_icon" wx:if="{{items.appstatus=='2'}}"></image>
+          <image src='../../common/images/icons/orderdone@2x.png' class="order_statu_icon" wx:if="{{items.appstatus=='3'}}"></image>
+          <image src='../../common/images/icons/shoppingcart@2x.png' class="order_statu_icon" wx:if="{{items.appstatus=='4'}}"></image>
+        </view>
+        <view class="order_item_detail flex-row">
+          <view class="order_detail_number">{{items.suppliername}} {{items.createusername}}</view>
+          <view class="order_detail_adrress">{{items.number}}</view>
+        </view>
+        <view class="order_detail_more">
+          <image src='../../common/images/icons/more@2x.png ' width="20px" height="20px" class="more-icon"></image>
+        </view>
+      </view>
+    </view>
+    <view class='scroll-footer' wx:if='{{isHasNextPage}}'>{{isHasNextPage?'正在加载':'没有更多数据了'}}</view>
+  </scroll-view>
+  <!--全部-->
+  <view wx:if="{{orderData.length==0}}">
+    <view class='emtry-view'>
+      <view>
+        <image src='../../common/images/icons/animalone@2x.png'></image>
+      </view>
+      <text>{{keyword==''?'暂无订单':'关键字"'+keyword+'"的订单没找到'}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg">
+      <text class="tips_text">{{tipText}}</text>
+    </view>
+  </view>
+</view>

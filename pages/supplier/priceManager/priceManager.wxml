@@ -1,0 +1,212 @@
+<view class="container bg">
+  <view class='price-main'>
+    <view class='price-item {{item.default.status == 2 || item.default.status == 1 ?"price-statu-red-line":""}}{{item.default.status == 3?"price-statu-gray-line":""}}' wx:for="{{priceData}}" wx:for-item="item" wx:for-index="index" wx:if="{{item.default}}">
+      <view class='price-title display-flex {{item.default.status == 2 || item.default.status == 1 ?"price-statu-red":""}}{{item.default.status == 3?"price-statu-gray":""}}'>
+        <view class='flex-row customerName-text'>{{item.default.customerName}}
+          <view class="item-name-view item-view-statu-white" wx:if="{{item.default.status == 3}}">已禁用</view>
+        </view>
+        <view class='price-title-icon' bindtap='jumpSet' data-id="{{item.default.id}}" data-customerid="{{item.default.customerId}}" data-status="{{item.default.status}}">
+          <image src='../common/images/jgglsz@2x.png'></image>
+        </view>
+      </view>
+      <view class="price-content">
+        <view class='price-item-box display-flex' bindtap='jumpShopPriceSet' data-id='{{item.default.id}}' data-mean="1" data-index='{{index}}' data-customerid='{{item.default.customerId}}'>
+          <view class='price-item-name flex-row'>商品价格设置
+            <!--<view class="item-name-view2" wx:if="{{item.default.priceStatus==2 && (item.default.startPeriod==null || item.default.endPeriod==null)}}">已报价</view>
+            <view class="item-name-view" wx:if="{{item.default.priceStatus==1}}">部分报价</view>
+            <view class="item-name-view" wx:if="{{item.default.priceStatus==0}}">暂未报价</view>-->
+          </view>
+          <view class='price-item-num'>{{item.default.itemNum}}种
+            <image src='../../common/images/icons/more@2x.png'></image>
+          </view>
+        </view>
+        <view class='line'></view>
+        <view class='price-item-box display-flex'>
+          <view class='price-item-name flex-row'>报价有效期
+            <image src='../common/images/wh@2x.png' class='item-name-icon' bindtap='setTimeTips'></image>
+          </view>
+          <view class='price-item-num'>
+
+            <picker mode="date" value="{{item.default.startPeriod==''?currentTime:item.default.startPeriod}}" start="{{currentStartTime}}" end="2200-12-31" bindchange="bindDateChangeTip" data-customerid="{{item.default.customerId}}" data-mean="0" class='picker-box' data-index="{{index}}" data-status="0" wx:if='{{(item.default.status != 3 && item.default.priceStatus==2 && (!item.next)) || (item.next && (item.next.startPeriod==null || item.next.endPeriod==null))}}'
+              data-exitflag='{{(item.default.startPeriod!=null && item.default.endPeriod!=null)?"1":"0"}}'>
+              <view class="picker">
+                {{item.default.startPeriod==null?'开始时间':item.default.startPeriod}}
+              </view>
+            </picker>
+            <view class="picker" wx:if='{{item.default.status == 3 || item.default.priceStatus!=2}}' bindtap='setPriceTip'>
+              {{item.default.startPeriod==null?'开始时间':item.default.startPeriod}}
+            </view>
+            <view class="picker" wx:if='{{(item.default.status != 3 && item.default.priceStatus==2) && (item.next && (item.next.startPeriod!=null || item.next.endPeriod!=null))}}'>
+              {{item.default.startPeriod==null?'开始时间':item.default.startPeriod}}
+            </view>
+            -
+            <picker mode="date" value="{{item.default.endPeriod==''?currentTime:item.default.endPeriod}}" start="{{currentStartTime}}" end="2200-12-31" bindchange="bindDateChangeTip" data-customerid="{{item.default.customerId}}" data-mean="1" class='picker-box' data-index="{{index}}" data-status="0" wx:if='{{(item.default.status != 3 && item.default.priceStatus==2 && (!item.next)) || (item.next && (item.next.startPeriod==null || item.next.endPeriod==null))}}'
+              data-exitflag='{{item.default.startPeriod!=null && item.default.endPeriod!=null?"1":"0"}}'>
+              <view class="picker">
+                {{item.default.endPeriod==null?'结束时间':item.default.endPeriod}}
+              </view>
+            </picker>
+            <view class="picker" wx:if='{{item.default.status == 3 || item.default.priceStatus!=2}}' bindtap='setPriceTip'>
+              {{item.default.endPeriod==null?'结束时间':item.default.endPeriod}}
+            </view>
+            <view class="picker" wx:if='{{(item.default.status != 3 && item.default.priceStatus==2) && (item.next && (item.next.startPeriod!=null && item.next.endPeriod!=null))}}'>
+              {{item.default.endPeriod==null?'开始时间':item.default.endPeriod}}
+            </view>
+            <image src='../../common/images/icons/more@2x.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class="price-content" wx:if="{{item.next}}">
+        <view class='price-item-box display-flex bt5'>
+          <view class='price-item-name flex-row text-color-red'>预设到期后自动替换价格方案
+            <image src='../common/images/wh@2x.png' class='item-name-icon' bindtap='setingTimeTips'></image>
+          </view>
+        </view>
+        <view class='price-item-box display-flex' bindtap='jumpShopPriceSet' data-id='{{item.next.id}}' data-index='{{index}}' data-mean="2" data-customerid="{{item.next.customerId}}">
+          <view class='price-item-name flex-row'>商品价格设置
+            <!--<view class="item-name-view2" wx:if="{{item.next.startPeriod==null || item.next.endPeriod==null}}">已报价</view>-->
+          </view>
+          <view class='price-item-num'>{{item.next.itemNum}}种
+            <image src='../../common/images/icons/more@2x.png'></image>
+          </view>
+        </view>
+        <view class='price-item-box display-flex'>
+          <view class='price-item-name flex-row'>报价有效期
+            <image src='../common/images/wh@2x.png' class='item-name-icon' bindtap='setTimeTips'></image>
+          </view>
+          <view class='price-item-num'>
+            <picker mode="date" value="{{item.next.startPeriod==null?currentTime:item.next.startPeriod}}" start="{{item.default.endPeriodNum>item.default.currentDataTime?item.default.endPeriodData:item.default.currentData}}" end="2200-12-31" bindchange="bindDateChange" data-customerid="{{item.next.customerId}}"
+              data-mean="0" class='picker-box' data-index="{{index}}" data-status="1" data-exitflag='{{item.next.startPeriod!=null && item.next.endPeriod!=null?"1":"0"}}'>
+              <view class="picker">
+                {{item.next.startPeriod==null?'开始时间':item.next.startPeriod}}
+              </view>
+            </picker>
+            -
+            <picker mode="date" value="{{item.next.endPeriod==null?currentTime:item.next.endPeriod}}" start="{{item.default.endPeriodNum>item.default.currentDataTime?item.default.endPeriodData:item.default.currentData}}" end="2200-12-31" bindchange="bindDateChange"  data-customerid="{{item.next.customerId}}"
+              data-mean="1" class='picker-box' data-index="{{index}}" data-status="1" data-exitflag='{{item.next.startPeriod!=null && item.next.endPeriod!=null?"1":"0"}}'>
+              <view class="picker">
+                {{item.next.endPeriod==null?'结束时间':item.next.endPeriod}}
+              </view>
+            </picker>
+            <image src='../../common/images/icons/more@2x.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='money_total'>
+    <view class='money_total_box display-flex'>
+      <view class='sure-button flex-row' bindtap='jumpAdd'>新增价格方案</view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{timeFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view class='display-flex'>结束时间不能小于开始时间</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn cancel-btn2 flex-row color-33b0ff' bindtap='cancelTip'>我知道了</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{setPriceTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view class='display-flex'>请先设置完商品价格</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn cancel-btn2 flex-row color-33b0ff' bindtap='cancelTip'>我知道了</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks-fixed' style="dispaly:none" wx:if="{{updataTimeFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text2'>
+          <view class='display-flex'>
+            已设置过有效期的价格方案在有效期内修改日期，会通知客户且双方均会重新生成一份新的报价单。
+          </view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelTip'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='sureUpdataTime'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{setTimeFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>报价有效期帮助</view>
+        <view class='tip-text2'>
+          <view class='display-flex'>
+            <view>1、</view>
+            <view class='display-flex'>已设置过有效期的价格方案在有效期内修改商品价格会通知客户并更新双方报价单。</view>
+          </view>
+          <view class='display-flex pt10'>
+            <view>2、</view>
+            <view class='display-flex'>设置报价有效期时，商品价格会以最后一次修改的商品为准，请确保经客户同意的报价单是最后一次修改的商品报价。</view>
+          </view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn cancel-btn2 flex-row color-33b0ff' bindtap='cancelTip'>我知道了</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{setingTimeFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>预设报价方案帮助</view>
+        <view class='tip-text2'>
+          <view class='display-flex'>
+            <view>1、</view>
+            <view class='display-flex'>价格方案快到期后需提前预设一个新的价格方案，若未预设，过了报价有效期后，客户将无法正常下单。</view>
+          </view>
+          <view class='display-flex pt10'>
+            <view>2、</view>
+            <view class='display-flex'>到达预设的报价有效期时，系统会自动将旧的价格方案替换成新的。</view>
+          </view>
+          <view class='display-flex pt10'>
+            <view>3、</view>
+            <view class='display-flex'>预设报价日期时请注意接着旧的报价方案日期，若日期中间有间断，间断的日期因无报价，客户将无法正常下单。</view>
+          </view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn cancel-btn2 flex-row color-33b0ff' bindtap='cancelTip'>我知道了</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='loading-bg' wx:if="{{loading}}"></view>
+  <view class='loading-icon display-flex' wx:if="{{loading}}">
+    <image src='../../common/images/icons/loading.gif'></image>
+  </view>
+
+  <view class='no-data-tip' wx:if="{{noDataTipFlag}}">
+    <view class='no-data-image2'>
+      <image src="../../common/images/icons/cry.png"></image>
+    </view>
+    <view>暂无价格方案</view>
+  </view>
+</view>
+<view class='loading-bg' wx:if="{{loading}}"></view>
+<view class='loading-icon display-flex' wx:if="{{loading}}"><image src='../../common/images/icons/loading.gif'></image></view>
+  <view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+  </view>

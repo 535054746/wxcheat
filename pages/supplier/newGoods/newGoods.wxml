@@ -1,0 +1,113 @@
+<view class="container bg mrb">
+  <view class='item-box display-flex'>
+    <view class='item-title'>商品分类</view>
+    <view class='flex-row item-name display-flex' bindtap='selectShopType'>
+      <view class='flex-row item-name-text'>{{itemname1}}>{{itemname2}}</view>
+      <view class='item-name-icon'><image src='../../common/images/icons/more@2x.png'></image></view>
+    </view>
+  </view>
+  <view class='item-box display-flex'>
+    <view class='item-title'>商品名称</view>
+    <view class='flex-row item-name display-flex'>
+      <view class='flex-row item-name-text'><input type='text' placeholder='请填写商品名' class="shopname-input" bindinput='bindKeyShopName' bindblur='selectShopFlag' value="{{shopName}}" maxlength='16' placeholder-class='font-tip'></input></view>
+    </view>
+  </view>
+  <view class='item-box display-flex no-margin border-bottom'>
+    <view class='item-title'>下单单位</view>
+    <view class='flex-row item-name display-flex' bindtap='unitSelectOne'>
+      <view class='flex-row item-name-text {{unitName1==""?"unit-tip-color":""}}'>{{unitName1==''?'请选择下单单位':unitName1}}</view>
+      <view class='item-name-icon'><image src='../../common/images/icons/more@2x.png'></image></view>
+    </view>
+  </view>
+  <view class='item-box display-flex'>
+    <view class='item-title'>验收单位</view>
+    <view class='flex-row item-name display-flex' bindtap='unitSelectTwo'>
+      <view class='flex-row item-name-text {{unitName2==""?"unit-tip-color":""}}'>{{unitName2==''?'请选择验收单位':unitName2}}</view>
+      <view class='item-name-icon'><image src='../../common/images/icons/more@2x.png'></image></view>
+    </view>
+  </view>
+  <view class='shop-rule'>
+    <view class='shop-rule-title'>商品规格</view>
+    <view class='shop-rule-content display-flex'>
+      <view class='flex-row shop-rule-item' wx:if="{{ruleData.length!=0}}">
+        <view class='display-flex {{(index+1)==ruleData.length?"":"border-bottom"}}' wx:for="{{ruleData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='ruleJumpLink'>
+          <view class='rule-item-name'>{{items.k?items.k:'规格项目'}}</view>
+          <view class='rule-item-text'>{{items.v?items.v:'选填/请输入规格项目'}}<image src='../../common/images/icons/more@2x.png'></image></view>
+        </view>
+      </view>
+      <view class='delete-box' wx:if="{{ruleData.length!=0}}">
+        <view class='delete-icon' wx:for="{{ruleData}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='deleteRule'><image src='../common/images/xzspsc@2x.png'></image></view>
+      </view>
+    </view>
+    <view class="add-rule" bindtap='addRule'><image src='../common/images/xzspjh@2x.png'></image>添加规格项目</view>
+  </view>
+  <view class='money_total'>
+    <view class='money_total_box display-flex'><view class='sure-button flex-row' bindtap='saveShopFormat'>保存</view></view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{saveFlag==0}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>请确认新增的商品信息无误<view></view>确定后不可修改</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='loginOutCancel'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='loginOutComfire'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{shopHavedTip}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>商品列表已存在该商品<view></view>若该商品没有你需要的规格项请添加</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelHavedTip'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='comfireExit'>前往添加</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class='remarks-fixed' wx:if="{{unitFlag2}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>常用单位<view bindtap='unitSelectTwo'><image src='../../common/images/icons/popupsclose@2x.png'></image></view></view>
+        <view class='shop-type-item-box'>
+          <view class='display-flex shop-type-item {{(index+1)==unitTotal.length?"no-bottom":""}} {{unitTouchFlag2[touchNumber] && touchNumber==index2?"selectBg":""}}' wx:for="{{unitTotal}}" wx:for-item="items" wx:for-index="index2" bindtap="unitSelect2" bindtouchstart='unitSelectStartTwo'  bindtouchend='unitSelectEndTwo' data-index="{{index2}}" data-id="{{items.id}}" data-unitname="{{items.unitname}}">
+            <view class='flex-row shop-type-item-text'>{{items.unitname}}</view>
+            <view class='shop-type-item-icon' wx:if="{{unitSelectFlag2[index2]}}"><image src='../common/images/zcsqdxzddicon@2x.png'></image></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+  </view>
+</view>
+
+<view class='remarks-fixed' wx:if="{{unitFlag1}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>常用单位<view bindtap='unitSelectOne'><image src='../../common/images/icons/popupsclose@2x.png'></image></view></view>
+        <view class='shop-type-item-box'>
+          <view class='display-flex shop-type-item {{(index+1)==unitTotal.length?"no-bottom":""}} {{unitTouchFlag1[touchNumber] && touchNumber==index2?"selectBg":""}}' wx:for="{{unitTotal}}" wx:for-item="items" wx:for-index="index2" bindtap="unitSelect1" bindtouchstart='unitSelectStartOne'  bindtouchend='unitSelectEndOne' data-index="{{index2}}" data-id="{{items.id}}" data-unitname="{{items.unitname}}">
+            <view class='flex-row shop-type-item-text'>{{items.unitname}}</view>
+            <view class='shop-type-item-icon' wx:if="{{unitSelectFlag1[index2]}}"><image src='../common/images/zcsqdxzddicon@2x.png'></image></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

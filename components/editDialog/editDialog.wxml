@@ -1,0 +1,15 @@
+<!--components /editDialog/editDialog.wxml-->
+<view class='dialog-mask' hidden='{{!isDialogShow}}'>
+</view>
+<view class='dialog-main' hidden='{{!isDialogShow}}'>
+  <view class='dialog-main-title'>{{title}}</view>
+  <view class='dialog-main-content'>
+    <view class='dialog-main-content-border'>
+      <textarea type='text' bindinput='dialogInput' placeholder='{{hintText}}' value='{{inputValue}}'></textarea>
+    </view>
+  </view>
+  <view class='dialog-main-option'>
+    <view catchtap='leftTap'>{{leftBtnText}}</view>
+    <view catchtap='rightTap'>{{RightBtnText}}</view>
+  </view>
+</view>

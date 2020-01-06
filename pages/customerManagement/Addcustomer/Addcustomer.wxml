@@ -1,0 +1,86 @@
+<!--pages/customerManagement/Addcustomer/Addcustomer.wxml-->
+<view class='container'>
+  <view class='display-flex changeCompanyName'>
+    <view class='contacts-name'>公司</view>
+    <input class='flex-row input-change' placeholder='必填/请确保和营业执照上名称相同' bindinput="inputCompanyName" value='{{companyName}}' wx:if="{{selectSearchData==''}}" maxlength='50' placeholder-class='color-tip'></input>
+    <view class='flex-row input-change' wx:if="{{selectSearchData!=''}}">{{selectSearchData!=''?selectSearchData.companyName:''}}</view>
+    <view class='store-clear'>
+      <image src='../../common/images/icons/txlreplyclose_pr.png' wx:if="{{companyName.length>0}}" bindtap="clearCompany"></image>
+    </view>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex changeCompanyName'>
+    <view class='contacts-name'>营业执照</view>
+    <input class='flex-row input-change' type='text' placeholder='必填/请确保号码填写正确' bindinput="inputBlNum" value='{{blNum}}' maxlength='18' wx:if="{{selectSearchData==''}}" placeholder-class='color-tip'></input>
+    <view class='flex-row input-change' wx:if="{{selectSearchData!=''}}">{{selectSearchData!=''?selectSearchData.blNum:''}}</view>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex'>
+    <view class='flex-row'>
+      <view class='display-flex contacts'>
+        <view class='contacts-name'>联系人</view>
+        <input class='contacts-input' placeholder='必填' bindinput="inputContactsName" value='{{contactsName}}' maxlength='6' wx:if="{{selectSearchData==''}}" placeholder-class='color-tip'></input>
+        <view class='flex-row input-change' wx:if="{{selectSearchData!=''}}">{{selectSearchData!=''?selectSearchData.contactsName:''}}</view>
+      </view>
+      <view class='lines'></view>
+      <view class='display-flex contacts'>
+        <view class='contacts-name'>手机号码</view>
+        <input class='contacts-input' placeholder='必填' type='number' bindinput="inputMobile" value='{{mobile}}' maxlength='11' wx:if="{{selectSearchData==''}}" placeholder-class='color-tip'></input>
+        <view class='flex-row input-change' wx:if="{{selectSearchData!=''}}">{{selectSearchData!=''?selectSearchData.mobile:''}}</view>
+      </view>
+    </view>
+
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex changeCompanyName'>
+    <view class='contacts-name'>详细地址</view>
+    <input class='flex-row input-change' placeholder='选填' bindinput="inputAddress" value='{{address}}' wx:if="{{selectSearchData=='' || (selectSearchData!='' && selectSearchData.address.length==0)}}" placeholder-class='color-tip'></input>
+    <view class='flex-row input-change2' wx:if="{{selectSearchData!=''&& selectSearchData.address.length > 0}}">{{selectSearchData!=''?selectSearchData.address:''}}</view>
+  </view>
+  <view class='lines'></view>
+  <view class='bot-text'>
+    <text>*</text>手机号码会自动创建登录账号,默认密码：123456</view>
+  <view class='bot-text'>
+    <text>*</text>客户添加完成后需等待5-10分钟，才能使用</view>
+</view>
+<view class='money_total'>
+  <view class='money_total_box display-flex'>
+    <view class='sure-button flex-row' bindtap='saveCustomer'>保存</view>
+  </view>
+</view>
+<view class="ck_tips" wx:if="{{tipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg"></view>
+    <view class="tips_text">{{tipText}}</view>
+  </view>
+</view>
+
+<view class='over-bg' wx:if="{{searchData.length > 0 && !searchFlag}}" bindtap='hideSearchData'></view>
+<view class='over-bg' wx:if="{{searchData.length > 0 && searchFlag}}"></view>
+<view class="company-box" wx:if="{{searchData.length > 0}}">
+  <view class='company-item' wx:for="{{searchData}}" wx:for-item="items" wx:for-index="index">
+    <view class="display-flex" data-index="{{index}}" data-companyname="{{items.companyName}}" bindtap='selectCompany' wx:if="{{searchFlag && items.flag}}">
+      <view class='flex-row'>{{items.companyName}}</view>
+      <view class='select-icon'>
+        <image src='../../common/images/icons/select-icon.png'></image>
+      </view>
+    </view>
+    <view class="display-flex" data-index="{{index}}" data-companyname="{{items.companyName}}" wx:if="{{searchFlag && (!items.flag)}}">
+      <view class='flex-row'>{{items.companyName}}</view>
+      <view class='select-icon'>
+        <image src='../../common/images/icons/select-icon.png'></image>
+      </view>
+    </view>
+    <view class="display-flex" data-index="{{index}}" data-companyname="{{items.companyName}}" bindtap='selectCompany' wx:if="{{!searchFlag}}">
+      <view class='flex-row'>{{items.companyName}}</view>
+      <view class='select-icon'>
+        <image src='../../common/images/icons/select-icon.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='loading-bg' wx:if="{{loading}}"></view>
+<view class='loading-icon display-flex' wx:if="{{loading}}">
+  <image src='../../common/images/icons/loading.gif'></image>
+</view>

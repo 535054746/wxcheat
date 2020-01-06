@@ -1,0 +1,6 @@
+/* components /errorTips/errorTips.wxss */
+
+.ck_tips{position: fixed; left: 50%;top: 40%;z-index: 100000; margin-left: -100px; margin-top: -18px;}
+.tips_box{position: relative;width:200px; min-height: 30px; }
+.tips_bg{ width: 100%;  background-color: #000;opacity: 0.6;border-radius: 8px;position: absolute}
+.tips_text{ width: 100%; text-align: center; line-height: 30px;position: absolute;z-index: 10000000000000; color: #fff;background-color: #000;max-height: 90px;overflow: hidden;border-radius: 8px;}

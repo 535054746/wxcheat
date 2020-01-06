@@ -1,0 +1,31 @@
+<!--pages/mine/companyDetail/companyDetail.wxml-->
+<view class='container'>
+<view class='display-flex company_name'>
+  <view class=' text_name'>公司</view>
+  <view class='flex-row company_name_text '>{{companyName}}</view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>营业执照号</view>
+  <view class='flex-row company_name_text '>{{companyCode}}</view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>联系人</view>
+  <view class='flex-row company_name_text '>{{contact}}</view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>联系人电话</view>
+  <view class='flex-row company_name_text '>{{mobile}}</view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>地址</view>
+  <view class='flex-row company_name_text '>{{address}}</view>
+</view>
+<view class='lines' ></view>
+<view class='bot-text'><text>*</text>手机号码即登录账号,默认密码：123456</view>
+<view class='bot-text'><text>*</text>新客户需等待5-10分钟，才能使用</view>
+</view>
+

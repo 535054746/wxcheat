@@ -1,0 +1,44 @@
+<view class='container'>
+  <view class='top-view'>
+    <image src='../../common/images/icons/xzshmdbg@2x.png'></image>
+    <view class='companyName'>{{companyName}}</view>
+  </view>
+  <view class='display-flex add-title' hover-class='add-title-hover' wx:if="{{parentid!=''}}" bindtap='jumpLink' data-url='../../mine/addStore/addStore?parentid={{parentid}}'>
+    <image src='../../common/images/icons/tjgd@2x.png'></image>
+    <view>新增门店</view>
+  </view>
+  <view class='lines'></view>
+
+  <view wx:for="{{storeList}}" wx:for-item="brand" wx:for-index="k">
+    <block wx:if="{{brand.organizationtypeid=='10'}}">
+      <view wx:for="{{brand.orgList}}" wx:for-item="store" wx:for-index="i">
+        <block wx:if="{{store.organizationtypeid=='1'}}">
+          <view class='display-flex store' bindtap='jumpLink' data-url='../../mine/changeStore/changeStore?storeName={{store.organizationname}}&id={{store.id}}'>
+            <image src='../../common/images/icons/xzyhmddt@2x.png'></image>
+            <view class='store-name'>{{store.organizationname}}</view>
+            <view class='flex-row'></view>
+            <view class='link-icon'>
+              <image src='../../common/images/icons/more@2x.png'></image>
+            </view>
+          </view>
+          <view wx:for="{{store.orgList}}" wx:for-item="dept" wx:for-index="j">
+            <view class='lines-thin' wx:if='{{j!=0}}'></view>
+            <view class='display-flex dept' bindtap='jumpLink' data-url='../../mine/manageDept/manageDept?deptName={{dept.organizationname}}&id={{dept.id}}&organizationid={{dept.organizationid}}'>
+              <image></image>
+              <view class='flex-row dept-name'>{{dept.organizationname}}</view>
+              <view class='dept-manage'>管理或新增下单人</view>
+              <view class='link-icon'>
+                <image src='../../common/images/icons/more@2x.png'></image>
+              </view>
+            </view>
+          </view>
+          <view class='display-flex add-title' hover-class='add-title-hover' bindtap='jumpLink' data-url='../../mine/addDept/addDept?parentid={{store.organizationid}}'>
+            <image src='../../common/images/icons/tjgd@2x.png'></image>
+            <view>新增部门</view>
+          </view>
+          <view class='lines'></view>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>

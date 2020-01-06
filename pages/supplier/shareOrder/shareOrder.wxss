@@ -1,0 +1,20 @@
+.company-info{ margin-bottom: 5px;}
+.company-box{ padding: 8px 12px; background-color: #fff; border-bottom: 1px solid #f5f5f5; border-top:1px solid #f2f2f2;}
+.company-image image{ width: 50px; height: 50px; display: block;}
+.company-name{ padding-left: 10px;}
+.company-name-text{ margin-top: 5px;}
+.company-name-time{ color: #999;}
+.company-number{ height: 50px; line-height: 50px; color: #999;}
+.doing-time{ height: 30px; line-height: 30px; padding: 0px 12px; background-color: #fff; margin-bottom: 5px; color: #888;}
+.item-box{ background-color: #fff; margin-bottom: 5px;}
+.items{ padding: 0px 12px; height: 40px; line-height: 40px;}
+.items2{ margin: 0px 12px; height: 40px; line-height: 40px;}
+.border-bottom{ border-bottom: 1px solid #f5f5f5;}
+.border-bottom2{ border-bottom: 1px solid #f2f2f2;}
+.color1{ color: #33b0ff;}
+.color2{ color: #999;}
+.bg2{ background-color: #f8fdff !important;}
+.padding-tb{margin-bottom: 50px;}
+.money_total{ position: fixed;width: 100%; left: 0px; bottom: 0px;height: 50px; background-color: #fff;}
+.money_total_box{ text-align: right; padding:5px 12px; border-top:1px solid #e3e3e3;}
+.sure-button{ background-color: #33b0ff; color: #fff; text-align: center; line-height: 40px; height: 40px; border-radius: 6px; font-size: 16px;}

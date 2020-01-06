@@ -1,0 +1,43 @@
+/* pages/application/merchant/addConPur/addConPur.wxss */
+.apply-area{padding: 0 10px;color: #999999;font-size: 16px;border-bottom: 10px solid #f5f5f5;}
+.apply-area image{width: 7px;height: 13px;margin-top: 13px;}
+.apply-item{border-bottom: 1px solid #f5f5f5;}
+.apply-item>view:first-child{width: 80px;}
+.apply-item>view{line-height: 40px;}
+
+
+.title{line-height: 50px;padding: 0 10px;border-bottom: 1px solid #f5f5f5;}
+.title image{height: 30px;width: 30px;margin-top: 10px;margin-right: 5px;}
+.title>view:nth-child(2){font-weight: bold;font-size: 16px;}
+.title>view:nth-child(3){font-size: 14px;color: #fb8675;margin-right: 5px;}
+.title>view:nth-child(4){font-size: 14px;color: #33b0ff;}
+
+.mBottom{position: fixed;bottom: 0;left: 0;background: #ffffff;width: 100%;z-index: 3;}
+
+.emtry-view{color: #999999;font-size: 12px;text-align: center;line-height: 30px;margin-top: 80px;}
+.emtry-view image{width: 80px;height: 100px;}
+
+
+.all-list{padding: 10px 20px;border-bottom: 1px solid #f5f5f5;}
+.all-list-item{line-height: 30px;font-size: 14px;color: #1a1a1a;}
+.all-list-item image{width: 20px;height: 20px;margin-top: 5px;}
+.all-list-item>view:nth-child(1){width: 40%;}
+.all-list-item>view:nth-child(2){flex: 1;}
+amountInput{margin-right: 10px;}
+.all-list>view:last-child{line-height: 26px;font-size: 12px;color: #b3b3b3;}
+
+
+.list-item{padding: 5px 10px;line-height: 30px;}
+.list-item2{padding: 5px 10px;line-height: 30px;border-bottom: 1px solid #f5f5f5;}
+.list-item3{padding: 5px 10px;line-height: 30px;border-bottom: 1px solid #f5f5f5;padding-left: 20px;}
+.list-item-name{font-size: 16px;color: #1a1a1a;}
+.list-item-count{font-size: 14px;color: #999999;}
+.list-item>image{width: 13px;height: 7px;margin-left: 10px;margin-top: 11px;} 
+.list-item2>image{width: 13px;height: 7px;margin-left: 10px;margin-top: 11px;} 
+.list-item3>image{width: 13px;height: 7px;margin-left: 10px;margin-top: 11px;} 
+
+.expandImg{transform: rotate(180deg)}
+.blue-block{background: #33b0ff;width: 5px;height: 20px;margin-right: 10px;margin-top: 5px;}
+
+.list-item-line{height: 13px;border-bottom: 1px solid #33b0ff;margin-bottom: 20px;margin-top: 10px;}
+.list-item-line-name{color: #ffffff;padding: 0 10px;border-radius: 8px;height: 25px;line-height: 25px;font-size: 14px;background: #33b0ff;margin: 0 auto;text-align: center;width: 100px;}

@@ -1,0 +1,51 @@
+<view class="menu_box main_box">
+  <image class="application_banner" src="../../common/images/bg.png" mode="scaleToFill"></image>
+
+
+
+  <view class='flex-sp'>
+    <view class='company-face' >
+      <image class="company-image"src='../../common/images/sj.png'></image>
+      <text class="font">{{companyName}}</text>
+    </view>
+    <view class='flex-bot company-name'>
+      <text bindtap='loginOutShow' class="outShow"> [退出]</text>
+    </view>
+  </view>
+
+
+
+
+  <view class="nav-flex">
+    <view data-url="../orderDetails/orderDetails" bindtap="linkJump" class='flex flex_left' style="padding-left: 20px;color:gray">
+      <image src="../../common/images/xiaoshoudingdan.png" class="img"></image>
+      <view class="menu-text">销售订单</view>
+    </view>
+    <view class="line">
+      
+    </view>
+    <view data-url="../orderSale/orderSale" bindtap="linkJump" class='flex flex_right' style="padding-right:20px;color:gray">
+      <image src="../../common/images/xiaoshoujilu.png" class="img"></image>
+      <view class="menu-text">销售记录</view>
+    </view>
+  </view>
+</view>
+
+
+
+
+<view class='remarks-fixed' wx:if="{{loginOutShowFlag}}">
+  <view class='remarks-relative display-flex'>
+    <view class='over-bg'></view>
+    <view class='remarks-content'>
+      <view class='remarks-title'>操作提示</view>
+      <view class='tip-text'>
+        <view>确定要退出登录吗？</view>
+      </view>
+      <view class='tip-btns display-flex'>
+        <view class='cancel-btn flex-row' bindtap='loginOutCancel'>取消</view>
+        <view class='comfire-btn flex-row' bindtap='loginOutComfire'>确定</view>
+      </view>
+    </view>
+  </view>
+</view>

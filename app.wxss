@@ -1,0 +1,11 @@
+/**app.wxss**/
+.bg{ background-color: #f5f5f5;}
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  border-top: 1px solid #e6e6e6;
+}
+.display-flex{display: flex; display: -webkit-flex;}
+.flex-row{flex: 1; -webkit-box-flex: 1;}
+view{box-sizing: border-box;}

@@ -1,0 +1,98 @@
+<!--pages/mine/mainMine/mainMine.wxml-->
+<view class='container'>
+  <view class='top-view'>
+    <image src='../../common/images/icons/mybg@2x.jpg'></image>
+    <view class='face-box'>
+      <view class='face-image'>
+        <image src='../../common/images/logo.png'></image>
+      </view>
+      <view class='face-name'>{{userName}}</view>
+    </view>
+  </view>
+  <view class='display-flex company_name' bindtap='jumpLink2' data-url='../../mine/companyDetail/companyDetail'>
+    <view class='logo-icon'>
+      <image src='../../common/images/icons/mygszl@2x.png'></image>
+    </view>
+    <view class=' text_name'>公司资料</view>
+    <view class='flex-row company_name_text '></view>
+    <view class='link-icon'>
+      <image src='../../common/images/icons/more@2x.png'></image>
+    </view>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex company_name' bindtap='jumpLink2' data-url='../../mine/changePassword/changePassword'>
+    <view class='logo-icon'>
+      <image src='../../common/images/icons/myxgmm@2x.png'></image>
+    </view>
+    <view class=' text_name'>修改密码</view>
+    <view class='flex-row company_name_text '></view>
+    <view class='link-icon'>
+      <image src='../../common/images/icons/more@2x.png'></image>
+    </view>
+  </view>
+  <view class='lines'></view>
+  <view class='display-flex company_name' bindtap='jumpLink2' data-url='../../mine/addOrderStore/addOrderStore' wx:if="{{isSupMana}}">
+    <view class='logo-icon'>
+      <image src='../../common/images/icons/myszmd@2x.png'></image>
+    </view>
+    <view class=' text_name'>新增要货门店</view>
+    <view class='flex-row company_name_text '></view>
+    <view class='link-icon'>
+      <image src='../../common/images/icons/more@2x.png'></image>
+    </view>
+  </view>
+  <view class='lines' wx:if="{{isSupMana}}"></view>
+  <view class='display-flex company_name' bindtap='jumpLink2' data-url='../../mine/manageSupplier/manageSupplier' wx:if="{{isSupMana}}">
+    <view class='logo-icon'>
+      <image src='../../common/images/icons/mygysgl@2x.png'></image>
+    </view>
+    <view class=' text_name'>供应商管理</view>
+    <view class='flex-row company_name_text '></view>
+    <view class='link-icon'>
+      <image src='../../common/images/icons/more@2x.png'></image>
+    </view>
+  </view>
+  <view class='lines' wx:if="{{isSupMana}}"></view>
+  <view class='display-flex company_name red-area' bindtap='jumpLink2' data-url='../../mine/notification/notification' wx:if="{{isSupMana}}">
+    <view class='logo-icon'>
+      <image src='../../common/images/icons/myxxtz@2x.png'></image>
+    </view>
+    <view class=' text_name'>消息通知</view>
+    <view class='flex-row company_name_text '></view>
+    <view class='link-icon'>
+      <image src='../../common/images/icons/more@2x.png'></image>
+    </view>
+    <view class='red-count2' wx:if='{{unReadCount?unReadCount!=0:false}}'>{{unReadCount}}</view>
+  </view>
+  <view class='lines' wx:if="{{isSupMana}}"></view>
+  <view class='display-flex company_name' bindtap='jumpLink2' data-url='../../application/application' wx:if="{{isSupMana}}">
+    <view class='logo-icon'>
+      <image src='../../common/images/icons/mygdgn@2x.png'></image>
+    </view>
+    <view class=' text_name'>更多功能</view>
+    <view class='flex-row company_name_text '></view>
+    <view class='link-icon'>
+      <image src='../../common/images/icons/more@2x.png'></image>
+    </view>
+  </view>
+  <view class='lines' wx:if="{{isSupMana}}"></view>
+
+  <view>
+    <view class='logout-btn' bindtap='loginOutShow'>退出登录</view>
+  </view>
+  <view class='remarks-fixed' wx:if="{{loginOutShowFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>确定要退出登录吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='loginOutCancel'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='loginOutComfire'>确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

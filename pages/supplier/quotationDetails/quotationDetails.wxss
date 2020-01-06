@@ -1,0 +1,41 @@
+.order-main{ border-top:1px solid #f2f2f2; position: fixed; top: 105px; left: 0px; right: 0px;}
+.company-info{ position: fixed; top: 0px; left: 0px; right: 0px;}
+.type-header{ padding: 0px 12px; background-color: #fff; display: flex;}
+.type-header-box{ overflow-y: auto;}
+.type-header-box-box{ width: 10000px;}
+.type-header-box-box-box{ float: left; overflow: hidden;}
+.type-header-box-box-box view{height: 45px; line-height: 45px; text-align: center; float: left; margin-right: 20px;}
+.current-type{color: #33b0ff}
+.down-icon{ width: 18px; height: 18px;margin-top: 30px; margin-left: 10px;}
+.search-icon{ width: 18px; height: 18px;margin-top: 14px; margin-left: 10px;}
+.search-box{ background-color: #fff; padding: 0px 12px;height: 45px; line-height: 45px; overflow: hidden; position: fixed;top: 0px;right: 0px; left: 0px;}
+.search-input{ position: relative; margin-top: 10px;}
+.search-input input{ background-color: #f5f5f5; border-radius: 6px; margin-right: 12px; height: 25px; padding: 0px 12px;}
+.search-input image{ position: absolute; right: 20px; top: 4px; z-index: 1;width: 18px; height: 18px;}
+.cancel-button{ color: #33b0ff;}
+.shop-type{ padding: 0px 12px; color: #ee8c41; font-size: 13px;margin-top: 5px;}
+.shop-item{ margin-top: 5px;}
+.shop-item-image{width: 80px; height: 80px;}
+.shop-item-image image{ width: 80px; height: 80px; display: block;}
+.shop-item{ padding: 12px 12px; background-color: #fff;}
+.shop-name-text{ margin-top: 5px;}
+.shop-item-name{ padding: 0px 12px;}
+.shop-name-unit{ margin-top: 25px; font-size: 13px; color: #999;}
+.edit-icon{ margin-right: 20px;}
+.price-box{color: #33b0ff; padding-top: 25px;}
+.shop-rule{ height: 40px; line-height: 40px; padding: 0px 12px; border-top:1px solid #f5f5f5; background-color: #fff;}
+.shop-rule-price text{color: #33b0ff; margin-top: 25px;}
+.rule-delete-icon{ width: 18px; height: 18px;margin-top: 11px; margin-left: 10px;}
+.shop-item-box{ margin-bottom: 5px;}
+.shop-rule-text{ color: #999;}
+.money_total{ position: fixed;width: 100%; left: 0px; bottom: 0px;height: 60px; background-color: #fff;}
+.money_total_box{ text-align: right; padding:5px 12px; border-top:1px solid #e3e3e3; margin-top: 10px;}
+.sure-button{ background-color: #33b0ff; color: #fff; text-align: center; line-height: 40px; height: 40px; border-radius: 6px; font-size: 16px;}
+.company-box{ padding: 8px 12px; background-color: #fff; border-bottom: 1px solid #f5f5f5; border-top:1px solid #f2f2f2;}
+.company-image image{ width: 50px; height: 50px; display: block;}
+.company-name{ padding-left: 10px;}
+.company-name-text{ margin-top: 5px;}
+.company-name-time{ color: #999;}
+.company-number{ height: 50px; line-height: 50px; color: #999;}
+.doing-time{ height: 30px; line-height: 30px; padding: 0px 12px; background-color: #fff; margin-bottom: 5px; color: #888;}
+.shop-type-box{ padding-top: 150px;}

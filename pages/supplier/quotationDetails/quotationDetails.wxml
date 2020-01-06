@@ -1,0 +1,49 @@
+<view class="container bg">
+  <view class='company-info'>
+    <view class='display-flex company-box'>
+      <view class='company-image'><image src='../common/images/ddmxicon@3x.png'></image></view>
+      <view class='flex-row company-name'>
+        <view class='company-name-text'>{{companyName}}</view>
+        <view class='company-name-time'>{{historyPriceDeital.createTime}}</view>
+      </view>
+      <view class='company-number'>共{{historyPriceDeital.itemNum}}种</view>
+    </view>
+    <view class='doing-time'>报价有效期：{{historyPriceDeital.startPeriod}}-{{historyPriceDeital.endPeriod}}</view>
+  </view>
+  <view class="order-main">
+    <view class='order-table'>
+      <view class='type-header'>
+        <view class='type-header-box'>
+          <view class='type-header-box-box'>
+            <view class='type-header-box-box-box'>
+              <view class="{{index==currentItemType?'text-al current-type':''}}{{index==shopType.length?'text-ar':''}}" wx:for="{{shopType}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='changeItemcategory'>{{items.itemcategoryname1}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='shop-type-box'>
+    <view wx:for="{{shopData}}" wx:for-item="items" wx:for-index="index">
+      <view class='shop-type'>{{items.itemcategoryname2}}</view>
+      <view class='shop-item-box'  wx:for="{{items.itemSkuList}}" wx:for-item="items2" wx:for-index="index2">
+        <view class='shop-item display-flex'>
+          <view class='shop-item-image'><image src='{{items2.picthumburl?items2.picthumburl:"../common/images/mrimage@2x.png"}}'></image></view>
+          <view class='flex-row shop-item-name'>
+            <view class='shop-name-text'>{{items2.itemname}}</view>
+            <view class='shop-name-unit'>{{items2.assistantunit}}/{{items2.unit}}</view>
+          </view>
+          <view class="price-box">
+            <text>￥{{items2.price}}</text>
+          </view>
+        </view>
+        <view class='display-flex shop-rule' wx:for="{{items2.itemSkuList}}" wx:for-item="items3" wx:for-index="index3">
+          <view class='flex-row shop-rule-text'>{{items3.itemspecifications}}</view>
+          <view class="shop-rule-price">
+            <text>￥{{items3.price}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

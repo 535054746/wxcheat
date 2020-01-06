@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "自采单详情",
+  "usingComponents": {
+    "yesNoBtn": "/components/yesNoBtn/yesNoBtn",
+    "errorTips": "/components/errorTips/errorTips",
+    "bottomBtn": "/components/bottomBtn/bottomBtn",
+    "bluetoothDialog": "/components/bluetoothDialog/bluetoothDialog",
+    "editDialog": "/components/editDialog/editDialog"
+  }
+}

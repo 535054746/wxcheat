@@ -1,0 +1,71 @@
+.order-main{ border-top:1px solid #f2f2f2; position:absolute; top: 0px; left: 0px;width: 100%;}
+.type-header{ padding: 0px 12px; background-color: #fff; display: flex;}
+.type-header-box{ overflow-y: auto;}
+.type-header-box-box{ width: 10000px;}
+.type-header-box-box-box{ float: left; overflow: hidden;}
+.type-header-box-box-box view{height: 45px; line-height: 45px; text-align: center; float: left; margin-right: 20px;}
+.current-type{color: #33b0ff; font-size: 15PX; font-weight: bold;}
+.down-icon{ width: 18px; height: 18px;margin-top: 30px; margin-left: 10px;}
+.search-icon{ width: 18px; height: 18px;margin-top: 14px; margin-left: 10px;}
+.search-box{ background-color: #fff; padding: 0px 12px;height: 45px; line-height: 45px; overflow: hidden; position: fixed;top: 0px;right: 0px; left: 0px;}
+.search-input{ position: relative; margin-top: 10px;}
+.search-input input{ background-color: #f5f5f5; border-radius: 6px; margin-right: 12px; height: 25px; padding: 0px 12px;}
+.search-input image{ position: absolute; right: 20px; top: 4px; z-index: 1;width: 18px; height: 18px;}
+.cancel-button{ color: #33b0ff;}
+.shop-type{ padding: 0px 12px; color: #ee8c41; font-size: 13px;padding-top: 5px;}
+.shop-item{ margin-top: 5px;}
+.shop-item-image{width: 80px; height: 80px;}
+.shop-item-image image{ width: 80px; height: 80px; display: block;}
+.shop-item{ padding: 12px 12px; background-color: #fff;}
+.shop-name-text{ margin-top: 5px; font-size: 15PX; font-weight: bold;}
+.shop-item-name{ padding: 0px 12px;}
+.shop-name-unit{ margin-top: 25px; font-size: 13px; color: #999;}
+.edit-icon{ margin-right: 20px;}
+.price-box{ margin-top: 27px;}
+.price-box input{ width: 45px; height: 25px; background-color: #f5f5f5; color: #33b0ff; border-radius: 6px;text-align: left; margin-right: 20px; z-index: -1; display: inline-block; vertical-align: middle; padding-left: 22px;}
+.shop-rule{ height: 40px; line-height: 40px; padding: 0px 12px; border-top:1px solid #f5f5f5; background-color: #fff;}
+.shop-rule-price input{ width: 45px; height: 25px; background-color: #f5f5f5; color: #33b0ff; border-radius: 6px;text-align: left; margin-right: 20px; z-index: -1; display: inline-block; vertical-align: middle; padding-left: 22px;}
+.rule-delete-icon{ width: 18px; height: 18px;margin-top: 11px; margin-left: 10px;}
+.shop-item-box{ margin-bottom: 5px;}
+.shop-rule-text{ color: #999;}
+.money_total{ position:absolute;width: 100%; left: 0px; bottom: 0px;height: 50px; background-color: #fff; z-index: 1}
+.money_total_box{ text-align: right; padding:5px 12px; border-top:1px solid #e3e3e3;}
+.sure-button{ background-color: #33b0ff; color: #fff; text-align: center; line-height: 40px; height: 40px; border-radius: 6px; font-size: 16px; font-weight: bold;}
+
+
+.remarks-fixed{ position: fixed; left: 0px; top: 0px; right: 0px; bottom: 0px; z-index: 10000;}
+.remarks-relative{position: relative; width: 100%; height: 100%; justify-content: center; align-items: center;}
+.over-bg{ background-color: #000;opacity: 0.3; width: 100%; height: 100%;position:fixed;left: 0px; top: 0px; z-index: 1;}
+.remarks-content{ background-color: #fff; position: relative; z-index: 1; width: 80%; border-radius:6px; margin-top: -10%;}
+.remarks-title{height: 50px; line-height: 50px; text-align: center; color: #fff; background-color: #33b0ff; border-radius:6px 6px 0px 0px;font-size: 18px;font-weight: bold;}
+.tip-text{ padding: 10px 10px; text-align: center;height: 85px;display: -webkit-flex;display: flex;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center; color: #1a1a1a;font-size: 14px;}
+.tip-btns{border-top:1px solid #e1e1e1; padding: 0px 10px;}
+.cancel-btn,.comfire-btn{ text-align: center; height: 45px; line-height: 45px;font-size: 16px;font-weight: bold;}
+.cancel-btn{border-right:1px solid #e1e1e1;color: #999;}
+.comfire-btn{ color: #33b0ff;}
+.cancel-btn2{border:0px  solid #e1e1e1;color: #999; text-align: center;height: 45px; line-height: 45px;font-size: 13px;}
+.color-33b0ff{ color: #33b0ff;}
+.offer-link{ color: #33b0ff; margin-top: 10px;}
+.fixed-button{text-align: right; font-size: 14px; z-index: 19;}
+.print-button,.share-button{ height: 44px; line-height: 44px; margin-bottom: 10px;}
+.print-button image,.share-button image{ width: 44px; height: 44px; vertical-align: middle; margin-left: 10px; margin-top: -3px; margin-right: 15px;}
+.share-print image{ width: 71px; height: 71px;}
+.shop-box-main{ height: 100%; overflow-y: auto;}
+.ck_tips{position: fixed; left: 50%;top: 40%;z-index: 100000; margin-left: -100px; margin-top: -18px;}
+.tips_box{position: relative;width:200px; min-height: 30px; }
+.tips_bg{ width: 100%;  background-color: #000;opacity: 0.6;border-radius: 8px;position: absolute}
+.tips_text{ width: 100%; text-align: center; line-height: 30px;position: absolute;z-index: 10000000000000; color: #fff;background-color: #000;max-height: 90px;overflow: hidden;border-radius: 8px; font-size: 13px;}
+.loading-bg{ background-color: #000;opacity: 0.3; width: 100%; height: 100%;position: fixed;left: 0px; top: 0px; z-index: 100;}
+.loading-icon{ width: 100%; height: 100%;position: fixed;left: 0px; top: 0px; justify-content: center; align-content: center; align-items: center;z-index: 100;}
+.loading-icon image{ width: 30px; height: 30px;}
+.mb50{ margin-bottom: 50px;}
+.save-success{ width: 80px; height: 45px; background-color: #333; color: #fff; font-size: 16px; text-align: center; line-height: 45px; border-radius: 8px; position: fixed; left: 50%; margin-left: -50px; top: 45%; margin-top: -23px;}
+.share-input{ text-align: right; font-size: 13px; border:0px !important; height:44px; padding-right:0px !important; display:inline; } 
+.sixTen{ height: 60px; width: 100%;}
+.white-bg{ background-color: #fff;opacity: 0.7; width: 100%; height: 100%;position:absolute;left: 0px; top: 0px;}
+.price-box-main{position: relative;}
+.price-box-main view{ position: absolute; left: 0px;top: 5px; z-index: 5; color: #33b0ff; width: 20px; text-align: right; font-size: 12px;}
+.price-box-main2{position: relative;}
+.price-box-main2 view{ position: absolute; left: 0px;top: 2px; z-index: 5; color: #33b0ff; width: 20px; text-align: right; font-size: 12px;}
+.share-text{color: #33b0ff; height: 20px;line-height: 20px;}
+.share{margin-right: 12px; font-size: 14px; background-color: #fff; border:0px !important; height: 20px;line-height: 20px;}

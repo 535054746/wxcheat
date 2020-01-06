@@ -1,0 +1,76 @@
+<!--pages/application/merchant/transfers/transfers.wxml-->
+<view class='container'>
+  <movable-area class='move-area' style="height:{{screenHeight-1}}px;">
+    <errorTips id='errorTips'></errorTips>
+    <view class='tabList'>
+      <view class='{{currentTab==""?"currentTab":""}}' bindtap='selectTab' data-tab=''>全部</view>
+      <view class='{{currentTab=="3"?"currentTab":""}}' bindtap='selectTab' data-tab='3'>审核中</view>
+      <view class='{{currentTab=="4"?"currentTab":""}}' bindtap='selectTab' data-tab='4'>已审核</view>
+      <view class='{{currentTab=="5"?"currentTab":""}}' bindtap='selectTab' data-tab='5'>待验收<view hidden='{{count5?count5==0:true}}' class='red-count'>{{count5}}</view></view>
+      <view class='{{currentTab=="6"?"currentTab":""}}' bindtap='selectTab' data-tab='6'>已完成</view>
+    </view>
+    <refreshBar id='refreshBar'></refreshBar>
+    <scroll-view scroll-y style="max-height:{{screenHeight-51}}px" bindscrolltoupper='bindscrolltoupper' bindscrolltolower='bindscrolltolower'>
+      <view wx:for='{{mList}}' wx:for-item='item'>
+        <view class='item' bindtap='goDetail' data-id='{{item.id}}' data-status='{{item.billStatus}}'>
+          <view class='display-flex item-time'>
+            <view class='flex-row'>{{item.billdate}}</view>
+            <view class='status-33b0ff' wx:if='{{item.billStatus=="1"}}'>待审核</view>
+            <view class='status-FA7362' wx:if='{{item.billStatus=="2"}}'>已退回</view>
+            <view class='status-33b0ff' wx:if='{{item.billStatus=="3"}}'>审核中</view>
+            <view class='status-33b0ff' wx:if='{{item.billStatus=="4"}}'>已审核</view>
+            <view class='status-33b0ff' wx:if='{{item.billStatus=="5"}}'>待验收</view>
+            <view wx:if='{{item.billStatus=="6"}}'>已完成</view>
+          </view>
+          <view class='item-content display-flex'>
+            <view class='item-icon' wx:if='{{item.billStatus=="1"}}'>
+              <image src='../../../common/images/icons/zcsqdshicon@2x.png'></image>
+            </view>
+            <view class='item-icon' wx:if='{{item.billStatus=="2"}}'>
+              <image src='../../../common/images/icons/zcsqdshicon@2x.png'></image>
+            </view>
+            <view class='item-icon' wx:if='{{item.billStatus=="3"}}'>
+              <image src='../../../common/images/icons/zcsqdshicon@2x.png'></image>
+            </view>
+            <view class='item-icon' wx:if='{{item.billStatus=="4"}}'>
+              <image src='../../../common/images/icons/zcsqdshicon@2x.png'></image>
+            </view>
+            <view class='item-icon' wx:if='{{item.billStatus=="5"}}'>
+              <image src='../../../common/images/icons/ordericonys@2x.png'></image>
+            </view>
+            <view class='item-icon' wx:if='{{item.billStatus=="6"}}'>
+              <image src='../../../common/images/icons/orderdone@2x.png'></image>
+            </view>
+            <view class='flex-row item-detail'>
+              <view class='item-number'>{{item.number}}</view>
+              <view class='item-person'>部门：{{item.storeName}} {{item.userName}}</view>
+            </view>
+            <view class='icon-right'>
+              <image src='../../../common/images/icons/more@2x.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='loadMore' wx:if='{{hasNextPage}}'>正在加载</view>
+    </scroll-view>
+    <view class='emtry-view' wx:if='{{mList.length==0}}'>
+      <view>
+        <image src='../../../common/images/icons/animalone@2x.png'></image>
+      </view>
+      <text>暂无订单</text>
+    </view>
+    <view class='over-mask' bindtap='closeMask' wx:if='{{workFlowFlag}}'></view>
+    <movable-view class='move-view' direction="all" wx:if='{{screenHeight!=0}}' x='{{screenWidth-240}}' y='{{floatHeight}}'>
+      <view class='workflow-list' wx:if='{{workFlowFlag}}'>
+        <view class='display-flex workflow-item' wx:for='{{workFlowList}}' wx:for-item='item' bindtap='goAddPur' data-flow='{{item.templateId}}'>
+          <view class='flex-row'>{{item.name}}</view>
+          <image src='../../../common/images/icons/ddmxicon@3x.png'></image>
+        </view>
+      </view>
+      <view class='addPur display-flex' bindtap='addPurReq'>
+        <view class='flex-row'></view>
+        <image src='../../../common/images/icons/tjgd@3x.png'></image>
+      </view>
+    </movable-view>
+  </movable-area>
+</view>

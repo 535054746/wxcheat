@@ -1,0 +1,15 @@
+<!--components/singlePicker/singlePicker.wxml-->
+<view class='singlePicker-mask' hidden='{{!isShow}}'></view>
+<view class='singlePicker-main' hidden='{{!isShow}}'>
+  <view class='singlePicker-option'>
+    <view bindtap='hide'>取消</view>
+    <view bindtap='comfirm'>确定</view>
+  </view>
+  <view>
+    <picker-view indicator-class='singlePicker-indicator' class='singlePicker-picker' bindchange='bindchange'>
+      <picker-view-column>
+        <view wx:for="{{list}}" style="line-height: 50px">{{item.organizationname}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

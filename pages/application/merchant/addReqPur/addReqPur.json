@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "新增要货单",
+  "usingComponents": {
+    "bottomBtn": "/components/bottomBtn/bottomBtn",
+    "amountInput": "/components/amountInput/amountInput",
+    "shopShowType": "/components/shopShowType/shopShowType",
+    "singlePicker": "/components/singlePicker/singlePicker",
+    "errorTips": "/components/errorTips/errorTips"
+  }
+}

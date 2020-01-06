@@ -1,0 +1,22 @@
+<view class="container bg padding-tb">
+  <view class='shop-type-box'>
+    <view class='item-box' wx:for="{{orderData.list}}" wx:for-item="items" wx:for-index="index">
+      <view class='display-flex items border-bottom' data-index='{{index}}' bindtap="jumpOrderDetail" data-id="{{items.id}}">
+        <view class='flex-row items-name'>{{items.deptName}} {{items.number}}</view>
+        <view class='items-unit color1'>￥ {{items.totalamount}}</view>
+        <view class='items-icon-two'><image src='../../common/images/icons/dlmore_pr.png'></image></view>
+      </view>
+    </view>
+  </view>
+  
+  <view class='total-number display-flex'>
+    <view class='flex-row'>今日单数：<text>{{orderData.totalNumber}}单</text></view>
+    <view class='flex-row te-ri'>今日总额：<text>￥{{orderData.totalAmount}}</text></view>
+  </view>
+</view>
+<view class="ck_tips" wx:if="{{ckTipFalg}}">
+    <view class="tips_box">
+      <view class="tips_bg"></view>
+      <view class="tips_text">{{tipText}}</view>
+    </view>
+</view>

@@ -1,0 +1,173 @@
+<view class="container bg">
+<movable-area style="width:100%;height:{{screenHeight}}px;padding-top:50px; position:relative; overflow:hidden">
+  <view class="order-main">
+    <view class='order-table'>
+      <view class='type-header'>
+        <view class='type-header-box'>
+          <view class='type-header-box-box'>
+            <view class='type-header-box-box-box'>
+              <view class="{{index==currentItemType?'text-al current-type':''}}{{index==shopType.length?'text-ar':''}}" wx:for="{{shopType}}" wx:for-item="items" wx:for-index="index" data-index="{{index}}" bindtap='changeItemcategory'>{{items.itemcategoryname1}}</view>
+            </view>
+          </view>
+        </view>
+        <view class='search-button' bindtap='showSearchBox'><image src='../common/images/navigationbarsearch@3x.png' class='search-icon'></image></view>
+      </view>
+    </view>
+  </view>
+  <view class='search-box display-flex' wx:if="{{searchFlag}}">
+    <view class='search-input flex-row'><input type='text' placeholder='搜索商品名、首字母' bindconfirm='searchShop' bindinput='keyWord'></input><image src='../common/images/navigationbarsearch@3x.png' ></image></view>
+    <view class='cancel-button'  bindtap='showSearchBox'>取消</view>
+  </view>
+  
+  <view class='shop-box-main'>
+   <view class='bg'>
+    <view wx:for="{{shopData}}" wx:for-item="items" wx:for-index="index">
+      <view class='shop-type' wx:if="{{items.itemSkuList.length>0}}">{{items.itemcategoryname2}}</view>
+      <view class='shop-item-box' wx:for="{{items.itemSkuList}}" wx:for-item="items2" wx:for-index="index2">
+        <view class='shop-item display-flex'>
+          <view class='shop-item-image'><image src='{{items2.picthumburl?items2.picthumburl:"../common/images/mrimage@2x.png"}}'></image></view>
+          <view class='flex-row shop-item-name'>
+            <view class='shop-name-text'>{{items2.itemname}}</view>
+            <view class='shop-name-unit'>{{items2.assistantunit}}{{items2.assistantunit.length>0?'/':''}}{{items2.unit}}</view>
+          </view>
+          <view class="price-box">
+            <view wx:if="{{(!items2.itemSkuList) || items2.itemSkuList.length==0}}" class='price-box-main'>
+              <view wx:if="{{(items2.price && items2.price!='') || items2.showFlag}}">￥</view><input type='digit' confirm-type='完成' placeholder='{{items2.showFlag?"":"价格"}}' bindblur='keyPriceInputOne' bindfocus='keyInputFlagOne' data-indexone="{{index}}" data-indextwo="{{index2}}" data-id="{{items2.id}}" value="{{items2.price}}"></input>
+            </view>
+          </view>
+          <view class='delete-icon'  bindtap='deleteShopTip' data-mean="0" data-id="{{items2.id}}" data-indexone="{{index}}" data-indextwo="{{index2}}">
+            <image src='../common/images/sqddelete@3x.png' class='down-icon'></image>
+          </view>
+        </view>
+        <view class='display-flex shop-rule' wx:if="{{(!items2.itemSkuList) && items2.itemspecifications.length != 0}}">
+          <view class='flex-row shop-rule-text'>{{items2.itemspecifications}}</view>
+        </view>
+        <view class='display-flex shop-rule' wx:for="{{items2.itemSkuList}}" wx:for-item="items3" wx:for-index="index3">
+          <view class='flex-row shop-rule-text'>{{items3.itemspecifications}}</view>
+          <view class="shop-rule-price">
+           <view class='price-box-main2'>
+            <view  wx:if="{{(items3.price && items3.price!='')  || items3.showFlag}}">￥</view><input type='digit' confirm-type='完成' placeholder='{{items3.showFlag?"":"价格"}}' data-indexone="{{index}}" data-indextwo="{{index2}}" data-indexthree="{{index3}}" data-id="{{items3.id}}" value="{{items3.price}}" bindblur='keyPriceInputTwo' bindfocus='keyInputFlagTwo'></input>
+            </view>
+          </view>
+          <view class='delete-icon' bindtap='deleteShopTip' data-mean="1" data-id="{{items3.id}}" data-indexone="{{index}}" data-indextwo="{{index2}}" data-indexthree="{{index3}}">
+            <image src='../common/images/sqddelete@3x.png' class='rule-delete-icon'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    </view>
+    <view class='sixTen'></view>
+  </view>
+    <movable-view style="z-index:1;width:{{viewWidth}}px; height:{{viewHeight}}px;"  x="{{x}}" y="{{y}}" direction="all">
+    <view class='fixed-button'>
+      <view class='print-button' wx:if="{{showFixedBut}}" bindtap='jumpAddShop'>添加商品<image src='../common/images/fxdydytjsp@2x.png' bindtap=''></image></view>
+      <view class='print-button' wx:if="{{showFixedBut}}" bindtap='printPricePlan'>打印<image src='../common/images/fxdydy@2x.png'></image></view>
+      <view class='share-button' wx:if="{{showFixedBut}}">
+      <button class='share-input'  open-type="share" plain="true" data-index="{{index}}">分享<image src='../common/images/fxdyfx@2x.png'></image></button></view>
+      <view class='share-print' bindtap='showFixedButChange'><image src='../common/images/spqbjg@2x.png'></image></view>
+    </view>
+    </movable-view>
+  
+  <view class='money_total'>
+    <view class='money_total_box display-flex'><view class='sure-button flex-row' bindtap='savePriceSetTip'>保存</view></view>
+  </view>
+  <view class='white-bg' wx:if="{{whiteFlag}}"></view>
+  </movable-area>
+</view>
+
+<view class='loading-bg' wx:if="{{loading}}"></view>
+<view class='loading-icon display-flex' wx:if="{{loading}}"><image src='../../common/images/icons/loading.gif'></image></view>
+<view class="ck_tips" wx:if="{{ckTipFalg}}">
+  <view class="tips_box">
+    <view class="tips_bg"></view>
+    <view class="tips_text">{{tipText}}</view>
+  </view>
+</view>
+<view class='remarks-fixed' wx:if="{{deleteTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>确定要删除吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelDelete'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='deleteShop'>确定</view>
+        </view>
+      </view>
+    </view>
+</view>
+<view class='remarks-fixed' wx:if="{{setTimeFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>价格已填写完<view></view>是否去设置报价有效期</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelSet'>稍后再说</view>
+          <view class='comfire-btn flex-row' bindtap='goToTimeSet'>去设置</view>
+        </view>
+      </view>
+    </view>
+</view>
+<view class='remarks-fixed' wx:if="{{addTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>报价有效期内新增商品，将会通知客户并<view></view>更新双方报价单，确定要修改吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelSet2'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='savePriceSet'>确定</view>
+        </view>
+      </view>
+    </view>
+</view>
+
+<view class='remarks-fixed' wx:if="{{editTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>报价有效期内修改价格，将会通知客户并<view></view>更新双方报价单，确定要修改吗？</view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn flex-row' bindtap='cancelSet2'>取消</view>
+          <view class='comfire-btn flex-row' bindtap='savePriceSet'>确定</view>
+        </view>
+      </view>
+    </view>
+</view>
+
+<view class='remarks-fixed' wx:if="{{startTipFlag}}">
+    <view class='remarks-relative display-flex'>
+      <view class='over-bg'></view>
+      <view class='remarks-content'>
+        <view class='remarks-title'>操作提示</view>
+        <view class='tip-text'>
+          <view>
+            <view>报价有效期生效时以最新修改的报价为准<view></view>是否需要给客户重新报价？</view>
+            <view class="display-flex offer-link">
+            <button class='flex-row share'  open-type="share" plain="true">
+              <view class='share-text'>分享报价></view>
+            </button>
+    <view class='flex-row' bindtap='printPricePlan'>打印报价></view></view>
+          </view>
+        </view>
+        <view class='tip-btns display-flex'>
+          <view class='cancel-btn2 flex-row' bindtap='cancelSet2'>稍后再说</view>
+        </view>
+      </view>
+    </view>
+</view>
+
+<view class='save-success' wx:if="{{saveFlagTip}}">
+已保存
+</view>
+

@@ -1,0 +1,34 @@
+<!--pages/mine/companyDetail/companyDetail.wxml-->
+<view class='container'>
+<view class='display-flex company_name' bindtap='jumpLink' data-url='../../mine/changeCompanyname/changeCompanyname'>
+  <view class=' text_name'>公司</view>
+  <view class='flex-row company_name_text '>{{companyName}}</view>
+  <view class='link-icon'><image src='../../common/images/icons/more@2x.png'></image></view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>联系人电话</view>
+  <view class='flex-row company_name_text '>{{mobile}}</view>
+  <view class='link-icon'><image src='../../common/images/icons/more@2x.png' hidden='true'></image></view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name'>
+  <view class=' text_name'>联系人</view>
+  <view class='flex-row company_name_text '>{{contact}}</view>
+  <view class='link-icon'><image src='../../common/images/icons/more@2x.png' hidden='true'></image></view>
+</view>
+<view class='lines' ></view>
+<view class='display-flex company_name' bindtap='jumpLink' data-url='../../mine/changeAddress/changeAddress'>
+  <view class=' text_name'>地址</view>
+  <view class='flex-row company_name_text '>{{address}}</view>
+  <view class='link-icon'><image src='../../common/images/icons/more@2x.png'></image></view>
+</view>
+<view class='lines' ></view>
+</view>
+
+<view class="ck_tips" wx:if="{{tipFalg}}">
+      <view class="tips_box">
+        <view class="tips_bg"></view>
+        <view class="tips_text">{{tipText}}</view>
+      </view>
+    </view>

@@ -1,0 +1,57 @@
+<view>
+  <view>
+    <view class="orderHeader">
+      <view class="flex detailsHeader">
+        <view class="detailsWidth">门店</view>
+        <view>{{detail.storeName}}</view>
+      </view>
+      <view class="flex detailsHeader">
+        <view class="detailsWidth">下单时间</view>
+        <view>{{detail.orderTime}}</view>
+      </view>
+      <view class="flex detailsHeader">
+        <view class="detailsWidth">到货时间</view>
+        <view>{{detail.deliveryTime}}</view>
+      </view>
+      <view class="flex detailsHeader">
+        <view class="detailsWidth">单据编号</view>
+        <view>{{detail.supplyCode}}</view>
+      </view>
+      <view class="flex detailsHeader">
+        <view class="detailsWidth">下单人</view>
+        <view>{{detail.orderUserName}}</view>
+      </view>
+    </view>
+
+    <view class="orderConter">
+      <view class="flex_space sumPrice">
+        <view style="padding-left: 17px">品项</view>
+        <view style="color: gray;padding-right:17px;">
+          <text>共{{detail.groupingDetail.length}}种</text>,
+          <text>金额：{{detail.moneyAmount / 100}}</text>
+        </view>
+      </view>
+
+      <view class="orderType" wx:for="{{detail.groupingDetail}}" wx:key="*this">
+        <view class="flex_space orderFlist" catchtap="orderType" data-item="{{index}}">
+          <view style="padding-left:17px">
+            <view class="orderFlist">{{item.goodsName}}</view>
+             <view style="color: gray;line-height:25px;font-size:12px;" wx:if="{{item.specifications}}">规格：{{item.specifications}}</view>
+          </view>
+          <view class="flex-centent" style="padding-right:17px;">
+            <view>{{item.unitQty}}{{item.unitName}}</view>
+            <image src="{{item.isSelect?shang:xia}}" class="iconImg"></image>
+          </view>
+        </view>
+        <view wx:if="{{item.isSelect}}">
+          <view class="orderTypeer" wx:for="{{item.List}}" wx:key="*this">
+            <view class="flex_space">
+              <view>{{item.organizationName}}</view>
+              <view class="unitQty">{{item.unitQty}}{{item.unitName}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

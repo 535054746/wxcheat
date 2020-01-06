@@ -1,0 +1,25 @@
+.price-set-item{ height: 45px; line-height: 45px; background-color: #fff; padding: 0px 12px;}
+.price-set-start image{ width: 40px; height: 28px; vertical-align: middle; margin-top: -3px;}
+.price-set-more image{ width: 7px; height: 15px; vertical-align: middle; margin-top: -3px;}
+.mb5{ margin-bottom:5px;}
+.delete-button{ padding: 0px 8px; color: #fff; background-color: #fa7362; height: 25px; line-height: 25px; margin-top: 10px; border-radius: 3px;}
+
+.remarks-fixed{ position: fixed; left: 0px; top: 0px; right: 0px; bottom: 0px;}
+.remarks-relative{position: relative; width: 100%; height: 100%; justify-content: center; align-items: center;}
+.over-bg{ background-color: #000;opacity: 0.3; width: 100%; height: 100%;position: absolute;left: 0px; top: 0px;}
+.remarks-content{ background-color: #fff; position: relative; z-index: 1; width: 80%; border-radius:6px; margin-top: -10%;}
+.remarks-title{height: 50px; line-height: 50px; text-align: center; color: #fff; background-color: #33b0ff; border-radius:6px 6px 0px 0px;font-size: 18px;font-weight: bold;}
+.tip-text{ padding: 10px 10px; text-align: center;height: 85px;display: -webkit-flex;display: flex;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center; color: #1a1a1a;font-size: 14px;}
+.tip-btns{border-top:1px solid #e1e1e1; padding: 0px 10px;}
+.cancel-btn,.comfire-btn{ text-align: center; height: 45px; line-height: 45px;font-size: 16px;font-weight: bold;}
+.cancel-btn{border-right:1px solid #e1e1e1;color: #999;}
+.comfire-btn{ color: #33b0ff;}
+.cancel-btn2{border:0px  solid #e1e1e1;color: #999;}
+.color-33b0ff{ color: #33b0ff;}
+.ck_tips{position: fixed; left: 50%;top: 40%;z-index: 100000; margin-left: -100px; margin-top: -18px;}
+.tips_box{position: relative;width:200px; height: 60px;}
+.tips_bg{ width: 100%; height: 100%; background-color: #000;opacity: 0.6;border-radius: 8px;position: absolute}
+.tips_text{ width: 100%; height: 100%;text-align: center; line-height: 25px;position: absolute;z-index: 10000000000000; color: #fff; font-size: 14px; padding: 5px 12px;}
+.loading-bg{ background-color: #000;opacity: 0.3; width: 100%; height: 100%;position: fixed;left: 0px; top: 0px;}
+.loading-icon{ width: 100%; height: 100%;position: fixed;left: 0px; top: 0px; justify-content: center; align-content: center; align-items: center;}
+.loading-icon image{ width: 30px; height: 30px;}
